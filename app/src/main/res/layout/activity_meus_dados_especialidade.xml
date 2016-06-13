@@ -1,0 +1,61 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:id="@+id/tabHost" tools:context="searchmedapp.MeusDadosEspecialidadeActivity">
+
+<LinearLayout
+    android:id="@+id/LinearLayout01"
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+
+    <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
+    </TabWidget>
+
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/tabEspecialidadePrestador"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listEspecialidadePrestador" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tabLstEspecialidades"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchEspecialidde"
+                android:focusable="true"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listEspecialidade" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
+
+</TabHost>
+
+

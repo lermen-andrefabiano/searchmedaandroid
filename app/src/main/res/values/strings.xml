@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name">SearchMed</string>
+
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Ok</string>
+
+    <string name="action_encontre_medico">Encontre Médico</string>
+    <string name="action_recomendacao">Recomendação Profissional Médico</string>
+    <string name="action_consultas">Consultas</string>
+    <string name="action_medicos_favoritos">Médicos Favoritos</string>
+    <string name="action_consultas_passadas">Consultas Passadas</string>
+    <string name="action_ajustes">Ajustes</string>
+    <string name="action_perfil">Perfil</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_save">Salvar</string>
+
+    <string name="label_meus_dados">Meus Dados</string>
+    <string name="label_mais">Mais</string>
+    <string name="label_dados_pessoais">Dados pessoais</string>
+    <string name="label_redefinir_senha">Redefinir Senha</string>
+    <string name="label_esqueci_senha">Esqueci minha senha</string>
+    <string name="label_logff">Fazer Logoff</string>
+    <string name="label_nome">Nome</string>
+    <string name="label_email">E-mail</string>
+    <string name="label_presta_servico">Profissional Médico?</string>
+    <string name="label_crm">Número CRM</string>
+    <string name="label_senha">Senha</string>
+    <string name="label_convenio_medico">Convenio Médico</string>
+    <string name="label_senha_confirma">Confirma Senha</string>
+    <string name="label_senha_atual">Senha Atual</string>
+    <string name="label_senha_nova">Senha Nova</string>
+    <string name="label_lembrete_senha">Lembrete de Senha</string>
+    <string name="label_lembrete_senha_info">Caso tenha esquecido sua senha, digite o e-mail que você utilizou para se cadastrar no Home Help no espeço abaixo.</string>
+    <string name="label_criar_nova_senha">Criar nova senha</string>
+    <string name="label_especialidades">Especialidades</string>
+    <string name="search_label">Procurar prestadores</string>
+    <string name="search_hint">Procurar prestadores</string>
+    <string name="label_prioridade">Prioridade</string>
+    <string name="label_descricao">Descrição</string>
+    <string name="label_agendamento">Agendamento</string>
+    <string name="label_observacao">Observação</string>
+    <string name="label_abrir_consulta">Abrir Consulta</string>
+    <string name="label_prioridade_normal">Normal</string>
+    <string name="label_prioridade_urgente">Urgente</string>
+    <string name="label_prioridade_muito_urgente">Muito Urgente</string>
+    <string name="label_agendar">Agendar</string>
+    <string name="label_rejeitar">Rejeitar</string>
+    <string name="label_nota">Nota</string>
+    <string name="label_recomendacao">Recomendação</string>
+    <string name="label_classificar">Classificar</string>
+    <string name="label_boa_vindas">Bem Vindo ao SearchMed</string>
+    <string name="label_boa_vindas_pessoas">Encontre Profissionais Médicos</string>
+    <string name="label_criar_conta">Criar minha conta SearchMed</string>
+    <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
+    <string name="label_buscar_medico">Buscar Médico</string>
+    <string name="label_valor_dinheiro">R$</string>
+    <string name="label_endereco">Endereço</string>
+    <string name="label_especialidade_listar">Visualizar</string>
+    <string name="label_especialidade_add">Adicionar</string>
+    <string name="label_encontre_medico">Encontre o seu Médico</string>
+
+    <string name="title_activity_perfil">Perfil</string>
+    <string name="title_activity_meus_dados">Meus Dados</string>
+    <string name="title_activity_redefinir_senha">Redefinir Senha</string>
+    <string name="title_activity_lembrete_senha">Esqueci minha senha</string>
+    <string name="title_activity_boas_vindas">Boas Vindas ao Home Help</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_primeiro_acesso">Primeiro Acesso</string>
+    <string name="title_activity_meus_dados_especialidade">Especialidades</string>
+
+    <string name="toast_consulta_descriao">Informe a descrição</string>
+    <string name="toast_consulta_aberto">Consulta aberta!</string>
+    <string name="toast_classificacao_recomendacao">Informe a recomendação!</string>
+    <string name="toast_classificacao_aberta">Classificação realizada com sucesso!</string>
+    <string name="toast_agendamento_realizado">Agendamento realizado com sucesso!</string>
+    <string name="toast_senhas_vazias">Informe as senhas</string>
+    <string name="toast_senhas_diferrentes">As senhas não são iguais</string>
+
+    <string-array name="prioridade_array">
+        <item>Normal</item>
+        <item>Urgente</item>
+        <item>Muito Urgente</item>
+    </string-array>
+
+    <string-array name="convenio_array">
+        <item>UM</item>
+        <item>DOIS</item>
+        <item>TREZ</item>
+        <item>QUATRO</item>
+        <item>CINCO</item>
+        <item>SEIS</item>
+        <item>SETE</item>
+        <item>OITO</item>
+        <item>NOVE</item>
+        <item>DEZ</item>
+    </string-array>
+
+
+    <string-array name="nota_array">
+        <item>UM</item>
+        <item>DOIS</item>
+        <item>TREZ</item>
+        <item>QUATRO</item>
+        <item>CINCO</item>
+        <item>SEIS</item>
+        <item>SETE</item>
+        <item>OITO</item>
+        <item>NOVE</item>
+        <item>DEZ</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+    <string-array name="foodTypes">
+        <item>Normal</item>
+        <item>Urgente</item>
+        <item>Muito Urgente</item>
+        <item>Grill</item>
+        <item>Sea Food</item>
+        <item>Salads</item>
+        <item>Desserts</item>
+        <item>Quick Meals</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_navigation_drawer_fragment">NavigationDrawerFragmentActivity</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
+
+</resources>

@@ -1,0 +1,44 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_prioridade"
+        android:id="@+id/textLabel_prioridade" />
+
+    <Spinner
+        android:id="@+id/spinnerPrioridade"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_descricao"
+        android:id="@+id/textView6" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editDecricao" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_observacao"
+        android:id="@+id/textView7" />
+
+    <EditText android:inputType="textMultiLine" android:lines="8" android:minLines="6"
+        android:gravity="top|left" android:maxLines="10" android:layout_height="wrap_content"
+        android:layout_width="fill_parent" android:scrollbars="vertical"
+        android:id="@+id/editObservacao"/>
+
+</LinearLayout>
+
+
