@@ -4,7 +4,7 @@
     <string name="cancel">Cancelar</string>
     <string name="ok">Ok</string>
 
-    <string name="action_encontre_medico">Encontre Médico</string>
+    <string name="action_encontre_medico">Encontre Médicos</string>
     <string name="action_recomendacao">Recomendação Profissional Médico</string>
     <string name="action_consultas">Consultas</string>
     <string name="action_medicos_favoritos">Médicos Favoritos</string>
@@ -20,11 +20,16 @@
     <string name="label_redefinir_senha">Redefinir Senha</string>
     <string name="label_esqueci_senha">Esqueci minha senha</string>
     <string name="label_logff">Fazer Logoff</string>
-    <string name="label_nome">Nome</string>
+    <string name="label_nome">Como deseja ser chamado?</string>
     <string name="label_email">E-mail</string>
+    <string name="label_acesse">Acesse ao SearchMed</string>
+
+    <string name="label_criar_conta_primeiro">Criar conta</string>
+
     <string name="label_presta_servico">Profissional Médico?</string>
     <string name="label_crm">Número CRM</string>
     <string name="label_senha">Senha</string>
+    <string name="label_esqueceu_senha">Esqueçeu a Senha?</string>
     <string name="label_convenio_medico">Convenio Médico</string>
     <string name="label_senha_confirma">Confirma Senha</string>
     <string name="label_senha_atual">Senha Atual</string>
@@ -48,7 +53,8 @@
     <string name="label_nota">Nota</string>
     <string name="label_recomendacao">Recomendação</string>
     <string name="label_classificar">Classificar</string>
-    <string name="label_boa_vindas">Bem Vindo ao SearchMed</string>
+    <string name="label_boa_vindas">Bem Vindo ao</string>
+    <string name="label_boa_vindas_app">SearchMed</string>
     <string name="label_boa_vindas_pessoas">Encontre Profissionais Médicos</string>
     <string name="label_criar_conta">Criar minha conta SearchMed</string>
     <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
@@ -63,7 +69,7 @@
     <string name="title_activity_meus_dados">Meus Dados</string>
     <string name="title_activity_redefinir_senha">Redefinir Senha</string>
     <string name="title_activity_lembrete_senha">Esqueci minha senha</string>
-    <string name="title_activity_boas_vindas">Boas Vindas ao Home Help</string>
+    <string name="title_activity_boas_vindas">Bem Vindo ao SearchMed</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_primeiro_acesso">Primeiro Acesso</string>
     <string name="title_activity_meus_dados_especialidade">Especialidades</string>

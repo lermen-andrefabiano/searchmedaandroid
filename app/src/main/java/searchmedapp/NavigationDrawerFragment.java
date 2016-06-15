@@ -62,6 +62,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private CharSequence mTitle;
 
     public NavigationDrawerFragment() {
     }
@@ -112,16 +113,17 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.action_encontre_medico),
                         getString(R.string.action_consultas),
                         getString(R.string.action_recomendacao),
-                        getString(R.string.action_medicos_favoritos),
-                        getString(R.string.action_consultas_passadas),
                         getString(R.string.action_ajustes),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return view;
+
+       // getString(R.string.action_medicos_favoritos),
+              //  getString(R.string.action_consultas_passadas),
     }
 
     public void setUserCabecalho(View view){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String userNome = pref.getString("key_user_nome", "");
 
         TextView txtUser = (TextView) view.findViewById(R.id.txtUser);

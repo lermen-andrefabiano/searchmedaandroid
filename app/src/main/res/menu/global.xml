@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="help.home.com.br.homehelp.MainActivity">
+    tools:context="searchmedapp.MainActivity">
 
-    <!--item android:id="@+id/action_servives" android:title="@string/action_servives"
+    <item android:id="@+id/action_servives" android:title="@string/action_encontre_medico"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_classificacao" android:title="@string/action_classificacao"
+    <item android:id="@+id/action_classificacao" android:title="@string/action_recomendacao"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_notificacao" android:title="@string/action_notificacao"
-        android:orderInCategory="100" app:showAsAction="never" /-->
+    <item android:id="@+id/action_notificacao" android:title="@string/action_consultas"
+        android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/action_ajustes" android:title="@string/action_ajustes"
         android:orderInCategory="100" app:showAsAction="never" />

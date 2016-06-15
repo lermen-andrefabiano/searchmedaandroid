@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="SearhMedTheme" parent="Theme.AppCompat">
+
+
+
+    <item name="android:editTextStyle">@style/EditTextSearhMedTheme</item>
+
+    <item name="android:textColorHighlight">#9933b5e5</item>
+
+    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewSearhMedTheme</item>
+
+    <item name="android:checkboxStyle">@style/CheckBoxSearhMedTheme</item>
+
+    <item name="android:radioButtonStyle">@style/RadioButtonSearhMedTheme</item>
+
+    <item name="android:buttonStyle">@style/ButtonSearhMedTheme</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonSearhMedTheme</item>
+
+    <item name="android:spinnerStyle">@style/SpinnerSearhMedTheme</item>
+
+    <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemSearhMedTheme</item>
+
+    <item name="android:progressBarStyleHorizontal">@style/ProgressBarSearhMedTheme</item>
+
+    <item name="android:seekBarStyle">@style/SeekBarSearhMedTheme</item>
+
+    <item name="android:ratingBarStyle">@style/RatingBarSearhMedTheme</item>
+
+    <item name="android:ratingBarStyleIndicator">@style/RatingBarBigSearhMedTheme</item>
+
+    <item name="android:ratingBarStyleSmall">@style/RatingBarSmallSearhMedTheme</item>
+
+    <item name="android:buttonStyleToggle">@style/ToggleSearhMedTheme</item>
+
+    <item name="android:listViewStyle">@style/ListViewSearhMedTheme</item>
+
+    <item name="android:listViewWhiteStyle">@style/ListViewSearhMedTheme.White</item>
+
+    <item name="android:spinnerItemStyle">@style/SpinnerItemSearhMedTheme</item>
+
+  </style>
+
+</resources>

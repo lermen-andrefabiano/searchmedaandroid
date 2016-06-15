@@ -37,8 +37,6 @@ public class ConsultaFragment extends Fragment {
 
     private static final String TAG = "ConsultaFragment";
 
-    private SearchView searchEspecialidde;
-
     private List<MedicoEspecialidadeDTO> listaMedicoEspecialidade = null;
 
     private MedicoEspecialidadeDTO medicoEspecialidadeSel;
@@ -116,17 +114,17 @@ public class ConsultaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 medicoEspecialidadeSel = (MedicoEspecialidadeDTO)parent.getItemAtPosition(position);
-                abrirPopUpChamado();
+                abrirPopUpConsulta();
             }
         });
     }
 
-    private void abrirPopUpChamado(){
+    private void abrirPopUpConsulta(){
         LayoutInflater li = LayoutInflater.from(getActivity());
-        View abrirChamadoView = li.inflate(R.layout.activity_abrir_consulta, null);
+        View view = li.inflate(R.layout.activity_abrir_consulta, null);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setView(abrirChamadoView);
+        alertDialogBuilder.setView(view);
 
         // set dialog message
         alertDialogBuilder
@@ -149,7 +147,7 @@ public class ConsultaFragment extends Fragment {
     }
 
     public void abrirConsulta(){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String user = pref.getString("key_user_id", "");
 
         try {

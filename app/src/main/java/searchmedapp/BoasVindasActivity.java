@@ -1,5 +1,6 @@
 package searchmedapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class BoasVindasActivity extends AppCompatActivity {
+public class BoasVindasActivity extends Activity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {

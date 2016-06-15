@@ -38,16 +38,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
        // if(isLogado()){
-            this.openNavigationDrawer();
+           // this.openNavigationDrawer();
         //}else{
-            //Intent r = new Intent(this, BoasVindasActivity.class);
-            //startActivity(r);
+            Intent r = new Intent(this, BoasVindasActivity.class);
+            startActivity(r);
         //}
 
     }
 
     private boolean isLogado(){
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
         String user = pref.getString("key_user", null);
 
         return user!=null;
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+
+        Log.i(TAG, "mTitle "+ mTitle);
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -86,13 +88,18 @@ public class MainActivity extends AppCompatActivity
                 fragment = PerfilFragment.newInstance(position + 1);
         }
 
+        onSectionAttached(position+1);
+
+        restoreActionBar();
+
+        Log.i(TAG, "mTitle "+ mTitle);
+
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     public void onSectionAttached(int number) {
-        Log.i(TAG, "onSectionAttached");
         switch (number) {
             case 1:
                 mTitle = getString(R.string.action_encontre_medico);
@@ -115,7 +122,6 @@ public class MainActivity extends AppCompatActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
