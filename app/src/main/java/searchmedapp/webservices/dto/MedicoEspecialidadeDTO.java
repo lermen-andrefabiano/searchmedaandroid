@@ -6,7 +6,8 @@ public class MedicoEspecialidadeDTO {
 	private Long id;
 	private Long valor;
 	private EspecialidadeDTO especialidade;
-	private MedicoDTO medico;
+	private Long medicoId;
+	private String medicoNome;
 
 	public MedicoEspecialidadeDTO() {
 	}
@@ -34,13 +35,18 @@ public class MedicoEspecialidadeDTO {
 	public void setEspecialidade(EspecialidadeDTO especialidade) {
 		this.especialidade = especialidade;
 	}
-
-	public MedicoDTO getMedico() {
-		return medico;
+	
+	public Long getMedicoId() {
+		return medicoId;
 	}
-
-	public void setMedico(MedicoDTO medico) {
-		this.medico = medico;
+	public void setMedicoId(Long medicoId) {
+		this.medicoId = medicoId;
+	}
+	public String getMedicoNome() {
+		return medicoNome;
+	}
+	public void setMedicoNome(String medicoNome) {
+		this.medicoNome = medicoNome;
 	}
 
 }

@@ -25,6 +25,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import searchmedapp.adapter.DrawerItem;
+import searchmedapp.adapter.DrawerItemAdapter;
+
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
@@ -63,6 +69,8 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     private CharSequence mTitle;
+
+    private List<DrawerItem> dataList;
 
     public NavigationDrawerFragment() {
     }
@@ -105,21 +113,19 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.action_encontre_medico),
-                        getString(R.string.action_consultas),
-                        getString(R.string.action_recomendacao),
-                        getString(R.string.action_ajustes),
-                }));
+
+        dataList = new ArrayList<DrawerItem>();
+        dataList.add(new DrawerItem(getString(R.string.action_encontre_medico), R.drawable.ic_search_black_18dp));
+        dataList.add(new DrawerItem(getString(R.string.action_consultas), R.drawable.ic_import_contacts_black_18dp));
+        dataList.add(new DrawerItem(getString(R.string.action_recomendacao), R.drawable.ic_add_alert_black_18dp));
+        dataList.add(new DrawerItem(getString(R.string.action_medicos_favoritos), R.drawable.ic_star_rate_black_18dp));
+        dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+
+        DrawerItemAdapter adapter = new DrawerItemAdapter(getActivity(), R.layout.fragment_navigation_drawer_item, dataList);
+        mDrawerListView.setAdapter(adapter);
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return view;
-
-       // getString(R.string.action_medicos_favoritos),
-              //  getString(R.string.action_consultas_passadas),
     }
 
     public void setUserCabecalho(View view){

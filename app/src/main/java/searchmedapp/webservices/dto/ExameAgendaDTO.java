@@ -3,12 +3,14 @@ package searchmedapp.webservices.dto;
 import java.util.Date;
 
 
+
 public class ExameAgendaDTO {
 
 	private Long id;
 	private Date data;
 	private String status;
-	private ExameConsultaDTO exameConsulta;
+	private ConsultaExameDTO consultaExame;
+	private LaboratorioDTO laboratorio;
 
 	public ExameAgendaDTO() {
 	}
@@ -37,12 +39,20 @@ public class ExameAgendaDTO {
 		this.status = status;
 	}
 
-	public ExameConsultaDTO getExameConsulta() {
-		return exameConsulta;
+	public ConsultaExameDTO getConsultaExame() {
+		return consultaExame;
 	}
 
-	public void setExameConsulta(ExameConsultaDTO exameConsulta) {
-		this.exameConsulta = exameConsulta;
+	public void setConsultaExame(ConsultaExameDTO consultaExame) {
+		this.consultaExame = consultaExame;
+	}
+
+	public LaboratorioDTO getLaboratorio() {
+		return laboratorio;
+	}
+
+	public void setLaboratorio(LaboratorioDTO laboratorio) {
+		this.laboratorio = laboratorio;
 	}
 
 }

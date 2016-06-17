@@ -1,13 +1,11 @@
 package searchmedapp.webservices.dto;
 
-import java.util.List;
-
 
 public class LaboratorioDTO {
-	
+
 	private Long id;
 	private String cnpj;
-	//private List<LaboratorioExameDTO> exames;
+	private String nome;
 
 	public LaboratorioDTO() {
 	}
@@ -28,12 +26,12 @@ public class LaboratorioDTO {
 		this.cnpj = cnpj;
 	}
 
-//	public List<LaboratorioExameDTO> getExames() {
-//		return exames;
-//	}
-//
-//	public void setExames(List<LaboratorioExameDTO> exames) {
-//		this.exames = exames;
-//	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 }

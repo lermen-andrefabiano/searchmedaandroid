@@ -152,7 +152,7 @@ public class ConsultaFragment extends Fragment {
 
         try {
             ConsultaREST rest = new ConsultaREST();
-            rest.abrir(Long.valueOf(user), medicoEspecialidadeSel.getMedico().getId(), medicoEspecialidadeSel.getEspecialidade().getId());
+            rest.abrir(Long.valueOf(user), medicoEspecialidadeSel.getMedicoId(), medicoEspecialidadeSel.getEspecialidade().getId());
         }catch (Exception e){
             e.printStackTrace();
         }

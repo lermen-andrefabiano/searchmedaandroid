@@ -5,8 +5,8 @@
     <string name="ok">Ok</string>
 
     <string name="action_encontre_medico">Encontre Médicos</string>
-    <string name="action_recomendacao">Recomendação Profissional Médico</string>
-    <string name="action_consultas">Consultas</string>
+    <string name="action_recomendacao">Avaliação</string>
+    <string name="action_consultas">Consultas Passadas</string>
     <string name="action_medicos_favoritos">Médicos Favoritos</string>
     <string name="action_consultas_passadas">Consultas Passadas</string>
     <string name="action_ajustes">Ajustes</string>
@@ -29,6 +29,7 @@
     <string name="label_presta_servico">Profissional Médico?</string>
     <string name="label_crm">Número CRM</string>
     <string name="label_senha">Senha</string>
+    <string name="label_login">Login</string>
     <string name="label_esqueceu_senha">Esqueçeu a Senha?</string>
     <string name="label_convenio_medico">Convenio Médico</string>
     <string name="label_senha_confirma">Confirma Senha</string>
@@ -53,7 +54,7 @@
     <string name="label_nota">Nota</string>
     <string name="label_recomendacao">Recomendação</string>
     <string name="label_classificar">Classificar</string>
-    <string name="label_boa_vindas">Bem Vindo ao</string>
+    <string name="label_boa_vindas">Bem Vindo</string>
     <string name="label_boa_vindas_app">SearchMed</string>
     <string name="label_boa_vindas_pessoas">Encontre Profissionais Médicos</string>
     <string name="label_criar_conta">Criar minha conta SearchMed</string>
@@ -81,6 +82,13 @@
     <string name="toast_agendamento_realizado">Agendamento realizado com sucesso!</string>
     <string name="toast_senhas_vazias">Informe as senhas</string>
     <string name="toast_senhas_diferrentes">As senhas não são iguais</string>
+    <string name="toast_informe_email">Informe o E-mail</string>
+    <string name="toast_informe_nome">Informe o Nome</string>
+    <string name="toast_informe_endereco">Informe o Endereço</string>
+    <string name="toast_informe_crm">Informe o número do CRM</string>
+    <string name="toast_informe_senha">Informe a senha</string>
+    <string name="toast_erro_geral">Servidor indisponível</string>
+    <string name="toast_login_invalido">Login inválido</string>
 
     <string-array name="prioridade_array">
         <item>Normal</item>

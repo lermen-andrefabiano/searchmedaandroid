@@ -80,7 +80,6 @@ public class ConsultaREST extends AbstractREST{
 
         InformacaoNotificarDTO info = new InformacaoNotificarDTO();
         //info.setAgendamento(agendamento);
-        info.setObservacao(observacao);
 
         Gson gson = new Gson();
         String infoJSON = gson.toJson(info);

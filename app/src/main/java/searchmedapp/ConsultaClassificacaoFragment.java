@@ -1,5 +1,6 @@
 package searchmedapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -69,7 +70,7 @@ public class ConsultaClassificacaoFragment extends Fragment {
     }
 
     public void listarClassificacoes(View rootView){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String user = pref.getString("key_user_id", "");
 
         Log.i(TAG, user);

@@ -9,8 +9,7 @@ public class UsuarioDTO {
 	private String endereco;
 	private String senha;
 	private String tipo;
-	//private MedicoDTO medico;
-	//private LaboratorioDTO laboratorio;
+	private MedicoDTO medico;
 
 	public UsuarioDTO() {
 	}
@@ -63,20 +62,12 @@ public class UsuarioDTO {
 		this.tipo = tipo;
 	}
 
-//	public MedicoDTO getMedico() {
-//		return medico;
-//	}
-//
-//	public void setMedico(MedicoDTO medico) {
-//		this.medico = medico;
-//	}
+	public MedicoDTO getMedico() {
+		return medico;
+	}
 
-//	public LaboratorioDTO getLaboratorio() {
-//		return laboratorio;
-//	}
-//
-//	public void setLaboratorio(LaboratorioDTO laboratorio) {
-//		this.laboratorio = laboratorio;
-//	}
+	public void setMedico(MedicoDTO medico) {
+		this.medico = medico;
+	}
 
 }

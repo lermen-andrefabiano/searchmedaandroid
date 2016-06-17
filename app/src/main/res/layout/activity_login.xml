@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <TextView
         android:layout_width="fill_parent"
@@ -14,9 +14,10 @@
         android:id="@+id/textViewAcesse"
         style="@style/TabTextSearhMedTheme"
         android:textSize="20dp"
-        android:gravity="center"
+        android:gravity="center|left"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/colorTitle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,13 +47,32 @@
         android:ems="10"
         android:id="@+id/editSenha" />
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_esqueceu_senha"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        style="@style/ButtonSearhMedTheme"
-        android:layout_marginTop="20dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_login"
+            android:id="@+id/btnLogin"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:layout_marginTop="20dp"
+            android:onClick="login" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_esqueceu_senha"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

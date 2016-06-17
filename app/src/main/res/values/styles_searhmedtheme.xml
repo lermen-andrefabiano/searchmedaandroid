@@ -4,42 +4,42 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <style name="EditTextSearhMedTheme" parent="android:Widget.EditText">
-	  <item name="android:background">@drawable/searhmedtheme_edit_text_holo_dark</item>
-	  <item name="android:textColor">#ffffff</item>
+	  <item name="android:background">@drawable/searhmedtheme_edit_text_holo_light</item>
+	  <item name="android:textColor">#000000</item>
   </style>
 
   <style name="AutoCompleteTextViewSearhMedTheme" parent="android:Widget.AutoCompleteTextView">
-      <item name="android:dropDownSelector">@drawable/searhmedtheme_list_selector_holo_dark</item>
-	  <item name="android:background">@drawable/searhmedtheme_edit_text_holo_dark</item>
-	  <item name="android:textColor">#ffffff</item>
+      <item name="android:dropDownSelector">@drawable/searhmedtheme_list_selector_holo_light</item>
+	  <item name="android:background">@drawable/searhmedtheme_edit_text_holo_light</item>
+	  <item name="android:textColor">#000000</item>
   </style>
 
   <style name="CheckBoxSearhMedTheme" parent="android:Widget.CompoundButton.CheckBox">
-      <item name="android:button">@drawable/searhmedtheme_btn_check_holo_dark</item>
+      <item name="android:button">@drawable/searhmedtheme_btn_check_holo_light</item>
   </style>
 
   <style name="RadioButtonSearhMedTheme" parent="android:Widget.CompoundButton.RadioButton">
-      <item name="android:button">@drawable/searhmedtheme_btn_radio_holo_dark</item>
+      <item name="android:button">@drawable/searhmedtheme_btn_radio_holo_light</item>
   </style>
 
   <style name="ButtonSearhMedTheme" parent="android:Widget.Button">
-	  <item name="android:background">@drawable/searhmedtheme_btn_default_holo_dark</item>
+	  <item name="android:background">@drawable/searhmedtheme_btn_default_holo_light</item>
 	  <item name="android:minHeight">48dip</item>
 	  <item name="android:minWidth">64dip</item>
-	  <item name="android:textColor">#ffffff</item>
+	  <item name="android:textColor">#000000</item>
   </style>
 
   <style name="ImageButtonSearhMedTheme" parent="android:Widget.ImageButton">
-	  <item name="android:background">@drawable/searhmedtheme_btn_default_holo_dark</item>
+	  <item name="android:background">@drawable/searhmedtheme_btn_default_holo_light</item>
   </style>
 
   <style name="SpinnerSearhMedTheme" parent="android:Widget.Spinner">
-      <item name="android:background">@drawable/searhmedtheme_spinner_background_holo_dark</item>
-      <item name="android:dropDownSelector">@drawable/searhmedtheme_list_selector_holo_dark</item>
+      <item name="android:background">@drawable/searhmedtheme_spinner_background_holo_light</item>
+      <item name="android:dropDownSelector">@drawable/searhmedtheme_list_selector_holo_light</item>
   </style>
 
   <style name="SpinnerDropDownItemSearhMedTheme" parent="android:Widget.DropDownItem.Spinner">
-      <item name="android:checkMark">@drawable/searhmedtheme_btn_radio_holo_dark</item>
+      <item name="android:checkMark">@drawable/searhmedtheme_btn_radio_holo_light</item>
   </style>
   <style name="TabSearhMedTheme">
       <item name="android:gravity">center_horizontal</item>
@@ -52,7 +52,7 @@
   </style>
 
   <style name="TabTextSearhMedTheme">
-	  <item name="android:textColor">#ffffff</item>
+	  <item name="android:textColor">#000000</item>
       <item name="android:textSize">12sp</item>
       <item name="android:textStyle">bold</item>
       <!-- v14 <item name="android:textAllCaps">true</item> -->
@@ -62,58 +62,58 @@
   </style>
 
   <style name="ProgressBarSearhMedTheme" parent="android:Widget.ProgressBar.Horizontal">
-      <item name="android:progressDrawable">@drawable/searhmedtheme_progress_horizontal_holo_dark</item>
-      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_progress_indeterminate_horizontal_holo_dark</item>
+      <item name="android:progressDrawable">@drawable/searhmedtheme_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_progress_indeterminate_horizontal_holo_light</item>
       <item name="android:minHeight">16dip</item>
       <item name="android:maxHeight">16dip</item>
   </style>
 
   <style name="SeekBarSearhMedTheme" parent="android:Widget.SeekBar">
-      <item name="android:progressDrawable">@drawable/searhmedtheme_scrubber_progress_horizontal_holo_dark</item>
-      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_scrubber_progress_horizontal_holo_dark</item>
+      <item name="android:progressDrawable">@drawable/searhmedtheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_scrubber_progress_horizontal_holo_light</item>
       <item name="android:minHeight">13dip</item>
       <item name="android:maxHeight">13dip</item>
-      <item name="android:thumb">@drawable/searhmedtheme_scrubber_control_selector_holo_dark</item>
+      <item name="android:thumb">@drawable/searhmedtheme_scrubber_control_selector_holo_light</item>
       <item name="android:thumbOffset">16dip</item>
       <item name="android:paddingLeft">16dip</item>
       <item name="android:paddingRight">16dip</item>
   </style>
 
   <style name="RatingBarSearhMedTheme" parent="android:Widget.RatingBar">
-      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_full_holo_dark</item>
-      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_full_holo_dark</item>
+      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_full_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_full_holo_light</item>
   </style>
 
   <style name="RatingBarBigSearhMedTheme" parent="android:Widget.RatingBar">
-      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_holo_dark</item>
-      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_holo_dark</item>
+      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_holo_light</item>
       <item name="android:minHeight">35dip</item>
       <item name="android:maxHeight">35dip</item>
   </style>
 
   <style name="RatingBarSmallSearhMedTheme" parent="android:Widget.RatingBar">
-      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_small_holo_dark</item>
-      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_small_holo_dark</item>
+      <item name="android:progressDrawable">@drawable/searhmedtheme_ratingbar_small_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/searhmedtheme_ratingbar_small_holo_light</item>
       <item name="android:minHeight">16dip</item>
       <item name="android:maxHeight">16dip</item>
   </style>
 
   <style name="ToggleSearhMedTheme" parent="android:Widget.Button.Toggle">
-      <item name="android:background">@drawable/searhmedtheme_btn_toggle_holo_dark</item>
+      <item name="android:background">@drawable/searhmedtheme_btn_toggle_holo_light</item>
       <item name="android:minHeight">48dip</item>
-	  <item name="android:textColor">#ffffff</item>
+	  <item name="android:textColor">#000000</item>
   </style>
 
   <style name="ListViewSearhMedTheme" parent="android:Widget.ListView">
-      <item name="android:listSelector">@drawable/searhmedtheme_list_selector_holo_dark</item>
+      <item name="android:listSelector">@drawable/searhmedtheme_list_selector_holo_light</item>
   </style>
 
   <style name="ListViewSearhMedTheme.White" parent="android:Widget.ListView.White">
-      <item name="android:listSelector">@drawable/searhmedtheme_list_selector_holo_dark</item>
+      <item name="android:listSelector">@drawable/searhmedtheme_list_selector_holo_light</item>
   </style>
 
   <style name="SpinnerItemSearhMedTheme" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
-      <item name="android:textColor">#ffffff</item>
+      <item name="android:textColor">#000000</item>
   </style>
 
 </resources>

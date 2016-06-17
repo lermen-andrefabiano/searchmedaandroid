@@ -54,7 +54,7 @@ public class MeusDadosActivity extends AppCompatActivity{
         editEndereco = (EditText)findViewById(R.id.editEndereco);
         chkPrestaServico = (CheckBox)findViewById(R.id.chkPrestaServico);
 
-        pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
 
         meusDados();
     }
@@ -102,7 +102,7 @@ public class MeusDadosActivity extends AppCompatActivity{
     }
 
     public void meusDados(){
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
         String user = pref.getString("key_user", "");
 
         if(user!=null){
@@ -133,13 +133,20 @@ public class MeusDadosActivity extends AppCompatActivity{
         String keyUserId = pref.getString("key_user_id", null);
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
 
+        String tipo = "C";
+
+        if(chkPrestaServico.isChecked() == true){
+            tipo = "M";
+        }
+
         try {
             UsuarioREST rest = new UsuarioREST();
             retorno = rest.criar(userId,
                     editNome.getText().toString(),
                     editEmail.getText().toString(),                   
                     editEndereco.getText().toString(),
-                    editSenha.getText().toString());
+                    editSenha.getText().toString(),
+                    tipo);
         }catch (Exception e){
         }
 

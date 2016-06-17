@@ -71,7 +71,7 @@ public class ConsultaNotificacaoFragment extends Fragment {
     }
 
     public void listarChamados(View rootView){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String user = pref.getString("key_user_id", "");
 
         try {

@@ -1,11 +1,12 @@
 package searchmedapp.webservices.dto;
 
+import java.util.List;
+
 public class MedicoDTO {
 
 	private Long id;
-	private String crm;
-	private UsuarioDTO usuario;
-	//private List<MedicoEspecialidadeDTO> especialidades;
+	private String crm;	
+	private List<MedicoEspecialidadeDTO> especialidades;
 
 	public MedicoDTO() {
 	}
@@ -24,22 +25,14 @@ public class MedicoDTO {
 
 	public void setCrm(String crm) {
 		this.crm = crm;
-	}
-	
-	public UsuarioDTO getUsuario() {
-		return usuario;
-	}
-	
-	public void setUsuario(UsuarioDTO usuario) {
-		this.usuario = usuario;
+	}	
+
+	public List<MedicoEspecialidadeDTO> getEspecialidades() {
+		return especialidades;
 	}
 
-//	public List<MedicoEspecialidadeDTO> getEspecialidades() {
-//		return especialidades;
-//	}
-//
-//	public void setEspecialidades(List<MedicoEspecialidadeDTO> especialidades) {
-//		this.especialidades = especialidades;
-//	}
+	public void setEspecialidades(List<MedicoEspecialidadeDTO> especialidades) {
+		this.especialidades = especialidades;
+	}
 
 }

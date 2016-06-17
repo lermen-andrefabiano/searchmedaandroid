@@ -1,10 +1,11 @@
 package searchmedapp.webservices.dto;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class ConsultaDTO {
-	
+
 	private Long id;
 	private Date data;
 	private String status;
@@ -13,6 +14,7 @@ public class ConsultaDTO {
 	private UsuarioDTO usuario;
 	private UsuarioDTO medico;
 	private ConsultaClassificacaoDTO classificacao;
+	private List<ConsultaExameDTO> exames;
 
 	public ConsultaDTO() {
 	}
@@ -40,12 +42,11 @@ public class ConsultaDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public String getEndereco() {
 		return endereco;
 	}
-	
-	
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
@@ -80,5 +81,13 @@ public class ConsultaDTO {
 
 	public void setClassificacao(ConsultaClassificacaoDTO classificacao) {
 		this.classificacao = classificacao;
+	}
+
+	public List<ConsultaExameDTO> getExames() {
+		return exames;
+	}
+
+	public void setExames(List<ConsultaExameDTO> exames) {
+		this.exames = exames;
 	}
 }

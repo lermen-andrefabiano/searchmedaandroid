@@ -54,7 +54,7 @@ public class UsuarioREST extends AbstractREST{
         return info;
     }
 
-    public UsuarioDTO criar(Long userId, String nome, String email, String senha, String endereco) throws Exception {
+    public UsuarioDTO criar(Long userId, String nome, String email, String senha, String endereco, String tipo) throws Exception {
         final String PATH_CRIAR = "criar";
 
         Log.i("URL_WS", URL_WS + PATH + PATH_CRIAR);
@@ -65,6 +65,7 @@ public class UsuarioREST extends AbstractREST{
         info.setEmail(email);
         info.setEndereco(endereco);
         info.setSenha(senha);
+        info.setTipo(tipo);
 
         Gson gson = new Gson();
         String infoJSON = gson.toJson(info);

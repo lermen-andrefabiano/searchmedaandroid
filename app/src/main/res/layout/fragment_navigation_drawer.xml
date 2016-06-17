@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".NavigationDrawerFragment">
 
     <LinearLayout android:id="@+id/headerView"
@@ -14,7 +15,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/imageView"
-            android:src="@drawable/ic_account_circle_white_24dp"/>
+            android:src="@drawable/ic_account_circle_black_24dp"/>
 
         <TextView
             android:id="@+id/txtUser"
@@ -31,8 +32,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/headerView"
         android:choiceMode="singleChoice"
+        android:background="#33b5e5"
         android:divider="@android:color/transparent"
-        android:dividerHeight="1dp"
-        style="@style/ListViewSearhMedTheme"/>
+        android:dividerHeight="1dp"/>
 
 </RelativeLayout>

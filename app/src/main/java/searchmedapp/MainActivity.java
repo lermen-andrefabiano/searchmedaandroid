@@ -37,18 +37,18 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // if(isLogado()){
-           // this.openNavigationDrawer();
-        //}else{
+        if(isLogado()){
+            this.openNavigationDrawer();
+        }else{
             Intent r = new Intent(this, BoasVindasActivity.class);
             startActivity(r);
-        //}
+        }
 
     }
 
     private boolean isLogado(){
         SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-        String user = pref.getString("key_user", null);
+        String user = pref.getString("key_user_id", null);
 
         return user!=null;
     }

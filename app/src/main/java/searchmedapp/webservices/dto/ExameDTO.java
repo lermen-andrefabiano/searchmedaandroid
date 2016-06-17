@@ -1,5 +1,6 @@
 package searchmedapp.webservices.dto;
 
+
 public class ExameDTO {
 
 	private Long id;

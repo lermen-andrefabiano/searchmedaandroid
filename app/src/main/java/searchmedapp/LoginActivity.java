@@ -9,7 +9,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
@@ -26,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -42,35 +44,36 @@ public class LoginActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
-            login();
-
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void login(){
+    public void login(View view){
         EditText editLogin = (EditText)findViewById(R.id.editLogin);
         EditText editSenha = (EditText)findViewById(R.id.editSenha);
-        UsuarioDTO retorno = null;
-        String login = editLogin.getText().toString();
-        try {
-            UsuarioREST rest = new UsuarioREST();
-            retorno = rest.login(login, editSenha.getText().toString());
-        }catch (Exception e){
+
+        if(editLogin.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_email, Toast.LENGTH_LONG).show();
+        }else if (editSenha.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_senha, Toast.LENGTH_LONG).show();
+        }else{
+            UsuarioDTO retorno = null;
+            try {
+                UsuarioREST rest = new UsuarioREST();
+                retorno = rest.login(editLogin.getText().toString(), editSenha.getText().toString());
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
+            }
+
+            abreMain(retorno);
         }
-
-        Intent r = new Intent(this, MainActivity.class);
-        startActivity(r);
-
-        //abreMain(retorno);
-
     }
 
     public void abreMain(UsuarioDTO retorno){
-        if(retorno!=null && retorno.getEmail()!=null){
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        if(retorno!=null && retorno.getId()!=null){
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("key_user_id", retorno.getId().toString());
             editor.putString("key_user_email", retorno.getEmail());
@@ -80,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent r = new Intent(this, MainActivity.class);
             startActivity(r);
+        }else{
+            Toast.makeText(getApplicationContext(), R.string.toast_login_invalido, Toast.LENGTH_LONG).show();
         }
     }
 }

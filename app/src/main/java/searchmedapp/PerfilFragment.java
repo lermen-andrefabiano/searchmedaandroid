@@ -120,7 +120,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public void setUserCabecalho(View view){
-        pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String userNome = pref.getString("key_user_nome", "");
 
         TextView textUserPerfil = (TextView) view.findViewById(R.id.textUserPerfil);
@@ -128,7 +128,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public void logon(){
-        pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("key_user_id", null);
         editor.putString("key_user", null);

@@ -3,9 +3,9 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <style name="SearhMedTheme" parent="Theme.AppCompat">
+  <style name="SearhMedTheme" parent="@style/_SearhMedTheme"/>
 
-
+  <style name="_SearhMedTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
     <item name="android:editTextStyle">@style/EditTextSearhMedTheme</item>
 

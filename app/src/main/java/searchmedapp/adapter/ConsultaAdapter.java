@@ -51,7 +51,7 @@ public class ConsultaAdapter extends ArrayAdapter<MedicoEspecialidadeDTO> {
         String valorCobrado = getContext().getString(R.string.label_valor_dinheiro) + " " + u.getValor().toString();
         textValor.setText(valorCobrado);
         textEspecialidade.setText(u.getEspecialidade().getDescricao());
-        textPrestador.setText(u.getMedico().getUsuario().getNome());
+        textPrestador.setText(u.getMedicoNome());
 
         return view;
     }

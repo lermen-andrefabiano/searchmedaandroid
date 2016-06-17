@@ -63,10 +63,6 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
 
         lbCRM.setVisibility(View.GONE);
         editCRM.setVisibility(View.GONE);
-
-        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-
-        //meusDados();
     }
 
     @Override
@@ -116,18 +112,6 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
         }
     }
 
-    public void meusDados(){
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-        String user = pref.getString("key_user", "");
-
-        if(user!=null){
-            editNome.setText(pref.getString("key_user_nome", ""));
-            editEmail.setText(pref.getString("key_user_email", ""));
-            editEndereco.setText(pref.getString("key_user_endereco", ""));
-            editLogin.setText(user);
-            chkPrestaServico.setChecked(Boolean.valueOf(pref.getString("key_user_prestador", "")));
-        }
-    }
     public boolean isValidaSenha(){
         String senha = editSenha.getText().toString();
         //String confirmaSenha = editConfirmaSenha.getText().toString();
@@ -144,28 +128,58 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
     }
 
     public void criar(){
-    	UsuarioDTO retorno = null;
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
+
+        if(editNome.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_nome, Toast.LENGTH_LONG).show();
+        }else if (editEmail.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_email, Toast.LENGTH_LONG).show();
+        }else  if(editEndereco.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_endereco, Toast.LENGTH_LONG).show();
+        }else if (editSenha.getText().length() == 0){
+            Toast.makeText(getApplicationContext(), R.string.toast_informe_senha, Toast.LENGTH_LONG).show();
+        }else{
+            if(chkPrestaServico.isChecked() == true){
+                if (editCRM.getText().length() == 0){
+                    Toast.makeText(getApplicationContext(), R.string.toast_informe_crm, Toast.LENGTH_LONG).show();
+                }else {
+                    salvar();
+                }
+            }else {
+                salvar();
+            }
+        }
+    }
+
+    public void salvar(){
+        UsuarioDTO retorno = null;
         String keyUserId = pref.getString("key_user_id", null);
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
+        String tipo = "C";
+
+        if(chkPrestaServico.isChecked() == true) {
+            tipo = "M";
+        }
 
         try {
             UsuarioREST rest = new UsuarioREST();
             retorno = rest.criar(userId,
                     editNome.getText().toString(),
-                    editEmail.getText().toString(),                   
+                    editEmail.getText().toString(),
                     editEndereco.getText().toString(),
-                    editSenha.getText().toString());
+                    editSenha.getText().toString(),
+                    tipo);
+            abreMain(retorno);
         }catch (Exception e){
+            Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
         }
-
-        abreMain(retorno);
     }
 
     public void abreMain(UsuarioDTO retorno){
         if(chkPrestaServico.isChecked()){
             Intent r = new Intent(this, MeusDadosEspecialidadeActivity.class);
             startActivity(r);
-        }else if(retorno!=null && retorno.getEmail()!=null){
+        }else if(retorno!=null && retorno.getId()!=null){
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("key_user_id", retorno.getId().toString());
             editor.putString("key_user_email", retorno.getEmail());

@@ -1,6 +1,5 @@
 package searchmedapp.webservices.dto;
 
-
 public class ConsultaClassificacaoDTO {
 
 	private Long id;

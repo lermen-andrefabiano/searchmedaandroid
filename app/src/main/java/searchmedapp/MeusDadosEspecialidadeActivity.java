@@ -46,7 +46,7 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         tabHost.addTab(specEspecialidadePrestador);
         tabHost.addTab(specLstEspecialidades);
 
-        pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
 
         listarPorPrestador();
     }
