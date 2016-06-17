@@ -44,7 +44,6 @@ public class BoasVindasActivity extends Activity {
         if (id == R.id.action_save) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
