@@ -4,27 +4,28 @@ import java.util.List;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.nfc.tech.NfcBarcode;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import searchmedapp.adapter.ConsultaAdapter;
+import searchmedapp.adapter.ConvenioAdapter;
+import searchmedapp.adapter.EspecialidadeAdapter;
+import searchmedapp.webservices.dto.EspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
-import searchmedapp.webservices.rest.ConsultaREST;
 import searchmedapp.webservices.rest.EspecialidadeREST;
 
 
@@ -37,13 +38,17 @@ public class ConsultaFragment extends Fragment {
 
     private static final String TAG = "ConsultaFragment";
 
-    private List<MedicoEspecialidadeDTO> listaMedicoEspecialidade = null;
+    private List<EspecialidadeDTO> especialidades = null;
 
-    private MedicoEspecialidadeDTO medicoEspecialidadeSel;
-
-    private Spinner spinnerConvenio;
+    private EspecialidadeDTO especialidadeSel;
 
     private String convenio;
+
+    private TextView lbConvenio;
+
+    private TextView lbEspecialidade;
+
+    private Button btnEncontreMedico;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -69,94 +74,120 @@ public class ConsultaFragment extends Fragment {
             StrictMode.setThreadPolicy(policy);
         }
 
-        spinnerConvenio = (Spinner) view.findViewById(R.id.spinnerConvenio);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.convenio_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerConvenio.setAdapter(adapter);
-        spinnerConvenio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               convenio = (String) parent.getItemAtPosition(position);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
+        openLstPesquisa(view);
 
         return view;
     }
 
-    public void getListaEspecialidades(String query, View view){
-        if(query!=null&&query.length() >= 3){
-            EspecialidadeREST especialidadeREST = new EspecialidadeREST();
-            try {
-                listaMedicoEspecialidade = especialidadeREST.getMedicoEspecialidade(query);
-            }catch (Exception e){
+    private boolean carregamento() {
+        final ProgressDialog progress = new ProgressDialog(getActivity());
+        progress.setTitle(getString(R.string.load_carregando));
+        progress.setMessage(getString(R.string.load_aguarde));
+        progress.show();
+        new Thread() {
+            public void run() {
+                try{
+                    // just doing some long operation
+                    sleep(2000);
+                } catch (Exception e) {  }
+                progress.dismiss();
             }
-
-            Log.i(TAG, "listaMedicoEspecialidade");
-            if(listaMedicoEspecialidade!=null){
-                openListaPrestadores(view);
-            }
-        }
+        }.start();
+        return true;
     }
 
-    private void openListaPrestadores(View view){
-        Log.i(TAG, "openListaPrestadores");
+    private void openLstPesquisa(View view){
+        lbEspecialidade = (TextView) view.findViewById(R.id.lbEspecialidade);
+        lbConvenio = (TextView) view.findViewById(R.id.lbConvenio);
+        btnEncontreMedico = (Button) view.findViewById(R.id.btnEncontreMedico);
 
-        ListView listPrestadores = (ListView) view.findViewById(R.id.listPrestadores);
-
-        ConsultaAdapter adapter = new ConsultaAdapter(getActivity(), R.layout.fragment_consulta_item, listaMedicoEspecialidade);
-
-        listPrestadores.setAdapter(adapter);
-        listPrestadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        btnEncontreMedico.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                medicoEspecialidadeSel = (MedicoEspecialidadeDTO)parent.getItemAtPosition(position);
-                abrirPopUpConsulta();
+            public void onClick(View v) {
+               pesquisar();
+            }
+        });
+
+        lbEspecialidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                carregamento();
+                getEspecialidades();
+            }
+        });
+
+        lbConvenio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getConvenio();
             }
         });
     }
 
-    private void abrirPopUpConsulta(){
-        LayoutInflater li = LayoutInflater.from(getActivity());
-        View view = li.inflate(R.layout.activity_abrir_consulta, null);
+    public void getEspecialidades(){
+        Log.i(TAG, "getEspecialidades");
+        EspecialidadeREST especialidadeREST = new EspecialidadeREST();
+        try {
+            if(especialidades==null){
+                especialidades = especialidadeREST.getEspecialidades();
+            }
+        }catch (Exception e){
+        }
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setView(view);
+        if(especialidades!=null){
+            final Dialog dialog = new Dialog(getActivity());
+            dialog.setContentView(R.layout.activity_list);
 
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton(R.string.label_abrir_consulta,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            	 abrirConsulta();
-                        }})
-                .setNegativeButton(R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-            // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
+            ListView lv = (ListView ) dialog.findViewById(R.id.listPesquisa);
+            final EspecialidadeAdapter adapter = new EspecialidadeAdapter(getActivity(), R.layout.activity_adpater_item, especialidades);
+            lv.setAdapter(adapter);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    especialidadeSel = (EspecialidadeDTO) parent.getItemAtPosition(position);
+                    Log.i(TAG, especialidadeSel.getDescricao());
+                    lbEspecialidade.setText(especialidadeSel.getDescricao());
+                    dialog.dismiss();
+                }
+            });
+            dialog.setCancelable(true);
+            dialog.setTitle("Selecione a Especialidade");
+            dialog.show();
+        }
     }
 
-    public void abrirConsulta(){
-        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
-        String user = pref.getString("key_user_id", "");
+    public void getConvenio(){
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.activity_list);
 
-        try {
-            ConsultaREST rest = new ConsultaREST();
-            rest.abrir(Long.valueOf(user), medicoEspecialidadeSel.getMedicoId(), medicoEspecialidadeSel.getEspecialidade().getId());
-        }catch (Exception e){
-            e.printStackTrace();
+        ListView lv = (ListView ) dialog.findViewById(R.id.listPesquisa);
+        ConvenioAdapter adapter = new ConvenioAdapter(getActivity(), R.layout.activity_adpater_item, getResources().getStringArray(R.array.convenio_array));
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                convenio = (String) parent.getItemAtPosition(position);
+                lbConvenio.setText(convenio);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setCancelable(true);
+        dialog.setTitle("Selecione o Convênio Médico");
+        dialog.show();
+    }
+
+    public void pesquisar(){
+        if(convenio== null || convenio.isEmpty()){
+            Toast.makeText(getActivity().getApplicationContext(), R.string.toast_convenio, Toast.LENGTH_LONG).show();
+        }else if (especialidadeSel == null){
+            Toast.makeText(getActivity().getApplicationContext(), R.string.toast_especialidade, Toast.LENGTH_LONG).show();
+        }else{
+            Intent r = new Intent(getActivity(), PesquisaConsultaActivity.class);
+            r.putExtra("convenio", convenio);
+            r.putExtra("especialidadeId", especialidadeSel.getId());
+            startActivity(r);
         }
-        Toast.makeText(getActivity(), R.string.toast_consulta_aberto, Toast.LENGTH_SHORT).show();
     }
 
     @Override

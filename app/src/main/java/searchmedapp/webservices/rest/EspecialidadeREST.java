@@ -11,6 +11,8 @@ import com.google.gson.JsonParser;
 import android.util.Log;
 
 import searchmedapp.webservices.WebServiceClient;
+import searchmedapp.webservices.dto.EspecialidadeDTO;
+import searchmedapp.webservices.dto.MedicoDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 
 
@@ -19,29 +21,55 @@ import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
  */
 public class EspecialidadeREST extends AbstractREST{
 
-    private static final String PATH = "medicoEspecialidade/";
+    private static final String PATH = "especialidade/";
 
-    public List<MedicoEspecialidadeDTO> getMedicoEspecialidade(String palavra) throws Exception {
-        String PATH_ESP = "getMedicoEspecialidade?palavra=";
-        Log.i("URL_WS", URL_WS + PATH + PATH_ESP + palavra);
-        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP + palavra);
+    public List<MedicoDTO> getMedicoEspecialidades(String convenio, Long especialidadeId) throws Exception {
+        String PATH_ESP = "getMedicoEspecialidade?convenio="+convenio+"&especialidadeId="+especialidadeId;
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP);
 
         if (resposta[0].equals("200")) {
             Gson gson = new Gson();
-            ArrayList<MedicoEspecialidadeDTO> lst = new ArrayList<MedicoEspecialidadeDTO>();
+            ArrayList<MedicoDTO> lst = new ArrayList<MedicoDTO>();
             JsonParser parser = new JsonParser();
-            JsonObject obj = null;
             JsonArray array = null;
 
             try{
-                obj = parser.parse(resposta[1]).getAsJsonObject();
-                array = obj.getAsJsonArray("medicoEspecialidade");
+                array = parser.parse(resposta[1]).getAsJsonArray();
 
                 for (int i = 0; i < array.size(); i++) {
-                    lst.add(gson.fromJson(array.get(i), MedicoEspecialidadeDTO.class));
+                    lst.add(gson.fromJson(array.get(i), MedicoDTO.class));
                 }
             }catch(ClassCastException c){
-                lst.add(gson.fromJson(obj.getAsJsonObject("medicoEspecialidade"), MedicoEspecialidadeDTO.class));
+                c.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
+    public List<EspecialidadeDTO> getEspecialidades() throws Exception {
+        String PATH_ESP = "getEspecialidades";
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<EspecialidadeDTO> lst = new ArrayList<EspecialidadeDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try{
+                array = parser.parse(resposta[1]).getAsJsonArray();
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), EspecialidadeDTO.class));
+                }
+            }catch(ClassCastException c){
+                c.printStackTrace();
             }catch (Exception e){
                 e.printStackTrace();
             }

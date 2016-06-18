@@ -1,0 +1,17 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textoAdp"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:layout_margin="15dp" />
+
+</LinearLayout>

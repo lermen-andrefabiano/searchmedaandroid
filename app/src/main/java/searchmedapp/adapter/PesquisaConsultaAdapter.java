@@ -12,17 +12,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import searchmedapp.R;
+import searchmedapp.webservices.dto.MedicoDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.
  */
-public class ConsultaAdapter extends ArrayAdapter<MedicoEspecialidadeDTO> {
+public class PesquisaConsultaAdapter extends ArrayAdapter<MedicoDTO> {
 
     int resource;
 
     //Initialize adapter
-    public ConsultaAdapter(Context context, int resource, List<MedicoEspecialidadeDTO> items) {
+    public PesquisaConsultaAdapter(Context context, int resource, List<MedicoDTO> items) {
         super(context, resource, items);
         this.resource = resource;
     }
@@ -31,7 +32,7 @@ public class ConsultaAdapter extends ArrayAdapter<MedicoEspecialidadeDTO> {
     public View getView(int position, View convertView, ViewGroup parent){
         LinearLayout view;
         //Get the current alert object
-        MedicoEspecialidadeDTO u = getItem(position);
+        MedicoDTO m = getItem(position);
 
         //Inflate the view
         if(convertView==null){
@@ -44,14 +45,13 @@ public class ConsultaAdapter extends ArrayAdapter<MedicoEspecialidadeDTO> {
             view = (LinearLayout) convertView;
         }
         //Get the text boxes from the listitem.xml file
-        TextView textValor =(TextView)view.findViewById(R.id.textValor);
-        TextView textEspecialidade =(TextView)view.findViewById(R.id.textEspecialidade);
-        TextView textPrestador =(TextView)view.findViewById(R.id.textPrestador);
+        TextView textMedico =(TextView)view.findViewById(R.id.textMedico);
+        TextView textEndereco =(TextView)view.findViewById(R.id.textEndereco);
+        TextView textCRM =(TextView)view.findViewById(R.id.textCRM);
 
-        String valorCobrado = getContext().getString(R.string.label_valor_dinheiro) + " " + u.getValor().toString();
-        textValor.setText(valorCobrado);
-        textEspecialidade.setText(u.getEspecialidade().getDescricao());
-        textPrestador.setText(u.getMedicoNome());
+        textMedico.setText(m.getMedicoNome());
+        textEndereco.setText(m.getMedicoEndereco());
+        textCRM.setText(m.getCrm());
 
         return view;
     }

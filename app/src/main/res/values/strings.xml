@@ -39,6 +39,7 @@
     <string name="label_lembrete_senha_info">Caso tenha esquecido sua senha, digite o e-mail que você utilizou para se cadastrar no Home Help no espeço abaixo.</string>
     <string name="label_criar_nova_senha">Criar nova senha</string>
     <string name="label_especialidades">Especialidades</string>
+    <string name="label_gps">Usar minha Localização</string>
     <string name="search_label">Procurar prestadores</string>
     <string name="search_hint">Procurar prestadores</string>
     <string name="label_prioridade">Prioridade</string>
@@ -65,6 +66,7 @@
     <string name="label_especialidade_listar">Visualizar</string>
     <string name="label_especialidade_add">Adicionar</string>
     <string name="label_encontre_medico">Encontre o seu Médico</string>
+    <string name="label_medicos_encontrados">Confira abaixo os Médicos encontrados...</string>
 
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_meus_dados">Meus Dados</string>
@@ -74,6 +76,7 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_primeiro_acesso">Primeiro Acesso</string>
     <string name="title_activity_meus_dados_especialidade">Especialidades</string>
+    <string name="title_activity_pesquisa">Médicos Encontrados</string>
 
     <string name="toast_consulta_descriao">Informe a descrição</string>
     <string name="toast_consulta_aberto">Consulta aberta!</string>
@@ -89,6 +92,10 @@
     <string name="toast_informe_senha">Informe a senha</string>
     <string name="toast_erro_geral">Servidor indisponível</string>
     <string name="toast_login_invalido">Login inválido</string>
+    <string name="load_carregando">Carregando</string>
+    <string name="load_aguarde">Aguarde o carregamento...</string>
+    <string name="toast_convenio">Informe o convênio</string>
+    <string name="toast_especialidade">Informe a Especialidade</string>
 
     <string-array name="prioridade_array">
         <item>Normal</item>
@@ -97,18 +104,41 @@
     </string-array>
 
     <string-array name="convenio_array">
-        <item>UM</item>
-        <item>DOIS</item>
-        <item>TREZ</item>
-        <item>QUATRO</item>
-        <item>CINCO</item>
-        <item>SEIS</item>
-        <item>SETE</item>
-        <item>OITO</item>
-        <item>NOVE</item>
-        <item>DEZ</item>
+        <item>Allianz</item>
+        <item>Amil</item>
+        <item>Asfal</item>
+        <item>Assefaz</item>
+        <item>Banco Central Saúde</item>
+        <item>Bradesco Saúde</item>
+        <item>Caixa</item>
+        <item>Camed</item>
+        <item>Capesaúde</item>
+        <item>Cassi</item>
+        <item>Copamed</item>
+        <item>Dix - Amico</item>
+        <item>Embratel</item>
+        <item>Fachesf</item>
+        <item>Fassincra</item>
+        <item>Fisco Saúde</item>
+        <item>Gama Saúde</item>
+        <item>Geap</item>
+        <item>Golden Cross</item>
+        <item>Guia Saúde Web</item>
+        <item>Hapvida</item>
+        <item>Intermédica</item>
+        <item>Mediservice</item>
+        <item>Medplan</item>
+        <item>Notredame Saúde</item>
+        <item>Odonto Serv</item>
+        <item>Particular</item>
+        <item>Petrobras</item>
+        <item>Porto Seguro</item>
+        <item>Postal Saúde</item>
+        <item>Saúde Excelsior</item>
+        <item>Smile Saúde</item>
+        <item>Unimed</item>
+        <item>Uniodonto</item>
     </string-array>
-
 
     <string-array name="nota_array">
         <item>UM</item>

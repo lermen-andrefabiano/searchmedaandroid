@@ -2,6 +2,7 @@ package searchmedapp;
 
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,6 +51,23 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean carregamento() {
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle(getString(R.string.load_carregando));
+        progress.setMessage(getString(R.string.load_aguarde));
+        progress.show();
+        new Thread() {
+            public void run() {
+                try{
+                    // just doing some long operation
+                    sleep(20000);
+                } catch (Exception e) {  }
+                progress.dismiss();
+            }
+        }.start();
+        return true;
+    }
+
     public void login(View view){
         EditText editLogin = (EditText)findViewById(R.id.editLogin);
         EditText editSenha = (EditText)findViewById(R.id.editSenha);
@@ -60,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.toast_informe_senha, Toast.LENGTH_LONG).show();
         }else{
             UsuarioDTO retorno = null;
+            carregamento();
             try {
                 UsuarioREST rest = new UsuarioREST();
                 retorno = rest.login(editLogin.getText().toString(), editSenha.getText().toString());
@@ -86,5 +105,6 @@ public class LoginActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), R.string.toast_login_invalido, Toast.LENGTH_LONG).show();
         }
+
     }
 }
