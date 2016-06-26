@@ -140,4 +140,22 @@ public class ConsultaREST extends AbstractREST{
         return Boolean.valueOf(resposta[1]);
     }
 
+    public boolean favorito(Long usuarioId, Long medicoId) throws Exception {
+        final String PATH_ABRIR = "favorito?usuarioId="+usuarioId+"&medicoId="+medicoId;
+
+        Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
+
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABRIR);
+
+        if(resposta[0].equals("400")){
+            return false;
+        }else if (resposta[0].equals("200")) {
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+            return Boolean.valueOf(resposta[1]);
+        }
+
+        return false;
+    }
+
+
 }

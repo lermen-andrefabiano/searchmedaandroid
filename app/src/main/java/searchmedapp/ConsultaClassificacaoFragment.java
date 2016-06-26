@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -113,7 +114,7 @@ public class ConsultaClassificacaoFragment extends Fragment {
         LayoutInflater li = LayoutInflater.from(getActivity());
         View classificarChamadoView = li.inflate(R.layout.activity_classificar_consulta, null);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setView(classificarChamadoView);
 
         editRecomendacao = (EditText) classificarChamadoView.findViewById(R.id.editRecomendacao);
@@ -124,18 +125,14 @@ public class ConsultaClassificacaoFragment extends Fragment {
                 Log.i(TAG, "nota" + nota);
             }
         });
-
+/*
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
                 .setPositiveButton(R.string.label_classificar,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                if (!editRecomendacao.getText().toString().equals("")) {
-                                    classificar();
-                                }else {
-                                    Toast.makeText(getActivity(), R.string.toast_classificacao_recomendacao, Toast.LENGTH_SHORT).show();
-                                }
+
 
                             }})
                 .setNegativeButton(R.string.cancel,
@@ -143,10 +140,29 @@ public class ConsultaClassificacaoFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
-                        });
-
+                        });*/
         // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        Button btnClassificarConsulta = (Button) classificarChamadoView.findViewById(R.id.btnClassificarConsulta);
+        btnClassificarConsulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editRecomendacao.getText().toString().equals("")) {
+                    classificar();
+                }else {
+                    Toast.makeText(getActivity(), R.string.toast_classificacao_recomendacao, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        Button btnCancelarConsulta = (Button) classificarChamadoView.findViewById(R.id.btnCancelarClassificar);
+        btnCancelarConsulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
         alertDialog.show();
     }
 

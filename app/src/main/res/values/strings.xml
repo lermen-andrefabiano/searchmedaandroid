@@ -31,7 +31,7 @@
     <string name="label_senha">Senha</string>
     <string name="label_login">Login</string>
 
-    <string name="label_favorito_add">Adicionar favorito</string>
+    <string name="label_favorito_add">Favorito</string>
     <string name="label_favorito_remove">Remover favorito</string>
 
     <string name="label_esqueceu_senha">Esqueçeu a Senha?</string>
@@ -81,7 +81,8 @@
     <string name="title_activity_primeiro_acesso">Primeiro Acesso</string>
     <string name="title_activity_meus_dados_especialidade">Especialidades</string>
     <string name="title_activity_pesquisa">Médicos Encontrados</string>
-
+    <string name="toast_favorito_adicionado">Médico favorito adicionado sucesso!</string>
+    <string name="toast_favorito_removido">Médico removido dos favoritos!</string>
     <string name="toast_consulta_descriao">Informe a descrição</string>
     <string name="toast_consulta_aberto">O agendamento da consulta foi realizado com sucesso!</string>
     <string name="toast_consulta_erro">Erro na tentativa de agendar a consulta.</string>

@@ -38,7 +38,36 @@
         android:layout_height="wrap_content"
         android:lines="4" android:minLines="4"
         android:maxLines="4" android:gravity="top|left"
-        android:id="@+id/editRecomendacao" />
+        android:id="@+id/editRecomendacao"
+        style="@style/EditTextSearhMedTheme"/>
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        style="@style/TabSearhMedTheme"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_classificar"
+            android:id="@+id/btnClassificarConsulta"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/btnCancelarClassificar"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
 

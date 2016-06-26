@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +52,10 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
 
     private Long especialidadeId;
 
+    private String especialidade;
+
+    private Button btnFavorito;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,7 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
         {
             convenio = bundle.getString("convenio");
             especialidadeId = bundle.getLong("especialidadeId");
+            especialidade = bundle.getString("especialidade");
             openListaMedicos();
         }
     }
@@ -150,32 +157,63 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
         TextView textMed1 = (TextView) view.findViewById(R.id.textMed1);
         TextView textMed2 = (TextView) view.findViewById(R.id.textMed2);
         TextView textMed3 = (TextView) view.findViewById(R.id.textMed3);
+        TextView textMed4 = (TextView) view.findViewById(R.id.textMed4);
 
         textMed1.setText(medicoSel.getMedicoNome());
         textMed2.setText("CRM: " + medicoSel.getCrm());
-        textMed3.setText("Endereço: " +medicoSel.getMedicoEndereco());
+        textMed3.setText("Endereço: " + medicoSel.getMedicoEndereco());
+        textMed4.setText(especialidade);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setView(view);
 
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton(R.string.label_abrir_consulta,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                abrirConsulta();
-                            }})
-                .setNegativeButton(R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
+        final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
+        Button btnAbrirConsulta = (Button) view.findViewById(R.id.btnAbrirConsulta);
+        btnAbrirConsulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirConsulta();
+            }
+        });
+
+        Button btnCancelarConsulta = (Button) view.findViewById(R.id.btnCancelarConsulta);
+        btnCancelarConsulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        btnFavorito = (Button) view.findViewById(R.id.btnFavorito);
+        btnFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favorito();
+            }
+        });
+
         alertDialog.show();
+    }
+
+    public void favorito(){
+        SharedPreferences pref = this.getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+        String user = pref.getString("key_user_id", null);
+
+        try {
+            ConsultaREST rest = new ConsultaREST();
+            boolean r = rest.favorito(Long.valueOf(user), medicoSel.getId());
+            if(r){
+                Toast.makeText(this, R.string.toast_favorito_adicionado, Toast.LENGTH_SHORT).show();
+                btnFavorito.setText("Favorito");
+            }else {
+                Toast.makeText(this, R.string.toast_favorito_removido, Toast.LENGTH_SHORT).show();
+                btnFavorito.setText("Desfavoritar");
+            }
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
     public void abrirConsulta(){

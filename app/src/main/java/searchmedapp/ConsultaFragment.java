@@ -186,6 +186,7 @@ public class ConsultaFragment extends Fragment {
             Intent r = new Intent(getActivity(), PesquisaConsultaActivity.class);
             r.putExtra("convenio", convenio);
             r.putExtra("especialidadeId", especialidadeSel.getId());
+            r.putExtra("especialidade", especialidadeSel.getDescricao());
             startActivity(r);
         }
     }

@@ -9,56 +9,82 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|left">
+        android:layout_gravity="left"
+        android:layout_marginTop="5dp">
 
-        <ImageView android:id="@+id/pesquisaImage"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_face_black_24dp"/>
+            android:gravity="center|left">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorTitle"
-            android:textSize="20dp"
-            android:id="@+id/textMed1" />
+            <ImageView android:id="@+id/pesquisaImage"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_face_black_24dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_favorito_add"
+                android:id="@+id/btnFavorito"
+                android:layout_gravity="center_horizontal"
+                style="@style/ButtonSearhMedTheme"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="16dp"
+                android:id="@+id/textMed1"
+                android:paddingLeft="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="16dp"
+                android:id="@+id/textMed2"
+                android:paddingLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="16dp"
+                android:id="@+id/textMed3"
+                android:paddingLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="16dp"
+                android:id="@+id/textMed4"
+                android:paddingLeft="15dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorTitle"
-        android:textSize="20dp"
-        android:id="@+id/textMed2"
-        android:paddingLeft="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorTitle"
-        android:textSize="20dp"
-        android:id="@+id/textMed3"
-        android:paddingLeft="15dp" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_favorito_add"
-        android:id="@+id/btnFavorito"
-        android:layout_gravity="center_horizontal"
-        style="@style/ButtonSearhMedTheme"
-        android:layout_marginTop="20dp"
-        android:onClick="favorito"
-        android:textColor="@android:color/white"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -89,6 +115,33 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_classificar"
+            android:id="@+id/btnAbrirConsulta"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/btnCancelarConsulta"
+            android:layout_gravity="center_horizontal"
+            style="@style/ButtonSearhMedTheme"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
 
