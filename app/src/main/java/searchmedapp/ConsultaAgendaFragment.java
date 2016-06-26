@@ -1,8 +1,5 @@
 package searchmedapp;
 
-import java.util.List;
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,19 +18,21 @@ import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.List;
+
 import searchmedapp.adapter.ConsultaNotificacaoAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 
 
-public class ConsultaNotificacaoFragment extends Fragment {
+public class ConsultaAgendaFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private static final String TAG = "NotificacaoFragment";
+    private static final String TAG = "ConsultaAgendaFragment";
 
     private List<ConsultaDTO> consultasAbertas;
 
@@ -52,14 +51,14 @@ public class ConsultaNotificacaoFragment extends Fragment {
      * number.
      */
     public static Fragment newInstance(int sectionNumber) {
-        ConsultaNotificacaoFragment fragment = new ConsultaNotificacaoFragment();
+        ConsultaAgendaFragment fragment = new ConsultaAgendaFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ConsultaNotificacaoFragment() {
+    public ConsultaAgendaFragment() {
     }
 
     @Override

@@ -41,31 +41,40 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_meus_dados"
                     android:id="@+id/textView2"
-                    android:layout_marginLeft="10dp" />
+                    android:textColor="#33b5e5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="20dp" />
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
-                    android:id="@+id/lstMeusDados" />
+                    android:id="@+id/lstMeusDados"
+                    android:textColor="@android:color/white"
+                    android:background="#33b5e5"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_mais"
                     android:id="@+id/textView3"
-                    android:layout_marginLeft="10dp" />
+                    android:textColor="#33b5e5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:id="@+id/lstMais"
-                    android:layout_weight="0.38" />
+                    android:layout_weight="0.38"
+                    android:textColor="@android:color/white"
+                    android:background="#33b5e5"/>
 
                 <Button android:text="@string/label_logff"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:id="@+id/btnLogon"/>
+                    android:id="@+id/btnLogon"
+                    android:layout_marginTop="20dp" />
 
             </LinearLayout>
         </ScrollView>

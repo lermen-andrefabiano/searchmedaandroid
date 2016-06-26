@@ -7,12 +7,12 @@ import java.util.List;
 public class ConsultaDTO {
 
 	private Long id;
-	private Date data;
+	private Long data;
 	private String status;
 	private String endereco;
 	private EspecialidadeDTO especialidade;
 	private UsuarioDTO usuario;
-	private UsuarioDTO medico;
+	private MedicoDTO medico;
 	private ConsultaClassificacaoDTO classificacao;
 	private List<ConsultaExameDTO> exames;
 
@@ -27,11 +27,11 @@ public class ConsultaDTO {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public Long getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(Long data) {
 		this.data = data;
 	}
 
@@ -67,11 +67,11 @@ public class ConsultaDTO {
 		this.usuario = usuario;
 	}
 
-	public UsuarioDTO getMedico() {
+	public MedicoDTO getMedico() {
 		return medico;
 	}
 
-	public void setMedico(UsuarioDTO medico) {
+	public void setMedico(MedicoDTO medico) {
 		this.medico = medico;
 	}
 

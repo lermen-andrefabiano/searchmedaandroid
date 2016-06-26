@@ -5,8 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"></TableRow>
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -18,18 +23,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_alterar_conta_primeiro"
+                android:id="@+id/textViewAcesse"
+                android:textColor="@color/colorTitle"
+                android:textSize="20dp"
+                android:gravity="center|left"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_nome"
+                style="@style/TabTextSearhMedTheme"
                 android:id="@+id/textView4"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18dp"/>
+                android:textSize="16dp"/>
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/label_nome"
                 android:ems="10"
                 android:id="@+id/editNome" />
 
@@ -38,8 +53,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/label_email"
                 android:id="@+id/textView5"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18dp"/>
+                style="@style/TabTextSearhMedTheme"
+                android:textSize="16dp"/>
 
             <EditText
                 android:layout_width="fill_parent"
@@ -52,9 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_endereco"
+                style="@style/TabTextSearhMedTheme"
                 android:id="@+id/textView10"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18dp"/>
+                android:textSize="16dp"/>
 
             <EditText
                 android:layout_width="fill_parent"
@@ -66,8 +81,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/label_senha"
                 android:id="@+id/textView7"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18dp"/>
+                style="@style/TabTextSearhMedTheme"
+                android:textSize="16dp"/>
 
             <EditText
                 android:layout_width="fill_parent"
@@ -77,11 +92,29 @@
                 android:id="@+id/editSenha" />
 
             <CheckBox
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_presta_servico"
                 android:id="@+id/chkPrestaServico"
-                android:onClick="onCheckPrestaServico"/>
+                style="@style/TabTextSearhMedTheme"
+                android:onClick="onCheckPrestaServico"
+                android:ems="10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_crm"
+                android:id="@+id/lbCRM"
+                style="@style/TabTextSearhMedTheme"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editCRM"/>
 
         </LinearLayout>
 

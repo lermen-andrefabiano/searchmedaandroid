@@ -18,13 +18,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
+import searchmedapp.adapter.ConvenioAdapter;
+import searchmedapp.adapter.EspecialidadeAdapter;
+import searchmedapp.adapter.MedicoConvenioAdapter;
+import searchmedapp.adapter.MedicoEspecialidadeAdapter;
+import searchmedapp.adapter.MedicoHorarioAdapter;
 import searchmedapp.adapter.PesquisaConsultaAdapter;
 import searchmedapp.webservices.dto.MedicoDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
+import searchmedapp.webservices.dto.MedicoHorarioDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 import searchmedapp.webservices.rest.EspecialidadeREST;
 
@@ -35,7 +42,9 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
 
     private List<MedicoDTO> especialidadesMedicas = null;
 
-    private MedicoDTO medicoEspecialidadeSel;
+    private MedicoDTO medicoSel;
+
+    private MedicoHorarioDTO medicoHorarioSel;
 
     private String convenio;
 
@@ -117,7 +126,7 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
             listPrestadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    medicoEspecialidadeSel = (MedicoDTO) parent.getItemAtPosition(position);
+                    medicoSel = (MedicoDTO) parent.getItemAtPosition(position);
                     abrirPopUpConsulta();
                 }
             });
@@ -127,6 +136,24 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
     private void abrirPopUpConsulta(){
         LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.activity_abrir_consulta, null);
+
+        ListView lv = (ListView ) view.findViewById(R.id.listHorario);
+        final MedicoHorarioAdapter adapter = new MedicoHorarioAdapter(this, R.layout.activity_adpater_horario_item, medicoSel.getHorarios());
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                medicoHorarioSel = (MedicoHorarioDTO) parent.getItemAtPosition(position);
+            }
+        });
+
+        TextView textMed1 = (TextView) view.findViewById(R.id.textMed1);
+        TextView textMed2 = (TextView) view.findViewById(R.id.textMed2);
+        TextView textMed3 = (TextView) view.findViewById(R.id.textMed3);
+
+        textMed1.setText(medicoSel.getMedicoNome());
+        textMed2.setText("CRM: " + medicoSel.getCrm());
+        textMed3.setText("Endereço: " +medicoSel.getMedicoEndereco());
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setView(view);
@@ -153,15 +180,20 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
 
     public void abrirConsulta(){
         SharedPreferences pref = this.getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
-        String user = pref.getString("key_user_id", "");
+        String user = pref.getString("key_user_id", null);
 
         try {
             ConsultaREST rest = new ConsultaREST();
-            rest.abrir(Long.valueOf(user), medicoEspecialidadeSel.getId(), especialidadeId);
+            boolean r = rest.abrir(Long.valueOf(user), medicoSel.getId(), especialidadeId, medicoHorarioSel.getId());
+            if(r){
+                Toast.makeText(this, R.string.toast_consulta_aberto, Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, R.string.toast_consulta_erro, Toast.LENGTH_SHORT).show();
+            }
         }catch (Exception e){
+            Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        Toast.makeText(this, R.string.toast_consulta_aberto, Toast.LENGTH_SHORT).show();
     }
 
 }

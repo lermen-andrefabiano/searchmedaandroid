@@ -32,11 +32,7 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
 
     private EditText editEmail;
 
-    private EditText editLogin;
-
     private EditText editSenha;
-
-    //private EditText editConfirmaSenha;
 
     private TextView lbCRM;
 
@@ -53,9 +49,7 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
 
         editNome = (EditText)findViewById(R.id.editNome);
         editEmail = (EditText)findViewById(R.id.editEmail);
-        editLogin = (EditText)findViewById(R.id.editLogin);
         editSenha = (EditText)findViewById(R.id.editSenha);
-        //editConfirmaSenha = (EditText)findViewById(R.id.editSenhaConfirma);
         editEndereco = (EditText)findViewById(R.id.editEndereco);
         chkPrestaServico = (CheckBox)findViewById(R.id.chkPrestaServico);
         lbCRM = (TextView)findViewById(R.id.lbCRM);
@@ -156,6 +150,7 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
         String keyUserId = pref.getString("key_user_id", null);
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
         String tipo = "C";
+        String crm = editCRM.getText().length()>0 ? editCRM.getText().toString() : null;
 
         if(chkPrestaServico.isChecked() == true) {
             tipo = "M";
@@ -166,9 +161,10 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             retorno = rest.criar(userId,
                     editNome.getText().toString(),
                     editEmail.getText().toString(),
-                    editEndereco.getText().toString(),
                     editSenha.getText().toString(),
-                    tipo);
+                    editEndereco.getText().toString(),
+                    tipo,
+                    crm);
             abreMain(retorno);
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
@@ -185,6 +181,10 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             editor.putString("key_user_email", retorno.getEmail());
             editor.putString("key_user_nome", retorno.getNome());
             editor.putString("key_user_endereco", retorno.getEndereco());
+            editor.putString("key_user_tipo", retorno.getTipo());
+            if(retorno.getMedico()!=null){
+                editor.putString("key_user_crm", retorno.getMedico().getCrm());
+            }
             editor.commit();
 
             Intent r = new Intent(this, MainActivity.class);

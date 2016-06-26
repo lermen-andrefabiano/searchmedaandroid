@@ -30,7 +30,8 @@
             android:textSize="26dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textColor="@color/colorTitle"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -69,7 +70,8 @@
                 android:layout_gravity="center_horizontal"
                 android:onClick="criarConta"
                 android:textSize="18dp"
-                style="@style/ButtonSearhMedTheme"/>
+                style="@style/ButtonSearhMedTheme"
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -79,6 +81,7 @@
                 android:layout_gravity="center_horizontal"
                 android:onClick="jaSouCadastrado"
                 android:textSize="18dp"
+                android:textColor="@android:color/white"
                 style="@style/ButtonSearhMedTheme"/>
 
         </LinearLayout>

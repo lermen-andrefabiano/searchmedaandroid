@@ -10,6 +10,7 @@ public class MedicoDTO {
 	private String medicoEndereco;
 	private List<MedicoEspecialidadeDTO> especialidades;
 	private List<MedicoConvenioDTO> convenios;
+	private List<MedicoHorarioDTO> horarios;
 
 	public MedicoDTO() {
 	}
@@ -28,7 +29,7 @@ public class MedicoDTO {
 
 	public void setCrm(String crm) {
 		this.crm = crm;
-	}	
+	}
 
 	public String getMedicoNome() {
 		return medicoNome;
@@ -60,6 +61,14 @@ public class MedicoDTO {
 
 	public void setConvenios(List<MedicoConvenioDTO> convenios) {
 		this.convenios = convenios;
+	}
+
+	public List<MedicoHorarioDTO> getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(List<MedicoHorarioDTO> horarios) {
+		this.horarios = horarios;
 	}
 
 }

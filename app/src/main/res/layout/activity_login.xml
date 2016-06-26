@@ -62,16 +62,8 @@
             android:layout_gravity="center_horizontal"
             style="@style/ButtonSearhMedTheme"
             android:layout_marginTop="20dp"
-            android:onClick="login" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_esqueceu_senha"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            style="@style/ButtonSearhMedTheme"
-            android:layout_marginTop="10dp" />
+            android:onClick="login"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

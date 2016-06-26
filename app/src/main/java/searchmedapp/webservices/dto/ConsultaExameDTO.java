@@ -6,7 +6,7 @@ import java.util.Date;
 public class ConsultaExameDTO {
 
 	private Long id;
-	private Date data;
+	private Long data;
 	private String status;
 	private ExameDTO exame;
 
@@ -21,11 +21,11 @@ public class ConsultaExameDTO {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public Long getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(Long data) {
 		this.data = data;
 	}
 

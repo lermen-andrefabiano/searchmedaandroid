@@ -3,25 +3,35 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp">
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    style="@style/TabSearhMedTheme">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_nota"
-        android:id="@+id/textLabelNota" />
+        android:textSize="16dp"
+        android:id="@+id/textLabelNota"
+        android:textColor="@color/colorTitle"/>
 
-    <Spinner
-        android:id="@+id/spinnerNota"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        style="@style/RatingBarSearhMedTheme"
+        android:numStars="5"
+        android:stepSize="1.0"
+        android:rating="1.0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_recomendacao"
-        android:id="@+id/textView6" />
+        android:textSize="16dp"
+        android:id="@+id/textView6"
+        android:textColor="@color/colorTitle"/>
 
     <EditText
         android:layout_width="match_parent"

@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActivity";
 
+    private SharedPreferences pref;
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private boolean isLogado(){
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
         String user = pref.getString("key_user_id", null);
 
         return user!=null;
@@ -67,33 +69,47 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Log.i(TAG, "onNavigationDrawerItemSelected "+ position);
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
+        String tipo = pref.getString("key_tipo", null);
 
         // update the main content by replacing fragments
         Fragment fragment = null;
 
-        switch(position) {
-            case 0:
-                fragment = ConsultaFragment.newInstance(position + 1);
-                break;
-            case 1:
-                fragment = ConsultaNotificacaoFragment.newInstance(position + 1);
-                break;
-            case 2:
-                fragment = ConsultaClassificacaoFragment.newInstance(position + 1);
-                break;
-            case 3:
-                fragment = PerfilFragment.newInstance(position + 1);
-                break;
-            default:
-                fragment = PerfilFragment.newInstance(position + 1);
+        if(tipo==null || tipo.equals("C")){
+            switch(position) {
+                case 0:
+                    fragment = ConsultaFragment.newInstance(position + 1);
+                    break;
+                case 1:
+                    fragment = ConsultaNotificacaoFragment.newInstance(position + 1);
+                    break;
+                case 2:
+                    fragment = ConsultaClassificacaoFragment.newInstance(position + 1);
+                    break;
+                case 3:
+                    fragment = PerfilFragment.newInstance(position + 1);
+                    break;
+                default:
+                    fragment = PerfilFragment.newInstance(position + 1);
+            }
+        }else{
+            switch(position) {
+                case 0:
+                    fragment = ConsultaNotificacaoFragment.newInstance(position + 1);
+                    break;
+                case 1:
+                    fragment = ConsultaAgendaFragment.newInstance(position + 1);
+                    break;
+                case 2:
+                    fragment = PerfilFragment.newInstance(position + 1);
+                    break;
+                default:
+                    fragment = PerfilFragment.newInstance(position + 1);
+            }
         }
 
         onSectionAttached(position+1);
-
         restoreActionBar();
-
-        Log.i(TAG, "mTitle "+ mTitle);
-
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();

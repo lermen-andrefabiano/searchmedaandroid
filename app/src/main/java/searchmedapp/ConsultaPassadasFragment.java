@@ -1,11 +1,6 @@
 package searchmedapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -24,13 +19,15 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 import searchmedapp.adapter.ConsultaClassificacaoAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 
-public class ConsultaClassificacaoFragment extends Fragment {
+public class ConsultaPassadasFragment extends Fragment {
 
-    private static final String TAG = "ConsultaClassificacaoFragment";
+    private static final String TAG = "ClassificacaoFragment";
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -43,8 +40,6 @@ public class ConsultaClassificacaoFragment extends Fragment {
 
     private EditText editRecomendacao;
 
-    private Spinner spinnerNota;
-
     private Long nota;
 
     /**
@@ -52,19 +47,19 @@ public class ConsultaClassificacaoFragment extends Fragment {
      * number.
      */
     public static Fragment newInstance(int sectionNumber) {
-        ConsultaClassificacaoFragment fragment = new ConsultaClassificacaoFragment();
+        ConsultaPassadasFragment fragment = new ConsultaPassadasFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ConsultaClassificacaoFragment() {
+    public ConsultaPassadasFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_consulta_classificacao, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_consulta_passada, container, false);
 
         listarClassificacoes(rootView);
 
@@ -91,12 +86,11 @@ public class ConsultaClassificacaoFragment extends Fragment {
 
     public void openClassificacao(View rootView){
         Log.i(TAG, "openClassificacao");
-        carregamento();
 
         ListView listClassificacao = (ListView) rootView.findViewById(R.id.listClassificacao);
 
         ConsultaClassificacaoAdapter adapter = new ConsultaClassificacaoAdapter(getActivity(),
-                R.layout.fragment_consulta_classificacao_item,
+                R.layout.fragment_consulta_passada_item,
                 classificacoes);
 
         listClassificacao.setAdapter(adapter);
@@ -118,10 +112,12 @@ public class ConsultaClassificacaoFragment extends Fragment {
 
         editRecomendacao = (EditText) classificarChamadoView.findViewById(R.id.editRecomendacao);
         RatingBar ratingBar = (RatingBar) classificarChamadoView.findViewById(R.id.ratingBar);
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                nota = (long)rating;
-                Log.i(TAG, "nota" + nota);
+
             }
         });
 
@@ -151,36 +147,15 @@ public class ConsultaClassificacaoFragment extends Fragment {
     }
 
     public void classificar(){
-        carregamento();
+
         try {
             ConsultaREST rest = new ConsultaREST();
-            boolean b = rest.classificar(nota, editRecomendacao.getText().toString(), classificacaoSel.getId());
-            if(b){
-                Toast.makeText(getActivity(), R.string.toast_classificacao_aberta, Toast.LENGTH_SHORT).show();
-                listarClassificacoes(getView());
-            }else{
-                Toast.makeText(getActivity(), R.string.toast_classificacao_erro, Toast.LENGTH_LONG).show();
-            }
+            rest.classificar(nota, editRecomendacao.getText().toString(), classificacaoSel.getId());
         }catch (Exception e){
-            Toast.makeText(getActivity(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
         }
-    }
+        Toast.makeText(getActivity(), R.string.toast_classificacao_aberta, Toast.LENGTH_SHORT).show();
 
-    private boolean carregamento() {
-        final ProgressDialog progress = new ProgressDialog(getActivity());
-        progress.setTitle(getString(R.string.load_carregando));
-        progress.setMessage(getString(R.string.load_aguarde));
-        progress.show();
-        new Thread() {
-            public void run() {
-                try{
-                    // just doing some long operation
-                    sleep(20000);
-                } catch (Exception e) {  }
-                progress.dismiss();
-            }
-        }.start();
-        return true;
+        listarClassificacoes(getView());
     }
 
     @Override

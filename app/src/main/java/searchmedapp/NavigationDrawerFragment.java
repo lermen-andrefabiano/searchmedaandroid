@@ -103,8 +103,9 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
 
-       setUserCabecalho(view);
+        setUserCabecalho(view);
 
         mDrawerListView = (ListView) view.findViewById(R.id.navigationItems);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,11 +116,19 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         dataList = new ArrayList<DrawerItem>();
-        dataList.add(new DrawerItem(getString(R.string.action_encontre_medico), R.drawable.ic_search_black_18dp));
-        dataList.add(new DrawerItem(getString(R.string.action_consultas), R.drawable.ic_import_contacts_black_18dp));
-        dataList.add(new DrawerItem(getString(R.string.action_recomendacao), R.drawable.ic_add_alert_black_18dp));
-        dataList.add(new DrawerItem(getString(R.string.action_medicos_favoritos), R.drawable.ic_star_rate_black_18dp));
-        dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+
+        String tipo = pref.getString("key_user_tipo", null);
+        if(tipo==null || tipo.equals("C")){
+            dataList.add(new DrawerItem(getString(R.string.action_encontre_medico), R.drawable.ic_search_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_consultas_passadas), R.drawable.ic_import_contacts_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_recomendacao), R.drawable.ic_add_alert_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_medicos_favoritos), R.drawable.ic_star_rate_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+        }else{
+            dataList.add(new DrawerItem(getString(R.string.action_consultas), R.drawable.ic_import_contacts_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_consultas_agendadas), R.drawable.ic_event_black_24dp));
+            dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+        }
 
         DrawerItemAdapter adapter = new DrawerItemAdapter(getActivity(), R.layout.fragment_navigation_drawer_item, dataList);
         mDrawerListView.setAdapter(adapter);

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import searchmedapp.webservices.dto.UsuarioDTO;
@@ -31,11 +32,11 @@ public class MeusDadosActivity extends AppCompatActivity{
 
     private EditText editEmail;
 
-    private EditText editLogin;
-
     private EditText editSenha;
 
-    private EditText editConfirmaSenha;
+    private EditText editCRM;
+
+    private TextView lbCRM;
 
     private EditText editEndereco;
 
@@ -48,14 +49,13 @@ public class MeusDadosActivity extends AppCompatActivity{
 
         editNome = (EditText)findViewById(R.id.editNome);
         editEmail = (EditText)findViewById(R.id.editEmail);
-        editLogin = (EditText)findViewById(R.id.editLogin);
         editSenha = (EditText)findViewById(R.id.editSenha);
-        //editConfirmaSenha = (EditText)findViewById(R.id.editSenhaConfirma);
         editEndereco = (EditText)findViewById(R.id.editEndereco);
+        editCRM = (EditText)findViewById(R.id.editCRM);
         chkPrestaServico = (CheckBox)findViewById(R.id.chkPrestaServico);
+        lbCRM = (TextView)findViewById(R.id.lbCRM);
 
         pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-
         meusDados();
     }
 
@@ -103,18 +103,30 @@ public class MeusDadosActivity extends AppCompatActivity{
 
     public void meusDados(){
         SharedPreferences pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-        String user = pref.getString("key_user", "");
+        String user = pref.getString("key_user_id", "");
 
         if(user!=null){
             editNome.setText(pref.getString("key_user_nome", ""));
             editEmail.setText(pref.getString("key_user_email", ""));
             editEndereco.setText(pref.getString("key_user_endereco", ""));
-            editLogin.setText(user);
-            chkPrestaServico.setChecked(Boolean.valueOf(pref.getString("key_user_prestador", "")));
+
+            String tipo = pref.getString("key_user_tipo", "");
+
+            if(tipo.equals("M")){
+                chkPrestaServico.setChecked(true);
+                editCRM.setText(pref.getString("key_user_crm", ""));
+                lbCRM.setVisibility(View.VISIBLE);
+                editCRM.setVisibility(View.VISIBLE);
+            }else{
+                chkPrestaServico.setChecked(false);
+                lbCRM.setVisibility(View.GONE);
+                editCRM.setVisibility(View.GONE);
+            }
+
         }
     }
     public boolean isValidaSenha(){
-        String senha = editSenha.getText().toString();
+        /*String senha = editSenha.getText().toString();
         String confirmaSenha = editConfirmaSenha.getText().toString();
 
         if(senha.equals("") || confirmaSenha.equals("")){
@@ -124,7 +136,7 @@ public class MeusDadosActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), R.string.toast_senhas_diferrentes, Toast.LENGTH_SHORT).show();
             return false;
         }
-
+*/
         return true;
     }
 
@@ -134,6 +146,7 @@ public class MeusDadosActivity extends AppCompatActivity{
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
 
         String tipo = "C";
+        String crm = editCRM.getText().length()>0 ? editCRM.getText().toString() : null;
 
         if(chkPrestaServico.isChecked() == true){
             tipo = "M";
@@ -146,7 +159,8 @@ public class MeusDadosActivity extends AppCompatActivity{
                     editEmail.getText().toString(),                   
                     editEndereco.getText().toString(),
                     editSenha.getText().toString(),
-                    tipo);
+                    tipo,
+                    crm);
         }catch (Exception e){
         }
 

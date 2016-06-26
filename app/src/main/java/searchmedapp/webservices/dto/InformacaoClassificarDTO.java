@@ -5,7 +5,7 @@ public class InformacaoClassificarDTO {
 
 	private String recomendacao;
 
-	private int nota;
+	private Long nota;
 
 	public String getRecomendacao() {
 		return recomendacao;
@@ -15,11 +15,11 @@ public class InformacaoClassificarDTO {
 		this.recomendacao = recomendacao;
 	}
 
-	public int getNota() {
+	public Long getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(Long nota) {
 		this.nota = nota;
 	}
 

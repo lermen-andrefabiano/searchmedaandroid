@@ -98,6 +98,10 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("key_user_email", retorno.getEmail());
             editor.putString("key_user_nome", retorno.getNome());
             editor.putString("key_user_endereco", retorno.getEndereco());
+            editor.putString("key_user_tipo", retorno.getTipo());
+            if(retorno.getMedico()!=null){
+                editor.putString("key_user_crm", retorno.getMedico().getCrm());
+            }
             editor.commit();
 
             Intent r = new Intent(this, MainActivity.class);

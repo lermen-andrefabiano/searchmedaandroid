@@ -21,23 +21,23 @@ import searchmedapp.webservices.dto.InformacaoNotificarDTO;
  */
 public class ConsultaREST extends AbstractREST{
 
-    private static final String PATH = "chamado/";
+    private static final String PATH = "consulta/";
 
-    public String abrir(Long usuarioId, Long medicoId, Long especialidadeId) throws Exception {
-        final String PATH_ABRIR = "abrir?usuarioId="+usuarioId+"&medicoId="+medicoId+"&especialidadeId="+especialidadeId;
+    public boolean abrir(Long usuarioId, Long medicoId, Long especialidadeId, Long horarioId) throws Exception {
+        final String PATH_ABRIR = "abrir?usuarioId="+usuarioId+"&medicoId="+medicoId+"&especialidadeId="+especialidadeId+"&horarioId="+horarioId;
 
         Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);     
 
-        String[] resposta = new WebServiceClient().post(URL_WS + PATH + PATH_ABRIR, null);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABRIR);
 
         if(resposta[0].equals("400")){
-            return null;
+            return false;
         }else if (resposta[0].equals("200")) {
-            Log.i("resposta[0]", resposta[0]);
-          return resposta[0];
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+          return Boolean.valueOf(resposta[1]);
         }
 
-        return null;
+        return false;
     }
 
     public List<ConsultaDTO> consultasAbertas(Long medicoId) throws Exception {
@@ -101,18 +101,16 @@ public class ConsultaREST extends AbstractREST{
             Gson gson = new Gson();
             ArrayList<ConsultaDTO> lst = new ArrayList<ConsultaDTO>();
             JsonParser parser = new JsonParser();
-            JsonObject obj = null;
             JsonArray array = null;
 
             try{
-                obj = parser.parse(resposta[1]).getAsJsonObject();
-                array = obj.getAsJsonArray("consulta");
+                array = parser.parse(resposta[1]).getAsJsonArray();
 
                 for (int i = 0; i < array.size(); i++) {
                     lst.add(gson.fromJson(array.get(i), ConsultaDTO.class));
                 }
             }catch(ClassCastException c){
-                lst.add(gson.fromJson(obj.getAsJsonObject("consulta"), ConsultaDTO.class));
+                c.printStackTrace();
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -123,12 +121,13 @@ public class ConsultaREST extends AbstractREST{
         }
     }
 
-    public void classificar(String nota, String recomendacao, Long consultaId) throws Exception {
-        final String PATH_CLASSIFICAR = "classificar?nota="+nota+"&consultaId="+consultaId;
+    public boolean classificar(Long nota, String recomendacao, Long consultaId) throws Exception {
+        final String PATH_CLASSIFICAR = "classificar?consultaId="+consultaId;
         Log.i("URL_WS", URL_WS + PATH + PATH_CLASSIFICAR);
 
         InformacaoClassificarDTO info = new InformacaoClassificarDTO();
         info.setRecomendacao(recomendacao);
+        info.setNota(nota);
 
         Gson gson = new Gson();
         String infoJSON = gson.toJson(info);
@@ -138,7 +137,7 @@ public class ConsultaREST extends AbstractREST{
         if (resposta[0].equals("200")) {
             Log.i("resposta[0]", resposta[0]);
         }
-
+        return Boolean.valueOf(resposta[1]);
     }
 
 }

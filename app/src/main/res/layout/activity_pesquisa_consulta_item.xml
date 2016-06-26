@@ -30,7 +30,8 @@
             android:text="New Text"
             android:layout_margin="5dp"
             android:id="@+id/textEndereco"
-            style="@style/TabTextSearhMedTheme"/>
+            style="@style/TabTextSearhMedTheme"
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +39,8 @@
             android:text="New Text"
             android:layout_margin="5dp"
             android:id="@+id/textCRM"
-            style="@style/TabTextSearhMedTheme"/>
+            style="@style/TabTextSearhMedTheme"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

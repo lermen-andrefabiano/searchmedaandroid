@@ -1,8 +1,5 @@
 package searchmedapp.adapter;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import searchmedapp.R;
-import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.dto.MedicoDTO;
+import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.
  */
-public class ConsultaClassificacaoAdapter extends ArrayAdapter<ConsultaDTO> {
+public class MedicoEspecialidadeAdapter extends ArrayAdapter<MedicoEspecialidadeDTO> {
 
     int resource;
 
     //Initialize adapter
-    public ConsultaClassificacaoAdapter(Context context, int resource, List<ConsultaDTO> items) {
+    public MedicoEspecialidadeAdapter(Context context, int resource, List<MedicoEspecialidadeDTO> items) {
         super(context, resource, items);
         this.resource = resource;
     }
@@ -31,7 +31,7 @@ public class ConsultaClassificacaoAdapter extends ArrayAdapter<ConsultaDTO> {
     public View getView(int position, View convertView, ViewGroup parent){
         LinearLayout view;
         //Get the current alert object
-        ConsultaDTO c = getItem(position);
+        MedicoEspecialidadeDTO obj = getItem(position);
 
         //Inflate the view
         if(convertView==null){
@@ -44,17 +44,8 @@ public class ConsultaClassificacaoAdapter extends ArrayAdapter<ConsultaDTO> {
             view = (LinearLayout) convertView;
         }
         //Get the text boxes from the listitem.xml file
-        TextView textMed = (TextView)view.findViewById(R.id.textMed);
-        TextView textEspecialidade = (TextView)view.findViewById(R.id.textEspecialidade);
-        TextView textAgendamento = (TextView)view.findViewById(R.id.textAgendamento);
-        TextView textEnderecoMed = (TextView)view.findViewById(R.id.textEnderecoMed);
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        //Assign the appropriate data from our alert object above
-        textMed.setText(c.getMedico().getMedicoNome());
-        textEspecialidade.setText(c.getEspecialidade().getDescricao());
-        textAgendamento.setText(format.format(c.getData()));
-        textEnderecoMed.setText(c.getEndereco());
+        TextView t =(TextView)view.findViewById(R.id.textoAdp);
+        t.setText(obj.getEspecialidade().getDescricao());
 
         return view;
     }

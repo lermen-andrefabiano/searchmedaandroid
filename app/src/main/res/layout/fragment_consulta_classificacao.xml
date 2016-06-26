@@ -9,10 +9,23 @@
         android:layout_height="match_parent"
         android:layout_gravity="left|top">
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Classifique a consulta médica conforme sua experiencia obtida."
+            android:id="@+id/textLabel_prioridade"
+            android:textSize="20dp"
+            android:textColor="@color/colorTitle"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center|left"/>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listClassificacao" />
+            android:id="@+id/listClassificacao"
+            android:background="@color/colorTitle"/>
 
     </LinearLayout>
 
