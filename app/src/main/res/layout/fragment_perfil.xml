@@ -5,7 +5,9 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent" android:orientation="vertical"
-        tools:context="searchmedapp.PerfilFragment">
+        tools:context="searchmedapp.PerfilFragment"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -18,9 +20,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical|center_horizontal">
+                    android:gravity="center_vertical|left">
 
                     <ImageView
                         android:layout_width="80dp"
@@ -43,14 +45,14 @@
                     android:id="@+id/textView2"
                     android:textColor="#33b5e5"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="20dp" />
+                    android:layout_marginBottom="20dp"/>
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:id="@+id/lstMeusDados"
                     android:textColor="@android:color/white"
-                    android:background="#33b5e5"/>
+                    android:background="@color/colorTitle"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,13 +70,15 @@
                     android:id="@+id/lstMais"
                     android:layout_weight="0.38"
                     android:textColor="@android:color/white"
-                    android:background="#33b5e5"/>
+                    android:background="@color/colorTitle"/>
 
                 <Button android:text="@string/label_logff"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnLogon"
-                    android:layout_marginTop="20dp" />
+                    style="@style/ButtonSearhMedTheme"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
         </ScrollView>

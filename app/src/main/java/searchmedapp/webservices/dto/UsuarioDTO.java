@@ -1,5 +1,6 @@
 package searchmedapp.webservices.dto;
 
+import java.util.List;
 
 public class UsuarioDTO {
 
@@ -10,6 +11,7 @@ public class UsuarioDTO {
 	private String senha;
 	private String tipo;
 	private MedicoDTO medico;
+	private List<MedicoFavoritoDTO> favoritos;
 
 	public UsuarioDTO() {
 	}
@@ -68,6 +70,14 @@ public class UsuarioDTO {
 
 	public void setMedico(MedicoDTO medico) {
 		this.medico = medico;
+	}
+
+	public List<MedicoFavoritoDTO> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<MedicoFavoritoDTO> favoritos) {
+		this.favoritos = favoritos;
 	}
 
 }

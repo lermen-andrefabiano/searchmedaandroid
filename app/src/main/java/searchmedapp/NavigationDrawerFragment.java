@@ -38,7 +38,7 @@ import searchmedapp.adapter.DrawerItemAdapter;
  */
 public class NavigationDrawerFragment extends Fragment {
 
-    private static final String TAG = "NavDrawerFragment";
+    private static final String TAG = "NavigationDrawerFragment";
 
     /**
      * Remember the position of the selected item.

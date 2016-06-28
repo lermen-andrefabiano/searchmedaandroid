@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
 
@@ -99,6 +101,12 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("key_user_nome", retorno.getNome());
             editor.putString("key_user_endereco", retorno.getEndereco());
             editor.putString("key_user_tipo", retorno.getTipo());
+
+            Gson gson = new Gson();
+
+            String jsonFavorito = gson.toJson(retorno.getFavoritos());
+            editor.putString("key_user_favorito", jsonFavorito);
+
             if(retorno.getMedico()!=null){
                 editor.putString("key_user_crm", retorno.getMedico().getCrm());
             }

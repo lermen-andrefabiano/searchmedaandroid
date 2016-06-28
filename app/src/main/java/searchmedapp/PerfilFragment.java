@@ -64,8 +64,8 @@ public class PerfilFragment extends Fragment {
         ListView lstMeusDados = (ListView) view.findViewById(R.id.lstMeusDados);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
+                R.layout.activity_adpater_item,
+                R.id.textoAdp,
                 new String[]{
                         getString(R.string.label_dados_pessoais),
                         getString(R.string.label_especialidades),

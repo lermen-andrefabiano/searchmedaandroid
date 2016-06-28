@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity
                     fragment = ConsultaClassificacaoFragment.newInstance(position + 1);
                     break;
                 case 3:
+                    fragment = FavoritoFragment.newInstance(position + 1);
+                    break;
+                case 4:
                     fragment = PerfilFragment.newInstance(position + 1);
                     break;
                 default:
