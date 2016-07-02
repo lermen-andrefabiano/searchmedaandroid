@@ -49,25 +49,48 @@ public class ConsultaREST extends AbstractREST{
             Gson gson = new Gson();
             ArrayList<ConsultaDTO> lst = new ArrayList<ConsultaDTO>();
             JsonParser parser = new JsonParser();
-            JsonObject obj = null;
             JsonArray array = null;
 
             try{
-                obj = parser.parse(resposta[1]).getAsJsonObject();
-                array = obj.getAsJsonArray("consulta");
+                array = parser.parse(resposta[1]).getAsJsonArray();
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), ConsultaDTO.class));
+                }
+
+            }catch(ClassCastException c){
+                c.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
+    public List<ConsultaDTO> consultasAntigas(Long userId) throws Exception {
+        final String PATH_ABERTOS = "consultasAntigas?usuarioId=";
+        Log.i("URL_WS", URL_WS + PATH_ABERTOS + userId);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABERTOS + userId);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<ConsultaDTO> lst = new ArrayList<ConsultaDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try{
+                array = parser.parse(resposta[1]).getAsJsonArray();
 
                 for (int i = 0; i < array.size(); i++) {
                     lst.add(gson.fromJson(array.get(i), ConsultaDTO.class));
                 }
 
             }catch(ClassCastException c){
-                lst.add(gson.fromJson(obj.getAsJsonObject("consulta"), ConsultaDTO.class));
+                c.printStackTrace();
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-
-
             return lst;
         } else {
             throw new Exception(resposta[1]);

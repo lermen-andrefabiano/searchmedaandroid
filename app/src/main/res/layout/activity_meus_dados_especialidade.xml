@@ -1,61 +1,60 @@
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:id="@+id/tabHost" tools:context="searchmedapp.MeusDadosEspecialidadeActivity">
-
-<LinearLayout
-    android:id="@+id/LinearLayout01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:columnWidth="320dp"
     android:orientation="vertical"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:rowCount="4"
+    android:stretchMode="columnWidth"
+    tools:context="searchmedapp.MeusDadosEspecialidadeActivity">
 
-    <TabWidget
-        android:id="@android:id/tabs"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
-    </TabWidget>
+        android:text="Especialidades Disponíveis"
+        android:textSize="16dp"
+        android:textColor="@color/colorTitle"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"/>
 
-    <FrameLayout
-        android:id="@android:id/tabcontent"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent">
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_especialidade"
+        android:id="@+id/dragEspecialidadeScroll">
         <LinearLayout
-            android:id="@+id/tabEspecialidadePrestador"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/listEspecialidadePrestador" />
+            android:id="@+id/dragEspecialidade"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:background="@drawable/shape_especialidade" >
 
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/tabLstEspecialidades"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Especialidades Cadatradas"
+        android:textSize="16dp"
+        android:textColor="@color/colorTitle"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"/>
 
-            <SearchView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/searchEspecialidde"
-                android:focusable="true"/>
+    <LinearLayout
+        android:id="@+id/dropEspecialidade"
+        android:layout_width="fill_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_especialidade" >
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/listEspecialidade" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </FrameLayout>
-
-</LinearLayout>
-
-</TabHost>
-
+</GridLayout>
 

@@ -70,18 +70,19 @@ public class MainActivity extends AppCompatActivity
     public void onNavigationDrawerItemSelected(int position) {
         Log.i(TAG, "onNavigationDrawerItemSelected "+ position);
         pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
-        String tipo = pref.getString("key_tipo", null);
+        String tipo = pref.getString("key_user_tipo", null);
 
         // update the main content by replacing fragments
         Fragment fragment = null;
 
+        Log.i(TAG, "Tipo usuario "+ tipo);
         if(tipo==null || tipo.equals("C")){
             switch(position) {
                 case 0:
                     fragment = ConsultaFragment.newInstance(position + 1);
                     break;
                 case 1:
-                    fragment = ConsultaNotificacaoFragment.newInstance(position + 1);
+                    fragment = ConsultaPassadasFragment.newInstance(position + 1);
                     break;
                 case 2:
                     fragment = ConsultaClassificacaoFragment.newInstance(position + 1);
@@ -90,10 +91,10 @@ public class MainActivity extends AppCompatActivity
                     fragment = FavoritoFragment.newInstance(position + 1);
                     break;
                 case 4:
-                    fragment = PerfilFragment.newInstance(position + 1);
+                    fragment = PerfilActivity.newInstance(position + 1);
                     break;
                 default:
-                    fragment = PerfilFragment.newInstance(position + 1);
+                    fragment = PerfilActivity.newInstance(position + 1);
             }
         }else{
             switch(position) {
@@ -104,10 +105,10 @@ public class MainActivity extends AppCompatActivity
                     fragment = ConsultaAgendaFragment.newInstance(position + 1);
                     break;
                 case 2:
-                    fragment = PerfilFragment.newInstance(position + 1);
+                    fragment = PerfilActivity.newInstance(position + 1);
                     break;
                 default:
-                    fragment = PerfilFragment.newInstance(position + 1);
+                    fragment = PerfilActivity.newInstance(position + 1);
             }
         }
 
@@ -119,19 +120,39 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.action_encontre_medico);
-                break;
-            case 2:
-                mTitle = getString(R.string.action_consultas);
-                break;
-            case 3:
-                mTitle = getString(R.string.action_recomendacao);
-                break;
-            case 4:
-                mTitle = getString(R.string.action_perfil);
-                break;
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
+        String tipo = pref.getString("key_user_tipo", null);
+        if(tipo==null || tipo.equals("C")){
+            switch (number) {
+                case 1:
+                    mTitle = getString(R.string.action_encontre_medico);
+                    break;
+                case 2:
+                    mTitle = getString(R.string.action_consultas_passadas);
+                    break;
+                case 3:
+                    mTitle = getString(R.string.action_recomendacao);
+                    break;
+                case 4:
+                    mTitle = getString(R.string.action_medicos_favoritos);
+                    break;
+                case 5:
+                    mTitle = getString(R.string.action_perfil);
+                    break;
+            }
+        }else {
+            switch (number) {
+                case 1:
+                    mTitle = getString(R.string.action_consultas_abertas);
+                    break;
+                case 2:
+                    mTitle = getString(R.string.action_consultas_agendadas);
+                    break;
+                case 3:
+                    mTitle = getString(R.string.action_perfil);
+                    break;
+
+            }
         }
     }
 

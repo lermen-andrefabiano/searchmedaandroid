@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,8 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import searchmedapp.adapter.ConsultaClassificacaoAdapter;
+import searchmedapp.adapter.EspecialidadeAdapter;
+import searchmedapp.adapter.MedicoConvenioAdapter;
+import searchmedapp.adapter.MedicoEspecialidadeAdapter;
 import searchmedapp.adapter.MedicoFavoritoAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.dto.EspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoFavoritoDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 
@@ -64,6 +69,8 @@ public class FavoritoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_favorito, container, false);
 
+        carregamento();
+
         listar(rootView);
 
         return rootView;
@@ -93,9 +100,47 @@ public class FavoritoFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 medicoFavoritoSel = (MedicoFavoritoDTO) parent.getItemAtPosition(position);
+                abrirPopUpMedicoFavoritoSel();
             }
         });
 
+    }
+
+    private void abrirPopUpMedicoFavoritoSel(){
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        View view = li.inflate(R.layout.fragment_favorito_item, null);
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setView(view);
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        TextView textMed1 = (TextView) view.findViewById(R.id.textMed1);
+        TextView textMed2 = (TextView) view.findViewById(R.id.textMed2);
+        TextView textMed3 = (TextView) view.findViewById(R.id.textMed3);
+
+        textMed1.setText(medicoFavoritoSel.getMedico().getMedicoNome());
+        textMed2.setText("CRM: " + medicoFavoritoSel.getMedico().getCrm());
+        textMed3.setText("Endereço: " + medicoFavoritoSel.getMedico().getMedicoEndereco());
+
+        ListView listFavoritoEspecialidade = (ListView ) view.findViewById(R.id.listFavoritoEspecialidade);
+        final MedicoEspecialidadeAdapter adapter = new MedicoEspecialidadeAdapter(getActivity(), R.layout.activity_adpater_item, medicoFavoritoSel.getMedico().getEspecialidades());
+        listFavoritoEspecialidade.setAdapter(adapter);
+
+        //ListView listFavoritoConvenio = (ListView ) view.findViewById(R.id.listFavoritoConvenio);
+        //final MedicoConvenioAdapter adapterC = new MedicoConvenioAdapter(getActivity(), R.layout.activity_adpater_item, medicoFavoritoSel.getMedico().getConvenios());
+        //listFavoritoConvenio.setAdapter(adapterC);
+
+        Log.i(TAG, "size especialidades " + medicoFavoritoSel.getMedico().getEspecialidades().size());
+        Log.i(TAG, "size convenio " + medicoFavoritoSel.getMedico().getConvenios().size());
+
+        Button btnFecharFavorito = (Button) view.findViewById(R.id.btnFecharFavorito);
+        btnFecharFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
     private boolean carregamento() {
@@ -107,7 +152,7 @@ public class FavoritoFragment extends Fragment {
             public void run() {
                 try{
                     // just doing some long operation
-                    sleep(20000);
+                    sleep(500);
                 } catch (Exception e) {  }
                 progress.dismiss();
             }

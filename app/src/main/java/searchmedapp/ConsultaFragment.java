@@ -79,23 +79,6 @@ public class ConsultaFragment extends Fragment {
         return view;
     }
 
-    private boolean carregamento() {
-        final ProgressDialog progress = new ProgressDialog(getActivity());
-        progress.setTitle(getString(R.string.load_carregando));
-        progress.setMessage(getString(R.string.load_aguarde));
-        progress.show();
-        new Thread() {
-            public void run() {
-                try{
-                    // just doing some long operation
-                    sleep(2000);
-                } catch (Exception e) {  }
-                progress.dismiss();
-            }
-        }.start();
-        return true;
-    }
-
     private void openLstPesquisa(View view){
         lbEspecialidade = (TextView) view.findViewById(R.id.lbEspecialidade);
         lbConvenio = (TextView) view.findViewById(R.id.lbConvenio);
@@ -189,6 +172,23 @@ public class ConsultaFragment extends Fragment {
             r.putExtra("especialidade", especialidadeSel.getDescricao());
             startActivity(r);
         }
+    }
+
+    private boolean carregamento() {
+        final ProgressDialog progress = new ProgressDialog(getActivity());
+        progress.setTitle(getString(R.string.load_carregando));
+        progress.setMessage(getString(R.string.load_aguarde));
+        progress.show();
+        new Thread() {
+            public void run() {
+                try{
+                    // just doing some long operation
+                    sleep(500);
+                } catch (Exception e) {  }
+                progress.dismiss();
+            }
+        }.start();
+        return true;
     }
 
     @Override

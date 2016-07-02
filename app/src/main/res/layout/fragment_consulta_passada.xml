@@ -1,19 +1,33 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="searchmedapp.ConsultaNotificacaoFragment">
-
+    tools:context="searchmedapp.ConsultaPassadasFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left|top">
+        android:layout_gravity="left|top"
+        android:paddingLeft="5dp"
+        android:paddingTop="20dp"
+        android:paddingRight="5dp">
 
-        <ListView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listNotificacao" />
+            android:text="Suas consultas realizadas"
+            android:id="@+id/textLabel_prioridade"
+            android:textSize="20dp"
+            android:textColor="@color/colorTitle"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center|left"/>
+
+        <ExpandableListView
+            android:id="@+id/lstConusltasPassadas"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 

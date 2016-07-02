@@ -1,58 +1,99 @@
 package searchmedapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.Telephony;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TabHost;
+import android.content.ClipData;
+import android.graphics.drawable.Drawable;
+import android.view.DragEvent;
+import android.view.MotionEvent;
+import android.view.View.DragShadowBuilder;
+import android.view.View.OnDragListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import searchmedapp.adapter.MeusDadosAdapter;
-import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
+import searchmedapp.webservices.dto.EspecialidadeDTO;
 import searchmedapp.webservices.rest.EspecialidadeREST;
-
+import searchmedapp.webservices.rest.MedicoREST;
 
 public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
 
+    private static final String TAG = "MeusDadosEspecialidadeActivity";
+
     private SharedPreferences pref;
 
-    private List<MedicoEspecialidadeDTO> especialidades;
+    private EspecialidadeDTO especialidadeSel;
 
-    private MedicoEspecialidadeDTO especialidadeSel;
+    private List<EspecialidadeDTO> especialidades = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_dados_especialidade);
 
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
-        tabHost.setup();
-
-        TabHost.TabSpec specEspecialidadePrestador = tabHost.newTabSpec(getString(R.string.label_especialidade_listar));
-        specEspecialidadePrestador.setContent(R.id.tabEspecialidadePrestador);
-        specEspecialidadePrestador.setIndicator(getString(R.string.label_especialidade_listar));
-
-        TabHost.TabSpec specLstEspecialidades = tabHost.newTabSpec(getString(R.string.label_especialidade_add));
-        specLstEspecialidades.setContent(R.id.tabLstEspecialidades);
-        specLstEspecialidades.setIndicator(getString(R.string.label_especialidade_add));
-
-        tabHost.addTab(specEspecialidadePrestador);
-        tabHost.addTab(specLstEspecialidades);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
 
-        listarPorPrestador();
+        getEspecialidades();
+
+        findViewById(R.id.dragEspecialidade).setOnDragListener(new EspecialidaeDragListener());
+        findViewById(R.id.dropEspecialidade).setOnDragListener(new EspecialidaeDragListener());
+    }
+
+    public void getEspecialidades(){
+        Log.i(TAG, "getEspecialidades");
+        EspecialidadeREST especialidadeREST = new EspecialidadeREST();
+        try {
+            if(especialidades==null){
+                especialidades = especialidadeREST.getEspecialidades();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(especialidades!=null){
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dragEspecialidade);
+
+            for(EspecialidadeDTO e : especialidades){
+                TextView t = new TextView(this);
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(4, 4, 4, 4);
+
+                t.setText(e.getDescricao());
+                t.setId(e.getId().intValue());
+                t.setLayoutParams(params);
+                t.setTextSize(16);
+                t.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                t.setOnTouchListener(new EspecialidadeTouchListener());
+
+                linearLayout.addView(t);
+            }
+        }
     }
 
     public void listarPorPrestador(){
-        String keyUserId = pref.getString("key_user_id", null);
+        /*String keyUserId = pref.getString("key_user_id", null);
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
 
         try {
@@ -72,7 +113,8 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
                     especialidadeSel = (MedicoEspecialidadeDTO)parent.getItemAtPosition(position);
                 }
             });
-        }   }
+        }   */
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,5 +139,100 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private final class EspecialidadeTouchListener implements OnTouchListener {
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                view.setVisibility(View.INVISIBLE);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public void  incluirEspecialidade(int especialidadeId){
+        String usuarioId = pref.getString("key_user_id", null);
+        MedicoREST medicoREST = new MedicoREST();
+        try {
+            boolean r = medicoREST.inclurEspecialidade(Long.valueOf(usuarioId), (long)especialidadeId);
+            if(r){
+                Toast.makeText(this, R.string.toast_add_especialidade, Toast.LENGTH_SHORT).show();
+            }else {
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void  excluirEspecialidade(int especialidadeId){
+        String usuarioId = pref.getString("key_user_id", null);
+        MedicoREST medicoREST = new MedicoREST();
+        try {
+            boolean r = medicoREST.excluirEspecialidade(Long.valueOf(usuarioId), (long)especialidadeId);
+            if(r){
+                Toast.makeText(this, R.string.toast_remove_especialidade, Toast.LENGTH_SHORT).show();
+            }else {
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    class EspecialidaeDragListener implements OnDragListener {
+        Drawable enterShape = getResources().getDrawable(R.drawable.shape_especialidade_droptarget);
+        Drawable normalShape = getResources().getDrawable(R.drawable.shape_especialidade);
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int action = event.getAction();
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    Log.i(TAG, "ACTION_DRAG_STARTED");
+                    break;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    v.setBackgroundDrawable(enterShape);
+                    Log.i(TAG, "ACTION_DRAG_ENTERED");
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    v.setBackgroundDrawable(normalShape);
+                    Log.i(TAG, "ACTION_DRAG_EXITED");
+                    break;
+                case DragEvent.ACTION_DROP:
+                    Log.i(TAG, "ACTION_DROP");
+                    // Dropped, reassign View to ViewGroup
+                    View view = (View) event.getLocalState();
+                    ViewGroup owner = (ViewGroup) view.getParent();
+                    owner.removeView(view);
+
+                    LinearLayout container = (LinearLayout) v;
+                    container.addView(view);
+                    view.setVisibility(View.VISIBLE);
+
+                    String resourceEntryName = getResources().getResourceEntryName(container.getId());
+                    int especialidadeId = view.getId();
+
+                    Log.i(TAG, "resourceEntryName " + resourceEntryName);
+                    Log.i(TAG, "especialidadeId " + especialidadeId);
+
+                    if(resourceEntryName.equals("dropEspecialidade")){
+                        incluirEspecialidade(especialidadeId);
+                    }else{
+                        excluirEspecialidade(especialidadeId);
+                    }
+
+                    break;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    Log.i(TAG, "ACTION_DRAG_ENDED");
+                    v.setBackgroundDrawable(normalShape);
+                default:
+                    break;
+            }
+            return true;
+        }
     }
 }

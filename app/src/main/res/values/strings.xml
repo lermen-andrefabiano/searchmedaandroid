@@ -1,16 +1,19 @@
 <resources>
     <string name="app_name">SearchMed</string>
 
+    <string name="fechar">Fechar</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">Ok</string>
 
     <string name="action_encontre_medico">Encontre Médicos</string>
     <string name="action_recomendacao">Avaliação</string>
     <string name="action_consultas">Consultas</string>
-    <string name="action_consultas_agendadas">Consultas Agendadas</string>
+    <string name="action_consultas_abertas">Consultas na Fila</string>
+    <string name="action_consultas_agendadas">Consultas Do Dia</string>
     <string name="action_medicos_favoritos">Médicos Favoritos</string>
     <string name="action_consultas_passadas">Consultas Passadas</string>
     <string name="action_ajustes">Ajustes</string>
+
     <string name="action_perfil">Perfil</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Salvar</string>
@@ -43,6 +46,8 @@
     <string name="label_lembrete_senha_info">Caso tenha esquecido sua senha, digite o e-mail que você utilizou para se cadastrar no Home Help no espeço abaixo.</string>
     <string name="label_criar_nova_senha">Criar nova senha</string>
     <string name="label_especialidades">Especialidades</string>
+    <string name="label_convenio">Convênios</string>
+    <string name="label_horario">Horários</string>
     <string name="label_gps">Usar minha Localização</string>
     <string name="search_label">Procurar prestadores</string>
     <string name="search_hint">Procurar prestadores</string>
@@ -82,6 +87,10 @@
     <string name="title_activity_meus_dados_especialidade">Especialidades</string>
     <string name="title_activity_pesquisa">Médicos Encontrados</string>
     <string name="toast_favorito_adicionado">Médico favorito adicionado sucesso!</string>
+
+    <string name="toast_add_especialidade">Especialidade adicionada com sucesso!</string>
+    <string name="toast_remove_especialidade">Especialidade removida com sucesso!</string>
+
     <string name="toast_favorito_removido">Médico removido dos favoritos!</string>
     <string name="toast_consulta_descriao">Informe a descrição</string>
     <string name="toast_consulta_aberto">O agendamento da consulta foi realizado com sucesso!</string>

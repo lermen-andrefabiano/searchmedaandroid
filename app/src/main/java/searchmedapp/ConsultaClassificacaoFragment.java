@@ -191,7 +191,7 @@ public class ConsultaClassificacaoFragment extends Fragment {
             public void run() {
                 try{
                     // just doing some long operation
-                    sleep(20000);
+                    sleep(500);
                 } catch (Exception e) {  }
                 progress.dismiss();
             }

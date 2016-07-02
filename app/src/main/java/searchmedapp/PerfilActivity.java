@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class PerfilFragment extends Fragment {
+public class PerfilActivity extends Fragment {
 
     private static final String TAG = "PerfilActivity";
 
@@ -23,15 +24,15 @@ public class PerfilFragment extends Fragment {
 
     private SharedPreferences pref;
 
-    public static PerfilFragment newInstance(int sectionNumber) {
-        PerfilFragment fragment = new PerfilFragment();
+    public static PerfilActivity newInstance(int sectionNumber) {
+        PerfilActivity fragment = new PerfilActivity();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PerfilFragment() {
+    public PerfilActivity() {
     }
 
     @Override
@@ -42,6 +43,10 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
 
         this.setUserCabecalho(view);
 
@@ -62,14 +67,29 @@ public class PerfilFragment extends Fragment {
 
     private void openLstMeusDados(View view){
         ListView lstMeusDados = (ListView) view.findViewById(R.id.lstMeusDados);
+        String tipo = pref.getString("key_user_tipo", null);
+        String[] menuArray;
+        ViewGroup.LayoutParams params = lstMeusDados.getLayoutParams();
+
+        if(tipo==null || tipo.equals("C")){
+            menuArray =  new String[]{getString(R.string.label_dados_pessoais)};
+            params.height = 40;
+            lstMeusDados.setLayoutParams(params);
+        }else{
+            menuArray = new String[]{
+                    getString(R.string.label_dados_pessoais),
+                    getString(R.string.label_especialidades),
+                    getString(R.string.label_convenio),
+                    getString(R.string.label_horario),
+            };
+            params.height = 160;
+            lstMeusDados.setLayoutParams(params);
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.activity_adpater_item,
                 R.id.textoAdp,
-                new String[]{
-                        getString(R.string.label_dados_pessoais),
-                        getString(R.string.label_especialidades),
-                });
+                menuArray);
 
         lstMeusDados.setAdapter(adapter);
         lstMeusDados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,8 +113,8 @@ public class PerfilFragment extends Fragment {
         final ListView lstMais = (ListView) view.findViewById(R.id.lstMais);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
+                R.layout.activity_adpater_item,
+                R.id.textoAdp,
                 new String[]{
                         getString(R.string.label_redefinir_senha),
                         getString(R.string.label_esqueci_senha),
@@ -136,6 +156,7 @@ public class PerfilFragment extends Fragment {
         editor.putString("key_user_nome", null);
         editor.putString("key_user_endereco", null);
         editor.putString("key_user_prestador", null);
+        editor.putString("key_user_tipo", null);
         editor.commit();
 
         Intent r = new Intent(getActivity(), MainActivity.class);

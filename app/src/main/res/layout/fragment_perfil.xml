@@ -1,11 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="searchmedapp.PerfilFragment">
+    android:layout_height="match_parent" tools:context=".PerfilActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent" android:orientation="vertical"
-        tools:context="searchmedapp.PerfilFragment"
+        tools:context=".PerfilActivity"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
@@ -34,7 +34,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/textUserPerfil" />
+                        android:id="@+id/textUserPerfil"
+                        android:layout_marginTop="5dp"/>
 
                 </LinearLayout>
 
@@ -68,7 +69,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:id="@+id/lstMais"
-                    android:layout_weight="0.38"
                     android:textColor="@android:color/white"
                     android:background="@color/colorTitle"/>
 
