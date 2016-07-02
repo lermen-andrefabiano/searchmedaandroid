@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if(retorno.getMedico()!=null){
                 editor.putString("key_user_crm", retorno.getMedico().getCrm());
+                editor.putString("key_user_medico_id", ""+retorno.getMedico().getId());
             }
             editor.commit();
 

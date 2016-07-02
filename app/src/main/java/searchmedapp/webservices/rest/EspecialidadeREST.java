@@ -80,37 +80,6 @@ public class EspecialidadeREST extends AbstractREST{
         }
     }
 
-    public List<MedicoEspecialidadeDTO> getEspecialidadesMedicas(Long medicoId) throws Exception {
-        String PATH_ESP = "getEspecialidadesMedicas?medicoId=";
-        Log.i("URL_WS", URL_WS + PATH + PATH_ESP +medicoId);
-        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP + medicoId);
-
-        if (resposta[0].equals("200")) {
-            Gson gson = new Gson();
-            ArrayList<MedicoEspecialidadeDTO> lst = new ArrayList<MedicoEspecialidadeDTO>();
-            JsonParser parser = new JsonParser();
-            JsonObject obj = null;
-            JsonArray array = null;
-
-            try{
-                obj = parser.parse(resposta[1]).getAsJsonObject();
-                array = obj.getAsJsonArray("medicoEspecialidade");
-
-                for (int i = 0; i < array.size(); i++) {
-                    lst.add(gson.fromJson(array.get(i), MedicoEspecialidadeDTO.class));
-                }
-            }catch(ClassCastException c){
-                lst.add(gson.fromJson(obj.getAsJsonObject("medicoEspecialidade"), MedicoEspecialidadeDTO.class));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            return lst;
-        } else {
-            throw new Exception(resposta[1]);
-        }
-    }
-
     public void excluir(Long medicoEspecialidadeId) throws Exception {
         String PATH_ESP = "excluir?medicoEspecialidadeId=";
         Log.i("URL_WS", URL_WS + PATH + PATH_ESP + medicoEspecialidadeId);

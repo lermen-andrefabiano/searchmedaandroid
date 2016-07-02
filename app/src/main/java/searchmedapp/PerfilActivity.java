@@ -104,6 +104,10 @@ public class PerfilActivity extends Fragment {
                         Intent m = new Intent(getActivity(), MeusDadosEspecialidadeActivity.class);
                         startActivity(m);
                         break;
+                    case 2:
+                        Intent c = new Intent(getActivity(), MeusDadosConvenioActivity.class);
+                        startActivity(c);
+                        break;
                 }
             }
         });
@@ -157,6 +161,7 @@ public class PerfilActivity extends Fragment {
         editor.putString("key_user_endereco", null);
         editor.putString("key_user_prestador", null);
         editor.putString("key_user_tipo", null);
+        editor.putString("key_user_medico_id", null);
         editor.commit();
 
         Intent r = new Intent(getActivity(), MainActivity.class);

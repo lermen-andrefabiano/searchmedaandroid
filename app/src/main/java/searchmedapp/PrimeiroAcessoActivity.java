@@ -184,6 +184,7 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             editor.putString("key_user_tipo", retorno.getTipo());
             if(retorno.getMedico()!=null){
                 editor.putString("key_user_crm", retorno.getMedico().getCrm());
+                editor.putString("key_user_medico_id", ""+retorno.getMedico().getId());
             }
             editor.commit();
 

@@ -44,8 +44,13 @@ public class MedicoFavoritoAdapter extends ArrayAdapter<MedicoFavoritoDTO> {
             view = (LinearLayout) convertView;
         }
         //Get the text boxes from the listitem.xml file
-        TextView t =(TextView)view.findViewById(R.id.textoAdp);
-        t.setText(obj.getMedico().getMedicoNome());
+        TextView textFavoritoMed =(TextView)view.findViewById(R.id.textFavoritoMed);
+        TextView textFavoritoEndereco =(TextView)view.findViewById(R.id.textFavoritoEndereco);
+        TextView textFavoritoCRM =(TextView)view.findViewById(R.id.textFavoritoCRM);
+
+        textFavoritoMed.setText(obj.getMedico().getMedicoNome());
+        textFavoritoEndereco.setText(obj.getMedico().getMedicoEndereco());
+        textFavoritoCRM.setText("CRM: " + obj.getMedico().getCrm());
 
         return view;
     }

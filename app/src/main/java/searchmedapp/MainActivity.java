@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         }else{
             switch(position) {
                 case 0:
-                    fragment = ConsultaNotificacaoFragment.newInstance(position + 1);
+                    fragment = ConsultaAbertaFragment.newInstance(position + 1);
                     break;
                 case 1:
                     fragment = ConsultaAgendaFragment.newInstance(position + 1);

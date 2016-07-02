@@ -1,26 +1,17 @@
 package searchmedapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-import android.app.Dialog;
+import android.content.ClipData;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Telephony;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.content.ClipData;
-import android.graphics.drawable.Drawable;
-import android.view.DragEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
@@ -29,99 +20,92 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import searchmedapp.webservices.dto.EspecialidadeDTO;
+import searchmedapp.webservices.dto.MedicoConvenioDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 import searchmedapp.webservices.rest.EspecialidadeREST;
 import searchmedapp.webservices.rest.MedicoREST;
 
-public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
+public class MeusDadosConvenioActivity extends AppCompatActivity {
 
-    private static final String TAG = "MeusDadosEspecialidadeActivity";
+    private static final String TAG = "MeusDadosConvenioActivity";
 
     private SharedPreferences pref;
 
-    private List<EspecialidadeDTO> especialidades = null;
-
-    private List<MedicoEspecialidadeDTO> medicoEspecialidades = null;
+    private List<MedicoConvenioDTO> medicoConvenios = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meus_dados_especialidade);
+        setContentView(R.layout.activity_meus_dados_convenio);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
 
-        getEspecialidades();
-        getEspecialidadesMedicas();
+        getConvenio();
+        getConveniosMedicos();
 
-        findViewById(R.id.dragEspecialidade).setOnDragListener(new EspecialidaeDragListener());
-        findViewById(R.id.dropEspecialidade).setOnDragListener(new EspecialidaeDragListener());
+        findViewById(R.id.dragConvenio).setOnDragListener(new ConvenioDragListener());
+        findViewById(R.id.dropConvenio).setOnDragListener(new ConvenioDragListener());
     }
 
-    public void getEspecialidades(){
-        Log.i(TAG, "getEspecialidades");
-        EspecialidadeREST especialidadeREST = new EspecialidadeREST();
-        try {
-            if(especialidades==null){
-                especialidades = especialidadeREST.getEspecialidades();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void getConvenio(){
+        Log.i(TAG, "getConvenio");
+        CharSequence[] convenios = getResources().getStringArray(R.array.convenio_array);
+         if(convenios!=null){
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dragConvenio);
 
-        if(especialidades!=null){
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dragEspecialidade);
-
-            for(EspecialidadeDTO e : especialidades){
+            for(CharSequence c : convenios){
                 TextView t = new TextView(this);
 
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(10, 4, 4, 4);
 
-                t.setText(e.getDescricao());
-                t.setId(e.getId().intValue());
+                t.setText(c);
+                //t.setId(c);
                 t.setLayoutParams(params);
                 t.setTextSize(16);
                 t.setTextColor(getResources().getColor(R.color.colorWhite));
 
-                t.setOnTouchListener(new EspecialidadeTouchListener());
+                t.setOnTouchListener(new ConvenioTouchListener());
 
                 linearLayout.addView(t);
             }
         }
     }
 
-    public void getEspecialidadesMedicas(){
-        Log.i(TAG, "getEspecialidadesMedicas");
+    public void getConveniosMedicos(){
+        Log.i(TAG, "getConveniosMedicos");
         Long medicoId = Long.valueOf(pref.getString("key_user_medico_id", null));
         MedicoREST medicoREST = new MedicoREST();
         try {
-            if(medicoEspecialidades==null){
-                medicoEspecialidades = medicoREST.getEspecialidadesMedicas(medicoId);
+            if(medicoConvenios==null){
+                medicoConvenios = medicoREST.getMedicoConvenio(medicoId);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        if(medicoEspecialidades!=null){
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dropEspecialidade);
+        if(medicoConvenios!=null){
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dropConvenio);
 
-            for(MedicoEspecialidadeDTO e : medicoEspecialidades){
+            for(MedicoConvenioDTO e : medicoConvenios){
                 TextView t = new TextView(this);
 
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(10, 4, 4, 4);
 
-                t.setText(e.getEspecialidade().getDescricao());
-                t.setId(e.getEspecialidade().getId().intValue());
+                t.setText(e.getConvenio());
+               // t.setId(e.getConvenio());
                 t.setLayoutParams(params);
                 t.setTextSize(16);
                 t.setTextColor(getResources().getColor(R.color.colorWhite));
 
-                t.setOnTouchListener(new EspecialidadeTouchListener());
+                t.setOnTouchListener(new ConvenioTouchListener());
 
                 linearLayout.addView(t);
             }
@@ -153,11 +137,11 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private final class EspecialidadeTouchListener implements OnTouchListener {
+    private final class ConvenioTouchListener implements OnTouchListener {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 ClipData data = ClipData.newPlainText("", "");
-                DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                DragShadowBuilder shadowBuilder = new DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 view.setVisibility(View.INVISIBLE);
                 return true;
@@ -167,13 +151,13 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         }
     }
 
-    public void  incluirEspecialidade(int especialidadeId){
-        String usuarioId = pref.getString("key_user_id", null);
+    public void  incluirConvenio(String convenio){
+        String medicoId = pref.getString("key_user_medico_id", null);
         MedicoREST medicoREST = new MedicoREST();
         try {
-            boolean r = medicoREST.inclurEspecialidade(Long.valueOf(usuarioId), (long)especialidadeId);
+            boolean r = medicoREST.inclurConvenio(Long.valueOf(medicoId), convenio);
             if(r){
-                Toast.makeText(this, R.string.toast_add_especialidade, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_add_convenio, Toast.LENGTH_SHORT).show();
             }else {
             }
         }catch (Exception e){
@@ -181,13 +165,13 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         }
     }
 
-    public void  excluirEspecialidade(int especialidadeId){
-        String usuarioId = pref.getString("key_user_id", null);
+    public void  excluirConvenio(String convenio){
+        String medicoId = pref.getString("key_user_medico_id", null);
         MedicoREST medicoREST = new MedicoREST();
         try {
-            boolean r = medicoREST.excluirEspecialidade(Long.valueOf(usuarioId), (long)especialidadeId);
+            boolean r = medicoREST.excluirConvenio(Long.valueOf(medicoId), convenio);
             if(r){
-                Toast.makeText(this, R.string.toast_remove_especialidade, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_remove_convenio, Toast.LENGTH_SHORT).show();
             }else {
             }
         }catch (Exception e){
@@ -195,7 +179,7 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
         }
     }
 
-    class EspecialidaeDragListener implements OnDragListener {
+    class ConvenioDragListener implements OnDragListener {
         Drawable enterShape = getResources().getDrawable(R.drawable.shape_especialidade_droptarget);
         Drawable normalShape = getResources().getDrawable(R.drawable.shape_especialidade);
 
@@ -222,15 +206,15 @@ public class MeusDadosEspecialidadeActivity extends AppCompatActivity {
                     view.setVisibility(View.VISIBLE);
 
                     String resourceEntryName = getResources().getResourceEntryName(container.getId());
-                    int especialidadeId = view.getId();
+                    String convenio = ""+((TextView)view).getText();
 
-                    Log.i(TAG, "especialidadeId " + especialidadeId);
+                    Log.i(TAG, "convenio " + convenio);
                     Log.i(TAG, "resourceEntryName " + resourceEntryName);
 
-                    if(resourceEntryName.equals("dropEspecialidade")){
-                        incluirEspecialidade(especialidadeId);
+                    if(resourceEntryName.equals("dropConvenio")){
+                        incluirConvenio(convenio);
                     }else{
-                        excluirEspecialidade(especialidadeId);
+                        excluirConvenio(convenio);
                     }
 
                     break;

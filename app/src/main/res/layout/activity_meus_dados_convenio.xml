@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:columnWidth="320dp"
+    android:orientation="vertical"
+    android:rowCount="4"
+    android:stretchMode="columnWidth"
+    tools:context="searchmedapp.MeusDadosConvenioActivity">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Convênios Disponíveis"
+        android:textSize="16dp"
+        android:textColor="@color/colorTitle"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_especialidade"
+        android:id="@+id/dragEspecialidadeScroll">
+        <LinearLayout
+            android:id="@+id/dragConvenio"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:background="@drawable/shape_especialidade" >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Convênios Cadatrados"
+        android:textSize="16dp"
+        android:textColor="@color/colorTitle"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"/>
+
+    <LinearLayout
+        android:id="@+id/dropConvenio"
+        android:layout_width="fill_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_especialidade" >
+
+    </LinearLayout>
+
+</GridLayout>
+

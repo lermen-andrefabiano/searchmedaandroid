@@ -1,34 +1,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="searchmedapp.FavoritoFragment">
+    tools:context="searchmedapp.ConsultaAgendaFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="left|top"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:paddingLeft="5dp"
+        android:paddingTop="20dp"
+        android:paddingRight="5dp">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Seus profissionais médicos favoritos."
+            android:text="Suas consultas abertas"
             android:id="@+id/textLabel_prioridade"
             android:textSize="20dp"
             android:textColor="@color/colorTitle"
+            android:paddingLeft="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
-            android:layout_marginLeft="20dp"
             android:gravity="center|left"/>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listFavorito"
-            android:background="@color/colorTitle"/>
+        <ExpandableListView
+            android:id="@+id/lstConusltasAberta"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 
 </FrameLayout>
+

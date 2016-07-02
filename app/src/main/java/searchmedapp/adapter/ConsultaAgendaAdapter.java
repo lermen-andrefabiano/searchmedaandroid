@@ -18,12 +18,12 @@ import searchmedapp.webservices.dto.ConsultaDTO;
 /**
  * Created by Andre on 09/07/2015.
  */
-public class ConsultaNotificacaoAdapter extends ArrayAdapter<ConsultaDTO> {
+public class ConsultaAgendaAdapter extends ArrayAdapter<ConsultaDTO> {
 
     int resource;
 
     //Initialize adapter
-    public ConsultaNotificacaoAdapter(Context context, int resource, List<ConsultaDTO> items) {
+    public ConsultaAgendaAdapter(Context context, int resource, List<ConsultaDTO> items) {
         super(context, resource, items);
         this.resource = resource;
     }
@@ -46,13 +46,13 @@ public class ConsultaNotificacaoAdapter extends ArrayAdapter<ConsultaDTO> {
         }
 
         if(c!=null){
-            TextView textData =(TextView)view.findViewById(R.id.textData);
-            TextView textUsuario =(TextView)view.findViewById(R.id.textUsuario);
+            //TextView textData =(TextView)view.findViewById(R.id.textData);
+            //TextView textUsuario =(TextView)view.findViewById(R.id.textUsuario);
             TextView textEndereco =(TextView)view.findViewById(R.id.textEndereco);
             TextView textEspecialidade =(TextView)view.findViewById(R.id.textEspecialidade);
 
-            textData.setText(c.getData().toString());
-            textUsuario.setText(c.getUsuario().getNome());
+           // textData.setText(c.getData().toString());
+           // textUsuario.setText(c.getUsuario().getNome());
             textEndereco.setText(c.getEndereco());
             textEspecialidade.setText(c.getEspecialidade().getDescricao());
         }

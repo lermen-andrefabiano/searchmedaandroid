@@ -13,29 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import searchmedapp.adapter.ConsultaClassificacaoAdapter;
-import searchmedapp.adapter.EspecialidadeAdapter;
-import searchmedapp.adapter.MedicoConvenioAdapter;
 import searchmedapp.adapter.MedicoEspecialidadeAdapter;
 import searchmedapp.adapter.MedicoFavoritoAdapter;
-import searchmedapp.webservices.dto.ConsultaDTO;
-import searchmedapp.webservices.dto.EspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoFavoritoDTO;
-import searchmedapp.webservices.rest.ConsultaREST;
 
 public class FavoritoFragment extends Fragment {
 
@@ -92,7 +81,7 @@ public class FavoritoFragment extends Fragment {
         ListView listFavorito = (ListView) rootView.findViewById(R.id.listFavorito);
 
         MedicoFavoritoAdapter adapter = new MedicoFavoritoAdapter(getActivity(),
-                R.layout.activity_adpater_item,
+                R.layout.fragment_favorito_item,
                 favoritos);
 
         listFavorito.setAdapter(adapter);
@@ -108,7 +97,7 @@ public class FavoritoFragment extends Fragment {
 
     private void abrirPopUpMedicoFavoritoSel(){
         LayoutInflater li = LayoutInflater.from(getActivity());
-        View view = li.inflate(R.layout.fragment_favorito_item, null);
+        View view = li.inflate(R.layout.fragment_favorito_popup, null);
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setView(view);

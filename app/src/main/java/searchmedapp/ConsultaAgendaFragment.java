@@ -12,16 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.List;
 
-import searchmedapp.adapter.ConsultaNotificacaoAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 
@@ -64,7 +61,7 @@ public class ConsultaAgendaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_consulta_notificacao, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_consulta_agenda, container, false);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -92,25 +89,25 @@ public class ConsultaAgendaFragment extends Fragment {
     public void openChamado(View rootView){
         Log.i(TAG, "openChamado");
 
-        ListView listNotificacao = (ListView) rootView.findViewById(R.id.listNotificacao);
+        //ListView listNotificacao = (ListView) rootView.findViewById(R.id.listNotificacao);
 
-        ConsultaNotificacaoAdapter adapter = new ConsultaNotificacaoAdapter(getActivity(),
-                R.layout.fragment_consulta_notificacao_item,
-                consultasAbertas);
+       // ConsultaAgendaAdapter adapter = new ConsultaAgendaAdapter(getActivity(),
+        //        R.layout.fragment_consulta_aberta_grupo,
+        //        consultasAbertas);
 
-        listNotificacao.setAdapter(adapter);
-        listNotificacao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                consultaSel = (ConsultaDTO)parent.getItemAtPosition(position);
-                abrirPopUpNotificacao();
-            }
-        });
+        //listNotificacao.setAdapter(adapter);
+       // listNotificacao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           // @Override
+            //public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //        consultaSel = (ConsultaDTO)parent.getItemAtPosition(position);
+        //        abrirPopUpNotificacao();
+       //     }
+        //});
     }
 
     private void abrirPopUpNotificacao(){
         LayoutInflater li = LayoutInflater.from(getActivity());
-        View agendarChamadoView = li.inflate(R.layout.activity_agendar_consulta, null);
+        View agendarChamadoView = li.inflate(R.layout.activity_consulta_agenda, null);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setView(agendarChamadoView);
