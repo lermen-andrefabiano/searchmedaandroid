@@ -6,27 +6,49 @@ import java.util.List;
 
 public class InfoSalvarHorarioDTO {
 
-	private List<MedicoHorarioDTO> horarios;
+	private String dia;
+	private String inicio;
+	private String fim;
+	private Boolean orderChegada;
+	private Boolean repetirHorario;
 
-	private boolean repetirHorario;
-
-	public InfoSalvarHorarioDTO(){
-		this.horarios = new ArrayList<MedicoHorarioDTO>();
+	public String getDia() {
+		return dia;
 	}
 
-	public List<MedicoHorarioDTO> getHorarios() {
-		return horarios;
+	public void setDia(String dia) {
+		this.dia = dia;
 	}
 
-	public void setHorarios(List<MedicoHorarioDTO> horarios) {
-		this.horarios = horarios;
+	public String getInicio() {
+		return inicio;
 	}
 
-	public boolean getRepetirHorario() {
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
+	}
+
+	public String getFim() {
+		return fim;
+	}
+
+	public void setFim(String fim) {
+		this.fim = fim;
+	}
+
+	public Boolean getOrderChegada() {
+		return orderChegada;
+	}
+
+	public void setOrderChegada(Boolean orderChegada) {
+		this.orderChegada = orderChegada;
+	}
+
+	public Boolean getRepetirHorario() {
 		return repetirHorario;
 	}
 
-	public void setRepetirHorario(boolean repetirHorario) {
+	public void setRepetirHorario(Boolean repetirHorario) {
 		this.repetirHorario = repetirHorario;
 	}
 

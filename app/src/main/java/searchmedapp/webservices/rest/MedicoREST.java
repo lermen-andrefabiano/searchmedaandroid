@@ -15,6 +15,7 @@ import searchmedapp.webservices.dto.InfoSalvarHorarioDTO;
 import searchmedapp.webservices.dto.MedicoConvenioDTO;
 import searchmedapp.webservices.dto.MedicoDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
+import searchmedapp.webservices.dto.MedicoHorarioDTO;
 import searchmedapp.webservices.dto.UsuarioDTO;
 
 /**
@@ -150,7 +151,7 @@ public class MedicoREST extends AbstractREST {
         }
     }
 
-    public boolean inclurHorario(Long medicoId, InfoSalvarHorarioDTO info) throws Exception {
+    public boolean inclurHorario(Long medicoId, List<InfoSalvarHorarioDTO> info) throws Exception {
         final String PATH_ABRIR = "incluirH?medicoId="+medicoId;
 
         Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
@@ -168,6 +169,35 @@ public class MedicoREST extends AbstractREST {
         }
 
         return false;
+    }
+
+    public List<MedicoHorarioDTO> getMedicoHorario(Long medicoId) throws Exception {
+        String PATH_ESP = "getMedicoHorario?medicoId=";
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP +medicoId);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP + medicoId);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<MedicoHorarioDTO> lst = new ArrayList<MedicoHorarioDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try{
+                array = parser.parse(resposta[1]).getAsJsonArray();
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), MedicoHorarioDTO.class));
+                }
+            }catch(ClassCastException c){
+                c.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
     }
 
 }
