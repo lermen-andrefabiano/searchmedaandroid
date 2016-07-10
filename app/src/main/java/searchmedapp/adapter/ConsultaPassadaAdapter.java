@@ -5,9 +5,7 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -75,7 +73,7 @@ public class ConsultaPassadaAdapter extends BaseExpandableListAdapter {
         }
 
         ListView lblCPExames = (ListView ) convertView.findViewById(R.id.lblCPExames);
-        final ConsultaExameAdapter adapterC = new ConsultaExameAdapter(this._context, R.layout.activity_adpater_item, childText.getExames());
+        final ConsultaExameAdapter adapterC = new ConsultaExameAdapter(this._context, R.layout.fragment_consulta_passada_exame_item, childText.getExames());
         lblCPExames.setAdapter(adapterC);
 
         return convertView;
@@ -109,9 +107,12 @@ public class ConsultaPassadaAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.fragment_consulta_passada_grupo, null);
         }
 
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListConsultaPassadaHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle.getMedico().getMedicoNome());
+        TextView textConsultaPassadaHeaderAgendamento = (TextView) convertView.findViewById(R.id.textConsultaPassadaHeaderAgendamento);
+        TextView textConsultaPassadaHeaderMed = (TextView) convertView.findViewById(R.id.textConsultaPassadaHeaderMed);
+        textConsultaPassadaHeaderAgendamento.setTypeface(null, Typeface.BOLD);
+
+        textConsultaPassadaHeaderAgendamento.setText(format.format(headerTitle.getData()));
+        textConsultaPassadaHeaderMed.setText(headerTitle.getMedico().getMedicoNome());
 
         return convertView;
     }

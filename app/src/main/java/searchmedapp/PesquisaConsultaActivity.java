@@ -4,15 +4,11 @@ package searchmedapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,14 +21,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import searchmedapp.adapter.ConvenioAdapter;
-import searchmedapp.adapter.EspecialidadeAdapter;
-import searchmedapp.adapter.MedicoConvenioAdapter;
-import searchmedapp.adapter.MedicoEspecialidadeAdapter;
 import searchmedapp.adapter.MedicoHorarioAdapter;
 import searchmedapp.adapter.PesquisaConsultaAdapter;
 import searchmedapp.webservices.dto.MedicoDTO;
-import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoHorarioDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 import searchmedapp.webservices.rest.EspecialidadeREST;

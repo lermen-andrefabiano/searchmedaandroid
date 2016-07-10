@@ -12,12 +12,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import searchmedapp.util.GPSTracker;
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
 
@@ -42,6 +44,8 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
 
     private CheckBox chkPrestaServico;
 
+    private GPSTracker gps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +59,32 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
         lbCRM = (TextView)findViewById(R.id.lbCRM);
         editCRM = (EditText)findViewById(R.id.editCRM);
 
+        editEndereco.setEnabled(false);
         lbCRM.setVisibility(View.GONE);
         editCRM.setVisibility(View.GONE);
+
+        getGps();
+
+        editEmail.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(editEndereco.getText().length() == 0){
+                    getGps();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void getGps(){
+        gps = new GPSTracker(this);
+        // check if GPS enabled
+        if(gps.canGetLocation()){
+            final String localy =  gps.getLocality();
+            editEndereco.setText(localy);
+        }else{
+            gps.showSettingsAlert();
+        }
     }
 
     @Override

@@ -36,14 +36,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/lblCPExamesRealizados"
         android:text="Exames Realizados"
-        android:textSize="16dp"
         android:background="#33b5e5"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:padding="15dp"/>
+        android:layout_marginBottom="5dp"/>
 
     <ListView
         android:layout_width="match_parent"

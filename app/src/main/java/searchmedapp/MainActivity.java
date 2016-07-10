@@ -1,6 +1,9 @@
 package searchmedapp;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 
 public class MainActivity extends AppCompatActivity
@@ -39,12 +43,36 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createNotification();
+
         if(isLogado()){
             this.openNavigationDrawer();
         }else{
             Intent r = new Intent(this, BoasVindasActivity.class);
             startActivity(r);
         }
+    }
+
+    public void createNotification() {
+        // Prepare intent which is triggered if the
+        // notification is selected
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+        // Build notification
+        // Actions are just fake
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject").setSmallIcon(R.drawable.ic_import_contacts_black_18dp)
+                .setContentIntent(pIntent)
+                .addAction(R.drawable.ic_import_contacts_black_18dp, "Call", pIntent)
+                .addAction(R.drawable.ic_import_contacts_black_18dp, "More", pIntent)
+                .addAction(R.drawable.ic_import_contacts_black_18dp, "And more", pIntent).build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
 
     }
 

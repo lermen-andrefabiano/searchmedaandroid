@@ -6,8 +6,11 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.nfc.tech.NfcBarcode;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -16,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,8 +26,8 @@ import android.widget.Toast;
 
 import searchmedapp.adapter.ConvenioAdapter;
 import searchmedapp.adapter.EspecialidadeAdapter;
+import searchmedapp.util.GPSTracker;
 import searchmedapp.webservices.dto.EspecialidadeDTO;
-import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 import searchmedapp.webservices.rest.EspecialidadeREST;
 
 
@@ -48,7 +50,11 @@ public class ConsultaFragment extends Fragment {
 
     private TextView lbEspecialidade;
 
+    private TextView lbLocalizacao;
+
     private Button btnEncontreMedico;
+
+    private GPSTracker gps;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -74,8 +80,36 @@ public class ConsultaFragment extends Fragment {
             StrictMode.setThreadPolicy(policy);
         }
 
+        lbLocalizacao = (TextView) view.findViewById(R.id.lbLocalizacao);
+
         openLstPesquisa(view);
 
+        gps = new GPSTracker(getActivity());
+
+        // check if GPS enabled
+        if(gps.canGetLocation()){
+            final double latitude = gps.getLatitude();
+            final double longitude = gps.getLongitude();
+            final String localy =  gps.getLocality();
+            lbLocalizacao.setText(localy);
+
+            Toast.makeText(getActivity().getApplicationContext(), localy, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        }else{
+            new Thread() {
+                public void run() {
+                    try{
+                        sleep(500);
+                        lbLocalizacao.setText("GPS não está habilitado");
+                    } catch (Exception e) {  }
+                }
+            }.start();
+
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
         return view;
     }
 

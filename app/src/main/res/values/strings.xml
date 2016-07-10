@@ -27,6 +27,7 @@
     <string name="label_nome">Como deseja ser chamado?</string>
     <string name="label_email">E-mail</string>
     <string name="label_acesse">Acesse ao SearchMed</string>
+    <string name="label_redefinir_senha_2">Digite abaixo uma nova senha...</string>
     <string name="label_criar_conta_primeiro">Criar conta</string>
     <string name="label_alterar_conta_primeiro">Alterar conta</string>
     <string name="label_presta_servico">Profissional Médico?</string>
@@ -71,7 +72,7 @@
     <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
     <string name="label_buscar_medico">Buscar Médico</string>
     <string name="label_valor_dinheiro">R$</string>
-    <string name="label_endereco">Endereço</string>
+    <string name="label_endereco">Localização</string>
     <string name="label_especialidade_listar">Visualizar</string>
     <string name="label_especialidade_add">Adicionar</string>
     <string name="label_encontre_medico">Encontre o seu Médico</string>
@@ -86,6 +87,7 @@
     <string name="title_activity_primeiro_acesso">Primeiro Acesso</string>
     <string name="title_activity_meus_dados_especialidade">Especialidades</string>
     <string name="title_activity_meus_dados_convenio">Convênios</string>
+    <string name="title_activity_meus_dados_horarios">Horarios</string>
     <string name="title_activity_pesquisa">Médicos Encontrados</string>
     <string name="toast_favorito_adicionado">Médico favorito adicionado sucesso!</string>
     <string name="toast_add_especialidade">Especialidade adicionada com sucesso!</string>

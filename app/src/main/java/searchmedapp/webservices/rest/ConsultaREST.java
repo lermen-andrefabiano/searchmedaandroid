@@ -97,21 +97,15 @@ public class ConsultaREST extends AbstractREST{
         }
     }
 
-    public void agendar(Long consultaId, String agendamento, String observacao) throws Exception {
+    public void agendar(Long consultaId) throws Exception {
         final String PATH_NOTIFICAR = "agendar?consultaId=" +consultaId;
         Log.i("URL_WS", URL_WS + PATH + PATH_NOTIFICAR);
 
-        InformacaoNotificarDTO info = new InformacaoNotificarDTO();
-        //info.setAgendamento(agendamento);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_NOTIFICAR);
 
-        Gson gson = new Gson();
-        String infoJSON = gson.toJson(info);
-
-        String[] resposta = new WebServiceClient().post(URL_WS + PATH + PATH_NOTIFICAR, infoJSON);
-
-       if (resposta[0].equals("200")) {
+        if (resposta[0].equals("200")) {
             Log.i("resposta[0]", resposta[0]);
-       }
+        }
 
     }
 

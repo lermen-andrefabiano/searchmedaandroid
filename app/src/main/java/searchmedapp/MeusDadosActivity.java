@@ -55,6 +55,8 @@ public class MeusDadosActivity extends AppCompatActivity{
         chkPrestaServico = (CheckBox)findViewById(R.id.chkPrestaServico);
         lbCRM = (TextView)findViewById(R.id.lbCRM);
 
+        editEndereco.setEnabled(false);
+
         pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
         meusDados();
     }

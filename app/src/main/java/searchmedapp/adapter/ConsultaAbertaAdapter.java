@@ -1,20 +1,26 @@
 package searchmedapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
+import searchmedapp.BoasVindasActivity;
+import searchmedapp.MainActivity;
 import searchmedapp.R;
 import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.rest.ConsultaREST;
 
 /**
  * Created by Andre on 09/07/2015.
@@ -28,9 +34,12 @@ public class ConsultaAbertaAdapter extends BaseExpandableListAdapter {
 
     private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-    public ConsultaAbertaAdapter(Context context, List<ConsultaDTO> consultas) {
+    private Long _medicoId;
+
+    public ConsultaAbertaAdapter(Context context, List<ConsultaDTO> consultas, Long medicoId) {
         this._context = context;
         this._listDataHeader = consultas;
+        this._medicoId = medicoId;
 
         for(int i = 0; i < consultas.size(); i++){
             this._listDataChild.put(i, consultas.get(i));
@@ -57,6 +66,7 @@ public class ConsultaAbertaAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.fragment_consulta_aberta_grupo_item, null);
         }
 
+        Button btnConsultaAberta = (Button) convertView.findViewById(R.id.btnConsultaAberta);
         TextView lblCPData = (TextView) convertView.findViewById(R.id.lblCAData);
         TextView lblCPEspecialidade = (TextView) convertView.findViewById(R.id.lblCAEspecialidade);
         TextView lblCPEndereco = (TextView) convertView.findViewById(R.id.lblCAEndereco);
@@ -64,6 +74,23 @@ public class ConsultaAbertaAdapter extends BaseExpandableListAdapter {
         lblCPData.setText(format.format(childText.getData()));
         lblCPEspecialidade.setText(childText.getEspecialidade().getDescricao());
         lblCPEndereco.setText(childText.getUsuario().getEndereco());
+
+        btnConsultaAberta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    ConsultaREST rest = new ConsultaREST();
+                    rest.agendar(_medicoId);
+                    Toast.makeText(_context, R.string.toast_agendamento_realizado, Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                Intent main = new Intent(_context, MainActivity.class);
+                main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                _context.getApplicationContext().startActivity(main);
+            }
+        });
 
         return convertView;
     }
@@ -96,9 +123,11 @@ public class ConsultaAbertaAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.fragment_consulta_aberta_grupo, null);
         }
 
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListConsultaAbertaHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle.getUsuario().getNome());
+        TextView textConsultaAbertaHeaderMed = (TextView) convertView.findViewById(R.id.textConsultaAbertaHeaderMed);
+        TextView textConsultaAbertaHeaderAgendamento = (TextView) convertView.findViewById(R.id.textConsultaAbertaHeaderAgendamento);
+
+        textConsultaAbertaHeaderMed.setText(headerTitle.getUsuario().getNome());
+        textConsultaAbertaHeaderAgendamento.setText(format.format(headerTitle.getData()));
 
         return convertView;
     }

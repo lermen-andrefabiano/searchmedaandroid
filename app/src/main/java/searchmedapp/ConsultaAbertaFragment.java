@@ -50,6 +50,8 @@ public class ConsultaAbertaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_consulta_aberta, container, false);
 
+        carregamento();
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -61,8 +63,6 @@ public class ConsultaAbertaFragment extends Fragment {
         SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String medicoId = pref.getString("key_user_medico_id", "");
 
-        medicoId = "3";
-
         try {
             ConsultaREST rest = new ConsultaREST();
             consultasAbertas = rest.consultasAbertas(Long.valueOf(medicoId));
@@ -73,7 +73,7 @@ public class ConsultaAbertaFragment extends Fragment {
         if(consultasAbertas!=null){
             ExpandableListView lstConusltasAberta = (ExpandableListView) rootView.findViewById(R.id.lstConusltasAberta);
 
-            ConsultaAbertaAdapter listAdapter = new ConsultaAbertaAdapter(getActivity(), consultasAbertas);
+            ConsultaAbertaAdapter listAdapter = new ConsultaAbertaAdapter(getActivity(), consultasAbertas, Long.valueOf(medicoId));
             lstConusltasAberta.setAdapter(listAdapter);
         }
 

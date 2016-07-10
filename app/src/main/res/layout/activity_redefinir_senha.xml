@@ -9,9 +9,23 @@
     android:paddingTop="10dp">
 
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_redefinir_senha_2"
+        android:id="@+id/textViewAcesse"
+        style="@style/TabTextSearhMedTheme"
+        android:textSize="20dp"
+        android:gravity="center|left"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/colorTitle" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_senha_atual"
+        style="@style/TabTextSearhMedTheme"
+        android:textSize="16dp"
         android:id="@+id/textView7" />
 
     <EditText
@@ -24,6 +38,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TabTextSearhMedTheme"
+        android:textSize="16dp"
         android:text="@string/label_senha_nova"
         android:id="@+id/textView8" />
 
@@ -37,6 +53,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TabTextSearhMedTheme"
+        android:textSize="16dp"
         android:text="@string/label_senha_confirma"
         android:id="@+id/textView9" />
 

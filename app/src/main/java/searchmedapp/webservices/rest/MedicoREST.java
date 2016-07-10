@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import searchmedapp.webservices.WebServiceClient;
+import searchmedapp.webservices.dto.InfoSalvarHorarioDTO;
 import searchmedapp.webservices.dto.MedicoConvenioDTO;
 import searchmedapp.webservices.dto.MedicoDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
@@ -147,6 +148,26 @@ public class MedicoREST extends AbstractREST {
         } else {
             throw new Exception(resposta[1]);
         }
+    }
+
+    public boolean inclurHorario(Long medicoId, InfoSalvarHorarioDTO info) throws Exception {
+        final String PATH_ABRIR = "incluirH?medicoId="+medicoId;
+
+        Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
+
+        Gson gson = new Gson();
+        String infoJSON = gson.toJson(info);
+
+        String[] resposta = new WebServiceClient().post(URL_WS + PATH + PATH_ABRIR, infoJSON);
+
+        if(resposta[0].equals("400")){
+            return false;
+        }else if (resposta[0].equals("200")) {
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+            return Boolean.valueOf(resposta[1]);
+        }
+
+        return false;
     }
 
 }

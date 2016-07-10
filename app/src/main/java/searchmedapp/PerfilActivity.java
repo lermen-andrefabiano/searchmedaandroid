@@ -108,6 +108,10 @@ public class PerfilActivity extends Fragment {
                         Intent c = new Intent(getActivity(), MeusDadosConvenioActivity.class);
                         startActivity(c);
                         break;
+                    case 3:
+                        Intent h = new Intent(getActivity(), MeusDadosHorarioActivity.class);
+                        startActivity(h);
+                        break;
                 }
             }
         });

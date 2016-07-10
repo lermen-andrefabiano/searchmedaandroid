@@ -154,7 +154,7 @@ public class ConsultaAgendaFragment extends Fragment {
     public void agendar(){
         try {
             ConsultaREST rest = new ConsultaREST();
-            rest.agendar(consultaSel.getId(), agendamento.toString(), editObservacao.getText().toString());
+            rest.agendar(consultaSel.getId());
         }catch (Exception e){
         }
         Toast.makeText(getActivity(), R.string.toast_agendamento_realizado, Toast.LENGTH_SHORT).show();

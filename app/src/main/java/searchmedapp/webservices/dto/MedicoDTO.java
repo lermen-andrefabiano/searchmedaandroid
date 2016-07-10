@@ -6,6 +6,7 @@ public class MedicoDTO {
 
 	private Long id;
 	private String crm;
+	private Boolean repetirHorario;
 	private String medicoNome;
 	private String medicoEndereco;
 	private List<MedicoEspecialidadeDTO> especialidades;
@@ -22,6 +23,10 @@ public class MedicoDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public Boolean getRepetirHorario() { return repetirHorario; }
+
+	public void setRepetirHorario(Boolean repetirHorario) { this.repetirHorario = repetirHorario; }
 
 	public String getCrm() {
 		return crm;
