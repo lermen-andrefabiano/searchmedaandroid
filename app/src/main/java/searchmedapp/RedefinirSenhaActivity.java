@@ -1,5 +1,6 @@
 package searchmedapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +9,14 @@ import android.view.MenuItem;
 
 public class RedefinirSenhaActivity extends AppCompatActivity {
 
+	private SharedPreferences pref;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_redefinir_senha);
+
+		pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
 	}
 
 	@Override

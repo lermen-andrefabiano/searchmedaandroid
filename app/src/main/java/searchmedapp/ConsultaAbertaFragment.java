@@ -56,6 +56,7 @@ public class ConsultaAbertaFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         consultasAbertas(rootView);
+
         return rootView;
     }
 

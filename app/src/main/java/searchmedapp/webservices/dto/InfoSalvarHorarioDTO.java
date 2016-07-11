@@ -6,11 +6,20 @@ import java.util.List;
 
 public class InfoSalvarHorarioDTO {
 
+	private String horarioId;
 	private String dia;
 	private String inicio;
 	private String fim;
 	private Boolean orderChegada;
 	private Boolean repetirHorario;
+
+	public String getHorarioId() {
+		return horarioId;
+	}
+
+	public void setHorarioId(String horarioId) {
+		this.horarioId = horarioId;
+	}
 
 	public String getDia() {
 		return dia;

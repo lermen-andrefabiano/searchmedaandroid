@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class PerfilActivity extends Fragment {
+public class PerfilActivity extends AppCompatActivity {
 
     private static final String TAG = "PerfilActivity";
 
@@ -24,49 +25,36 @@ public class PerfilActivity extends Fragment {
 
     private SharedPreferences pref;
 
-    public static PerfilActivity newInstance(int sectionNumber) {
-        PerfilActivity fragment = new PerfilActivity();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public PerfilActivity() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.fragment_perfil);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_perfil, container, false);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+        pref = this.getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
 
-        this.setUserCabecalho(view);
+        this.setUserCabecalho();
 
-        this.openLstMeusDados(view);
+        this.openLstMeusDados();
 
-        this.openLstMais(view);
+        this.openLstMais();
 
-        Button btnLogon = (Button)view.findViewById(R.id.btnLogon);
+        Button btnLogon = (Button)findViewById(R.id.btnLogon);
         btnLogon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logon();
             }
         });
-
-        return view;
     }
 
-    private void openLstMeusDados(View view){
-        ListView lstMeusDados = (ListView) view.findViewById(R.id.lstMeusDados);
+    private void openLstMeusDados(){
+        ListView lstMeusDados = (ListView) findViewById(R.id.lstMeusDados);
         String tipo = pref.getString("key_user_tipo", null);
         String[] menuArray;
         ViewGroup.LayoutParams params = lstMeusDados.getLayoutParams();
@@ -86,7 +74,7 @@ public class PerfilActivity extends Fragment {
             lstMeusDados.setLayoutParams(params);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_adpater_item,
                 R.id.textoAdp,
                 menuArray);
@@ -97,19 +85,19 @@ public class PerfilActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent i = new Intent(getActivity(), MeusDadosActivity.class);
+                        Intent i = new Intent(getApplicationContext(), MeusDadosActivity.class);
                         startActivity(i);
                         break;
                     case 1:
-                        Intent m = new Intent(getActivity(), MeusDadosEspecialidadeActivity.class);
+                        Intent m = new Intent(getApplicationContext(), MeusDadosEspecialidadeActivity.class);
                         startActivity(m);
                         break;
                     case 2:
-                        Intent c = new Intent(getActivity(), MeusDadosConvenioActivity.class);
+                        Intent c = new Intent(getApplicationContext(), MeusDadosConvenioActivity.class);
                         startActivity(c);
                         break;
                     case 3:
-                        Intent h = new Intent(getActivity(), MeusDadosHorarioActivity.class);
+                        Intent h = new Intent(getApplicationContext(), MeusDadosHorarioActivity.class);
                         startActivity(h);
                         break;
                 }
@@ -117,10 +105,10 @@ public class PerfilActivity extends Fragment {
         });
     }
 
-    private void openLstMais(View view){
-        final ListView lstMais = (ListView) view.findViewById(R.id.lstMais);
+    private void openLstMais(){
+        final ListView lstMais = (ListView) findViewById(R.id.lstMais);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
                 R.layout.activity_adpater_item,
                 R.id.textoAdp,
                 new String[]{
@@ -134,11 +122,11 @@ public class PerfilActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0 :
-                        Intent r = new Intent(getActivity(), RedefinirSenhaActivity.class);
+                        Intent r = new Intent(getApplicationContext(), RedefinirSenhaActivity.class);
                         startActivity(r);
                         break;
                     case 1 :
-                        Intent l = new Intent(getActivity(), LembreteSenhaActivity.class);
+                        Intent l = new Intent(getApplicationContext(), LembreteSenhaActivity.class);
                         startActivity(l);
                     break;
                 }
@@ -147,16 +135,16 @@ public class PerfilActivity extends Fragment {
 
     }
 
-    public void setUserCabecalho(View view){
-        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+    public void setUserCabecalho(){
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String userNome = pref.getString("key_user_nome", "");
 
-        TextView textUserPerfil = (TextView) view.findViewById(R.id.textUserPerfil);
+        TextView textUserPerfil = (TextView) findViewById(R.id.textUserPerfil);
         textUserPerfil.setText(userNome);
     }
 
     public void logon(){
-        pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("key_user_id", null);
         editor.putString("key_user", null);
@@ -168,14 +156,8 @@ public class PerfilActivity extends Fragment {
         editor.putString("key_user_medico_id", null);
         editor.commit();
 
-        Intent r = new Intent(getActivity(), MainActivity.class);
+        Intent r = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(r);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
 }

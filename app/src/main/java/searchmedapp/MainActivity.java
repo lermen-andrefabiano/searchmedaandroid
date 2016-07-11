@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createNotification();
+        //createNotification();
 
         if(isLogado()){
             this.openNavigationDrawer();
@@ -119,10 +119,11 @@ public class MainActivity extends AppCompatActivity
                     fragment = FavoritoFragment.newInstance(position + 1);
                     break;
                 case 4:
-                    fragment = PerfilActivity.newInstance(position + 1);
+                    //fragment = PerfilActivity.newInstance(position + 1);
+                    Intent r = new Intent(getApplicationContext(), PerfilActivity.class);
+                    startActivity(r);
                     break;
-                default:
-                    fragment = PerfilActivity.newInstance(position + 1);
+
             }
         }else{
             switch(position) {
@@ -133,18 +134,22 @@ public class MainActivity extends AppCompatActivity
                     fragment = ConsultaAgendaFragment.newInstance(position + 1);
                     break;
                 case 2:
-                    fragment = PerfilActivity.newInstance(position + 1);
+                    //fragment = PerfilActivity.newInstance(position + 1);
+                    Intent r = new Intent(getApplicationContext(), PerfilActivity.class);
+                    startActivity(r);
                     break;
-                default:
-                    fragment = PerfilActivity.newInstance(position + 1);
             }
         }
 
         onSectionAttached(position+1);
         restoreActionBar();
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+
+        if(fragment!=null){
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        }
+
     }
 
     public void onSectionAttached(int number) {

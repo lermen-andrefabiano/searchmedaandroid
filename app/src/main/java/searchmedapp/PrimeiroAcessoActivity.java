@@ -156,8 +156,8 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), R.string.toast_informe_nome, Toast.LENGTH_LONG).show();
         }else if (editEmail.getText().length() == 0){
             Toast.makeText(getApplicationContext(), R.string.toast_informe_email, Toast.LENGTH_LONG).show();
-        }else  if(editEndereco.getText().length() == 0){
-            Toast.makeText(getApplicationContext(), R.string.toast_informe_endereco, Toast.LENGTH_LONG).show();
+        //}else  if(editEndereco.getText().length() == 0){
+        //    Toast.makeText(getApplicationContext(), R.string.toast_informe_endereco, Toast.LENGTH_LONG).show();
         }else if (editSenha.getText().length() == 0){
             Toast.makeText(getApplicationContext(), R.string.toast_informe_senha, Toast.LENGTH_LONG).show();
         }else{
@@ -200,10 +200,7 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
     }
 
     public void abreMain(UsuarioDTO retorno){
-        if(chkPrestaServico.isChecked()){
-            Intent r = new Intent(this, MeusDadosEspecialidadeActivity.class);
-            startActivity(r);
-        }else if(retorno!=null && retorno.getId()!=null){
+        if(retorno!=null && retorno.getId()!=null){
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("key_user_id", retorno.getId().toString());
             editor.putString("key_user_email", retorno.getEmail());
@@ -216,8 +213,13 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             }
             editor.commit();
 
-            Intent r = new Intent(this, MainActivity.class);
-            startActivity(r);
+            if(chkPrestaServico.isChecked()){
+                Intent r = new Intent(this, MeusDadosEspecialidadeActivity.class);
+                startActivity(r);
+            }else{
+                Intent r = new Intent(this, MainActivity.class);
+                startActivity(r);
+            }
         }
     }
 

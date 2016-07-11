@@ -26,7 +26,7 @@
         <activity
             android:name=".MeusDadosActivity"
             android:label="@string/title_activity_meus_dados"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".PerfilActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -34,7 +34,7 @@
         <activity
             android:name=".RedefinirSenhaActivity"
             android:label="@string/title_activity_redefinir_senha"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".PerfilActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -42,7 +42,7 @@
         <activity
             android:name=".LembreteSenhaActivity"
             android:label="@string/title_activity_lembrete_senha"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".PerfilActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -50,7 +50,7 @@
         <activity
             android:name=".MeusDadosEspecialidadeActivity"
             android:label="@string/title_activity_meus_dados_especialidade"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".PerfilActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -58,7 +58,7 @@
         <activity
             android:name=".MeusDadosHorarioActivity"
             android:label="@string/title_activity_meus_dados_horarios"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".PerfilActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -66,7 +66,7 @@
         <activity
             android:name=".MeusDadosConvenioActivity"
             android:label="@string/title_activity_meus_dados_convenio"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".PerfilActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -79,6 +79,14 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:parentActivityName=".BoasVindasActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".PerfilActivity"
+            android:label="@string/title_activity_perfil"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

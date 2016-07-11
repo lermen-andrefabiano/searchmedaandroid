@@ -67,6 +67,7 @@ public class ConsultaAgendaFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         listarChamados(rootView);
+
         return rootView;
     }
 

@@ -5,4 +5,6 @@
 
     <item android:title="@string/action_save" app:showAsAction="ifRoom" android:icon="@drawable/ic_checkmark" android:id="@+id/action_save"/>
 
+    <item android:title="@string/action_voltar" app:showAsAction="ifRoom" android:icon="@drawable/abc_ic_ab_back_mtrl_am_alpha" android:id="@+id/action_voltar"/>
+
 </menu>
