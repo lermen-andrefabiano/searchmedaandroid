@@ -26,14 +26,36 @@
 
     </LinearLayout>
 
-    <ListView
+   <ListView
         android:id="@+id/navigationItems"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="220dp"
         android:layout_below="@+id/headerView"
         android:choiceMode="singleChoice"
         android:background="#33b5e5"
         android:divider="@android:color/transparent"
         android:dividerHeight="1dp"/>
+
+    <TextView
+        android:id="@+id/consultasAbertasPacienteLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="Consultas Abertas"
+        android:textSize="14dp"
+        android:paddingLeft="10dp"
+        android:background="#33b5e5"
+        android:layout_below="@+id/navigationItems" />
+
+    <ListView
+        android:id="@+id/consultasAbertasPaciente"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:background="#33b5e5"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:layout_below="@+id/consultasAbertasPacienteLabel" />
+
 
 </RelativeLayout>

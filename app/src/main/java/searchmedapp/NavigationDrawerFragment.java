@@ -2,12 +2,15 @@ package searchmedapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -20,16 +23,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import searchmedapp.adapter.ConsultaAbertaPacienteAdapter;
 import searchmedapp.adapter.DrawerItem;
 import searchmedapp.adapter.DrawerItemAdapter;
+import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.rest.ConsultaREST;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -64,6 +71,7 @@ public class NavigationDrawerFragment extends Fragment {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
+    private TextView consultasAbertasPacienteLabel;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -78,6 +86,9 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
@@ -107,6 +118,8 @@ public class NavigationDrawerFragment extends Fragment {
 
         setUserCabecalho(view);
 
+        consultasAbertasPacienteLabel = (TextView) view.findViewById(R.id.consultasAbertasPacienteLabel);
+
         mDrawerListView = (ListView) view.findViewById(R.id.navigationItems);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -124,10 +137,14 @@ public class NavigationDrawerFragment extends Fragment {
             dataList.add(new DrawerItem(getString(R.string.action_recomendacao), R.drawable.ic_add_alert_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_medicos_favoritos), R.drawable.ic_star_rate_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+
+            consultasAbertasPaciente(view);
+            consultasAbertasPacienteLabel.setVisibility(View.VISIBLE);
         }else{
             dataList.add(new DrawerItem(getString(R.string.action_consultas_abertas), R.drawable.ic_import_contacts_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_consultas_agendadas), R.drawable.ic_event_black_24dp));
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
+            consultasAbertasPacienteLabel.setVisibility(View.GONE);
         }
 
         DrawerItemAdapter adapter = new DrawerItemAdapter(getActivity(), R.layout.fragment_navigation_drawer_item, dataList);
@@ -135,6 +152,42 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return view;
+    }
+
+    public void consultasAbertasPaciente(View rootView){
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+        String user = pref.getString("key_user_id", "");
+        List<ConsultaDTO> consultas = null;
+
+        try {
+            ConsultaREST rest = new ConsultaREST();
+            consultas = rest.consultasAbertasPaciente(Long.valueOf(user));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(consultas!=null){
+            ListView consultasAbertasPaciente = (ListView) rootView.findViewById(R.id.consultasAbertasPaciente);
+
+            ConsultaAbertaPacienteAdapter adapter = new ConsultaAbertaPacienteAdapter(getActivity(),
+                    R.layout.fragment_consulta_aberta_paciente_item,
+                    consultas);
+
+            consultasAbertasPaciente.setAdapter(adapter);
+            consultasAbertasPaciente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ConsultaDTO classificacaoSel = (ConsultaDTO) parent.getItemAtPosition(position);
+
+                    Intent r = new Intent(getActivity(), ConsultaAbertaPacienteActivity.class);
+
+                    Gson gson = new Gson();
+                    String jsonConsultaSel = gson.toJson(classificacaoSel);
+                    r.putExtra("jsonConsultaSel", jsonConsultaSel);
+                    startActivity(r);
+                }
+            });
+        }
     }
 
     public void setUserCabecalho(View view){
@@ -224,8 +277,6 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
-        Log.i(TAG, "selectItem");
-
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);

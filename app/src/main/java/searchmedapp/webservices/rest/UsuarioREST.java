@@ -56,7 +56,8 @@ public class UsuarioREST extends AbstractREST{
     }
 
     public UsuarioDTO criar(Long userId, String nome, String email, String senha,
-                            String endereco, String tipo, String crm) throws Exception {
+                            String endereco, String tipo, String crm,
+                            Double latitude, Double longitude) throws Exception {
         final String PATH_CRIAR = "criar";
 
         Log.i("URL_WS", URL_WS + PATH + PATH_CRIAR);
@@ -68,6 +69,9 @@ public class UsuarioREST extends AbstractREST{
         info.setEndereco(endereco);
         info.setSenha(senha);
         info.setTipo(tipo);
+        info.setLatitude(latitude);
+        info.setLongitude(longitude);
+
         if(crm!=null){
             info.setMedico(new MedicoDTO());
             info.getMedico().setCrm(crm);

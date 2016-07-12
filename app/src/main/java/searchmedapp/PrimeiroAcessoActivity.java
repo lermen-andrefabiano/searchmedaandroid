@@ -192,7 +192,9 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
                     editSenha.getText().toString(),
                     editEndereco.getText().toString(),
                     tipo,
-                    crm);
+                    crm,
+                    gps.getLatitude(),
+                    gps.getLongitude());
             abreMain(retorno);
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
@@ -207,6 +209,8 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             editor.putString("key_user_nome", retorno.getNome());
             editor.putString("key_user_endereco", retorno.getEndereco());
             editor.putString("key_user_tipo", retorno.getTipo());
+            editor.putString("key_latitude", retorno.getLongitude()+"");
+            editor.putString("key_longitude", retorno.getLatitude()+"");
             if(retorno.getMedico()!=null){
                 editor.putString("key_user_crm", retorno.getMedico().getCrm());
                 editor.putString("key_user_medico_id", ""+retorno.getMedico().getId());

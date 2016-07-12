@@ -83,8 +83,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="270dp"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -124,24 +124,23 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_classificar"
+            android:text="Agendar Consulta"
             android:id="@+id/btnAbrirConsulta"
             android:layout_gravity="center_horizontal"
             style="@style/ButtonSearhMedTheme"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:textColor="@android:color/white"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cancel"
+            android:text="Fechar"
             android:id="@+id/btnCancelarConsulta"
             android:layout_gravity="center_horizontal"
             style="@style/ButtonSearhMedTheme"
             android:textColor="@android:color/white"/>
 
     </LinearLayout>
-
 
 </LinearLayout>
 

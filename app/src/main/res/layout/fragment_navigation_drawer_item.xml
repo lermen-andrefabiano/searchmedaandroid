@@ -8,13 +8,13 @@
     <ImageView android:id="@+id/drawerImage"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_margin="15dp" />
+        android:layout_margin="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/drawerTexto"
         android:textColor="@android:color/white"
-        android:textSize="16dp"/>
+        android:textSize="14dp"/>
 
 </LinearLayout>

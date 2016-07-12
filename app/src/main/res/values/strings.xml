@@ -79,6 +79,7 @@
     <string name="label_encontre_medico">Encontre o seu Médico</string>
     <string name="label_medicos_encontrados">Confira abaixo os Médicos encontrados...</string>
 
+    <string name="title_activity_consulta_aberta_paciente">Consulta</string>
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_meus_dados">Meus Dados</string>
     <string name="title_activity_redefinir_senha">Redefinir Senha</string>

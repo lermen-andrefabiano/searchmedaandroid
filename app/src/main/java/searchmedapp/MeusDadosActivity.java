@@ -152,6 +152,8 @@ public class MeusDadosActivity extends AppCompatActivity{
     public void criar(){
     	UsuarioDTO retorno = null;
         String keyUserId = pref.getString("key_user_id", null);
+        String keyLatitude = pref.getString("key_longitude", "0.0");
+        String keyLongitude = pref.getString("key_longitude", "0.0");
         Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
 
         String tipo = "C";
@@ -169,7 +171,9 @@ public class MeusDadosActivity extends AppCompatActivity{
                     editEndereco.getText().toString(),
                     editSenha.getText().toString(),
                     tipo,
-                    crm);
+                    crm,
+                    Double.valueOf(keyLatitude),
+                    Double.valueOf(keyLongitude));
         }catch (Exception e){
         }
 
