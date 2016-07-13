@@ -2,13 +2,11 @@ package searchmedapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
-import searchmedapp.BoasVindasActivity;
 import searchmedapp.MainActivity;
 import searchmedapp.R;
 import searchmedapp.webservices.dto.ConsultaDTO;

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import searchmedapp.R;
-import searchmedapp.webservices.dto.MedicoConvenioDTO;
 import searchmedapp.webservices.dto.MedicoFavoritoDTO;
 
 /**

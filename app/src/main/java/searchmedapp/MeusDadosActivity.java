@@ -8,7 +8,6 @@ package searchmedapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
@@ -86,10 +84,6 @@ public class MeusDadosActivity extends AppCompatActivity{
             if(isValidaSenha()){
                 criar();
             }
-            return true;
-        }else if (id == R.id.action_voltar) {
-            Log.i(TAG, "R.id.action_voltar");
-
             return true;
         }
 

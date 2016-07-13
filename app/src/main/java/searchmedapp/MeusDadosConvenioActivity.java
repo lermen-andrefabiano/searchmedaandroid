@@ -22,10 +22,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import searchmedapp.webservices.dto.EspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoConvenioDTO;
-import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
-import searchmedapp.webservices.rest.EspecialidadeREST;
 import searchmedapp.webservices.rest.MedicoREST;
 
 public class MeusDadosConvenioActivity extends AppCompatActivity {

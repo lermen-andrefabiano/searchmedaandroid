@@ -1,9 +1,6 @@
 package searchmedapp.webservices.dto;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class InfoSalvarHorarioDTO {
 
 	private String horarioId;

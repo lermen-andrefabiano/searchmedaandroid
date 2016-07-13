@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import searchmedapp.R;
 import searchmedapp.webservices.dto.MedicoDTO;
-import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.

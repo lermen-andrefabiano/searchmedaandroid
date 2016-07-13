@@ -1,70 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="searchmedapp.ConsultaAbertaPacienteActivity"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    tools:context=".ConsultaAbertaPacienteActivity" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_acesse"
-        android:id="@+id/textViewAcesse"
-        style="@style/TabTextSearhMedTheme"
-        android:textSize="20dp"
-        android:gravity="center|left"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:textColor="@color/colorTitle" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_email"
-        android:id="@+id/textView6"
-        style="@style/TabTextSearhMedTheme"
-        android:textSize="16dp"/>
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editLogin"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_senha"
-        android:id="@+id/textView7"
-        style="@style/TabTextSearhMedTheme"
-        android:textSize="16dp"/>
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberPassword"
-        android:ems="10"
-        android:id="@+id/editSenha" />
-
-    <LinearLayout
-        android:orientation="vertical"
+    <fragment
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:gravity="bottom"
-        android:layout_marginBottom="10dp">
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment" />
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_login"
-            android:id="@+id/btnLogin"
-            android:layout_gravity="center_horizontal"
-            style="@style/ButtonSearhMedTheme"
-            android:layout_marginTop="20dp"
-            android:onClick="login"
-            android:textColor="@android:color/white"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:rowCount="4"
     android:stretchMode="columnWidth"
-    tools:context="searchmedapp.MeusDadosEspecialidadeActivity">
+    tools:context=".MeusDadosEspecialidadeActivity">
 
     <TextView
         android:layout_width="fill_parent"

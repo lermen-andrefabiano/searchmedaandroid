@@ -12,7 +12,6 @@ import java.util.List;
 
 import searchmedapp.R;
 import searchmedapp.webservices.dto.ConsultaExameDTO;
-import searchmedapp.webservices.dto.EspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.

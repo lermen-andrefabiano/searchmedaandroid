@@ -1,7 +1,5 @@
 package searchmedapp.webservices.dto;
 
-import java.util.Date;
-
 
 public class ConsultaExameDTO {
 

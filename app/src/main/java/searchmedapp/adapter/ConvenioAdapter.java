@@ -8,10 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import searchmedapp.R;
-import searchmedapp.webservices.dto.EspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.

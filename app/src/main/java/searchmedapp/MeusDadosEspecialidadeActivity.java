@@ -1,22 +1,16 @@
 package searchmedapp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Telephony;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.content.ClipData;
 import android.graphics.drawable.Drawable;
 import android.view.DragEvent;

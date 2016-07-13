@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 
@@ -14,7 +13,6 @@ import android.util.Log;
 import searchmedapp.webservices.WebServiceClient;
 import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.dto.InformacaoClassificarDTO;
-import searchmedapp.webservices.dto.InformacaoNotificarDTO;
 
 /**
  * Created by Andre on 02/07/2015.
