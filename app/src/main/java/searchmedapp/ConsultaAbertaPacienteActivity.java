@@ -103,7 +103,6 @@ public class ConsultaAbertaPacienteActivity extends AppCompatActivity implements
             latMed = new LatLng(lat, lgt);
         }
 
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mMap.addMarker(new MarkerOptions().position(latMed).title(consultaSel.getMedico().getMedicoNome()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latMed));
         mMap.getUiSettings().setMapToolbarEnabled(true);
