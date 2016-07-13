@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -23,6 +24,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.text.SimpleDateFormat;
+
 public class ConsultaAbertaPacienteActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "ConsultaAbertaPacienteActivity";
@@ -33,9 +36,7 @@ public class ConsultaAbertaPacienteActivity extends AppCompatActivity implements
 
     private ConsultaDTO consultaSel;
 
-    private static final LatLng HAMBURG = new LatLng(53.558, 9.927);
-
-    private static final LatLng KIEL = new LatLng(53.551, 9.993);
+    private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     private GoogleMap mMap;
 
@@ -63,16 +64,50 @@ public class ConsultaAbertaPacienteActivity extends AppCompatActivity implements
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        TextView textMapData = (TextView) findViewById(R.id.textMapData);
+        TextView textMapMedico = (TextView) findViewById(R.id.textMapMedico);
+        TextView textMapEspecialidade = (TextView) findViewById(R.id.textMapEspecialidade);
+        TextView textMapStatus = (TextView) findViewById(R.id.textMapStatus);
+
+        textMapData.setText(format.format(consultaSel.getData()));
+        textMapMedico.setText(consultaSel.getMedico().getMedicoNome());
+        textMapEspecialidade.setText(consultaSel.getEspecialidade().getDescricao());
+        textMapStatus.setText(getStatus(consultaSel.getStatus()));
+    }
+
+    private String getStatus(String status){
+        if("A".equals(status)){
+            return "Aberto";
+        }else if("E".equals(status)){
+            return "Em andamento";
+        }else if("C".equals(status)){
+            return "Classificação pendente";
+        }else if("R".equals(status)){
+            return "Rejeitado";
+        }
+
+        return "";
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
+        LatLng latMed = null;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Double lat = consultaSel.getUsuario().getLatitude();
+        Double lgt = consultaSel.getUsuario().getLongitude();
+
+        if(lat.equals(0) || lat.equals(0.0)){
+            latMed = new LatLng(-34, 151);
+        }else{
+            latMed = new LatLng(lat, lgt);
+        }
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.addMarker(new MarkerOptions().position(latMed).title(consultaSel.getMedico().getMedicoNome()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latMed));
+        mMap.getUiSettings().setMapToolbarEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
 }

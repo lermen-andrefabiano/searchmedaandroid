@@ -151,6 +151,7 @@ public class PerfilActivity extends AppCompatActivity {
         editor.putString("key_user_prestador", null);
         editor.putString("key_user_tipo", null);
         editor.putString("key_user_medico_id", null);
+        editor.putString("key_user_favorito", null);
         editor.commit();
 
         Intent r = new Intent(getApplicationContext(), MainActivity.class);
