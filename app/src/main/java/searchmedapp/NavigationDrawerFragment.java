@@ -139,8 +139,8 @@ public class NavigationDrawerFragment extends Fragment {
             consultasAbertasPaciente(view);
             consultasAbertasPacienteLabel.setVisibility(View.VISIBLE);
         }else{
-            dataList.add(new DrawerItem(getString(R.string.action_consultas_abertas), R.drawable.ic_import_contacts_black_18dp));
-            dataList.add(new DrawerItem(getString(R.string.action_consultas_agendadas), R.drawable.ic_event_black_24dp));
+            dataList.add(new DrawerItem(getString(R.string.action_consultas_agenda), R.drawable.ic_event_black_24dp));
+            dataList.add(new DrawerItem(getString(R.string.action_consultas_passadas), R.drawable.ic_import_contacts_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
             consultasAbertasPacienteLabel.setVisibility(View.GONE);
         }

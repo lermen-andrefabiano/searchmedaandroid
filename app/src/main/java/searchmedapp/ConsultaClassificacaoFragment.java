@@ -122,22 +122,7 @@ public class ConsultaClassificacaoFragment extends Fragment {
                 Log.i(TAG, "nota" + nota);
             }
         });
-/*
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton(R.string.label_classificar,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
 
-
-                            }})
-                .setNegativeButton(R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });*/
         // create alert dialog
         final AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -147,6 +132,7 @@ public class ConsultaClassificacaoFragment extends Fragment {
             public void onClick(View v) {
                 if (!editRecomendacao.getText().toString().equals("")) {
                     classificar();
+                    alertDialog.dismiss();
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_classificacao_recomendacao, Toast.LENGTH_SHORT).show();
                 }

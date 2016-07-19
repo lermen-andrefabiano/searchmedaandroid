@@ -67,32 +67,33 @@ public class FavoritoFragment extends Fragment {
 
     public void listar(View rootView){
         SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
-        String key_user_favorito = pref.getString("key_user_favorito", "");
+        String key_user_favorito = pref.getString("key_user_favorito", null);
 
-        Log.i(TAG, key_user_favorito);
-        Gson gson = new Gson();
-        JsonParser parser = new JsonParser();
-        JsonArray array = parser.parse(key_user_favorito).getAsJsonArray();
+        if(key_user_favorito!=null){
+            Log.i(TAG, key_user_favorito);
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            JsonArray array = parser.parse(key_user_favorito).getAsJsonArray();
 
-        for (int i = 0; i < array.size(); i++) {
-            favoritos.add(gson.fromJson(array.get(i), MedicoFavoritoDTO.class));
-        }
-
-        ListView listFavorito = (ListView) rootView.findViewById(R.id.listFavorito);
-
-        MedicoFavoritoAdapter adapter = new MedicoFavoritoAdapter(getActivity(),
-                R.layout.fragment_favorito_item,
-                favoritos);
-
-        listFavorito.setAdapter(adapter);
-        listFavorito.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                medicoFavoritoSel = (MedicoFavoritoDTO) parent.getItemAtPosition(position);
-                abrirPopUpMedicoFavoritoSel();
+            for (int i = 0; i < array.size(); i++) {
+                favoritos.add(gson.fromJson(array.get(i), MedicoFavoritoDTO.class));
             }
-        });
 
+            ListView listFavorito = (ListView) rootView.findViewById(R.id.listFavorito);
+
+            MedicoFavoritoAdapter adapter = new MedicoFavoritoAdapter(getActivity(),
+                    R.layout.fragment_favorito_item,
+                    favoritos);
+
+            listFavorito.setAdapter(adapter);
+            listFavorito.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    medicoFavoritoSel = (MedicoFavoritoDTO) parent.getItemAtPosition(position);
+                    abrirPopUpMedicoFavoritoSel();
+                }
+            });
+        }
     }
 
     private void abrirPopUpMedicoFavoritoSel(){

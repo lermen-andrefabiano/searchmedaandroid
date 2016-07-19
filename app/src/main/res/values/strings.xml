@@ -8,7 +8,7 @@
     <string name="action_encontre_medico">Encontre Médicos</string>
     <string name="action_recomendacao">Avaliação</string>
     <string name="action_consultas">Consultas</string>
-    <string name="action_consultas_abertas">Consultas na Fila</string>
+    <string name="action_consultas_agenda">Consultas na Agenda</string>
     <string name="action_consultas_agendadas">Consultas Do Dia</string>
     <string name="action_medicos_favoritos">Médicos Favoritos</string>
     <string name="action_consultas_passadas">Consultas Passadas</string>
@@ -69,7 +69,7 @@
     <string name="label_boa_vindas">Bem Vindo</string>
     <string name="label_boa_vindas_app">SearchMed</string>
     <string name="label_boa_vindas_pessoas">Encontre Profissionais Médicos</string>
-    <string name="label_criar_conta">Criar minha conta SearchMed</string>
+    <string name="label_criar_conta">Criar minha conta</string>
     <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
     <string name="label_buscar_medico">Buscar Médico</string>
     <string name="label_valor_dinheiro">R$</string>

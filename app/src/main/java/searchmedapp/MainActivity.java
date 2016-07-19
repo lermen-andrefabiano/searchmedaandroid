@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
                     fragment = ConsultaAbertaFragment.newInstance(position + 1);
                     break;
                 case 1:
-                    fragment = ConsultaAgendaFragment.newInstance(position + 1);
+                    fragment = ConsultaPassadasMedicoFragment.newInstance(position + 1);
                     break;
                 case 2:
                     //fragment = PerfilActivity.newInstance(position + 1);
@@ -176,10 +176,10 @@ public class MainActivity extends AppCompatActivity
         }else {
             switch (number) {
                 case 1:
-                    mTitle = getString(R.string.action_consultas_abertas);
+                    mTitle = getString(R.string.action_consultas_agenda);
                     break;
                 case 2:
-                    mTitle = getString(R.string.action_consultas_agendadas);
+                    mTitle = getString(R.string.action_consultas_passadas);
                     break;
                 case 3:
                     mTitle = getString(R.string.action_perfil);
