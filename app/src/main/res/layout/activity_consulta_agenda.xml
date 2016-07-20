@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_agendamento"
+        android:id="@+id/textLabel_prioridade" />
+
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/dateAgendamento"
+        android:datePickerMode="spinner" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/timeAgendaemnto"
+        android:layoutMode="opticalBounds"
+        android:longClickable="false"
+        android:timePickerMode="spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_observacao"
+        android:id="@+id/textView7" />
+
+    <EditText
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:scrollbars="vertical"
+        android:id="@+id/editObservacao" />
+
+</LinearLayout>
+
+

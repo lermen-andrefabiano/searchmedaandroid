@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="searchmedapp.MeusDadosHorarioActivity"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="0dp">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Cadastre seus horarios de Atendimento"
+                android:textSize="16dp"
+                android:textColor="@color/colorTitle"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|left" />
+
+            <TextView
+                android:id="@+id/segundaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Segunda-Feira"
+                android:id="@+id/checkBoxSegunda"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de chegada?"
+                android:id="@+id/checkBoxSegundaChegada"
+                style="@style/CheckBoxSearhMedTheme" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextSegundaInicio"
+                    style="@style/EditTextSearhMedTheme" />
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextSegundaFim"
+                    style="@style/EditTextSearhMedTheme" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tercaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terça-Feira"
+                android:id="@+id/checkBoxTerca"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de chegada?"
+                android:id="@+id/checkBoxTercaChegada"
+                style="@style/CheckBoxSearhMedTheme" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextTercaInicio"
+                    style="@style/EditTextSearhMedTheme" />
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextTercaFim"
+                    style="@style/EditTextSearhMedTheme" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/quartaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quarta-Feira"
+                android:id="@+id/checkBoxQuarta"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de chegada?"
+                android:id="@+id/checkBoxQuartaChegada"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextQuartaInicio"
+                    style="@style/EditTextSearhMedTheme" />
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextQuartaFim"
+                    style="@style/EditTextSearhMedTheme" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/quintaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quinta-Feira"
+                android:id="@+id/checkBoxQuinta"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de chegada?"
+                android:id="@+id/checkBoxQuintaChegada"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextQuintaInicio"
+                    style="@style/EditTextSearhMedTheme" />
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextQuintaFim"
+                    style="@style/EditTextSearhMedTheme" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/sextaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sexta-Feira"
+                android:id="@+id/checkBoxSexta"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de chegada?"
+                android:id="@+id/checkBoxSextaChegada"
+                style="@style/CheckBoxSearhMedTheme" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextSextaInicio"
+                    style="@style/EditTextSearhMedTheme" />
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editTextSextaFim"
+                    style="@style/EditTextSearhMedTheme" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Repetir Horarios Semanalmente"
+                android:id="@+id/checkBoxRepetirHorario"
+                style="@style/CheckBoxSearhMedTheme" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

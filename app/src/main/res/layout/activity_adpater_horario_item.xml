@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/texto1"
+            android:textSize="14dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="15dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/texto2"
+                android:textSize="14dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/texto3"
+                android:textSize="14dp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/texto4"
+                android:textSize="14dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="15dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto5"
+        android:textSize="14dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginLeft="15dp" />
+
+</LinearLayout>
