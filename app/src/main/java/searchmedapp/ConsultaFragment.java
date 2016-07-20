@@ -75,7 +75,6 @@ public class ConsultaFragment extends Fragment {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
         lbLocalizacao = (TextView) view.findViewById(R.id.lbLocalizacao);
 
         openLstPesquisa(view);
