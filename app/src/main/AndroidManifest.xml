@@ -110,6 +110,14 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".ConsultaDoDiaActivity"
+            android:label="@string/title_activity_consulta_do_dia"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".PrimeiroAcessoActivity"
             android:label="@string/title_activity_primeiro_acesso"
             android:parentActivityName=".BoasVindasActivity">

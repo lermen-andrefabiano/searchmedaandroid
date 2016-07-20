@@ -41,7 +41,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:text="Consultas Abertas"
         android:textSize="14dp"
         android:paddingLeft="10dp"
         android:background="#33b5e5"

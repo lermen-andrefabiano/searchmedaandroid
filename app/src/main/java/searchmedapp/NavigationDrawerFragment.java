@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import searchmedapp.adapter.ConsultaAbertaPacienteAdapter;
+import searchmedapp.adapter.ConsultaDoDiaAdapter;
 import searchmedapp.adapter.DrawerItem;
 import searchmedapp.adapter.DrawerItemAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
@@ -137,12 +138,14 @@ public class NavigationDrawerFragment extends Fragment {
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
 
             consultasAbertasPaciente(view);
-            consultasAbertasPacienteLabel.setVisibility(View.VISIBLE);
+            consultasAbertasPacienteLabel.setText("Consultas Abertas");
         }else{
             dataList.add(new DrawerItem(getString(R.string.action_consultas_agenda), R.drawable.ic_event_black_24dp));
             dataList.add(new DrawerItem(getString(R.string.action_consultas_passadas), R.drawable.ic_import_contacts_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
-            consultasAbertasPacienteLabel.setVisibility(View.GONE);
+
+            consultasDoDia(view);
+            consultasAbertasPacienteLabel.setText("Consultas do Dia");
         }
 
         DrawerItemAdapter adapter = new DrawerItemAdapter(getActivity(), R.layout.fragment_navigation_drawer_item, dataList);
@@ -178,6 +181,42 @@ public class NavigationDrawerFragment extends Fragment {
                     ConsultaDTO classificacaoSel = (ConsultaDTO) parent.getItemAtPosition(position);
 
                     Intent r = new Intent(getActivity(), ConsultaAbertaPacienteActivity.class);
+
+                    Gson gson = new Gson();
+                    String jsonConsultaSel = gson.toJson(classificacaoSel);
+                    r.putExtra("jsonConsultaSel", jsonConsultaSel);
+                    startActivity(r);
+                }
+            });
+        }
+    }
+
+    public void consultasDoDia(View rootView){
+        SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
+        String medicoId = pref.getString("key_user_medico_id", "");
+        List<ConsultaDTO> consultas = null;
+
+        try {
+            ConsultaREST rest = new ConsultaREST();
+            consultas = rest.listarConsultasDoDia(Long.valueOf(medicoId));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(consultas!=null){
+            ListView consultasAbertasPaciente = (ListView) rootView.findViewById(R.id.consultasAbertasPaciente);
+
+            ConsultaDoDiaAdapter adapter = new ConsultaDoDiaAdapter(getActivity(),
+                    R.layout.fragment_consulta_do_dia_item,
+                    consultas);
+
+            consultasAbertasPaciente.setAdapter(adapter);
+            consultasAbertasPaciente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ConsultaDTO classificacaoSel = (ConsultaDTO) parent.getItemAtPosition(position);
+
+                    Intent r = new Intent(getActivity(), ConsultaDoDiaActivity.class);
 
                     Gson gson = new Gson();
                     String jsonConsultaSel = gson.toJson(classificacaoSel);

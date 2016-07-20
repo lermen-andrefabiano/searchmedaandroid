@@ -66,6 +66,34 @@ public class ConsultaREST extends AbstractREST{
         }
     }
 
+    public List<ConsultaDTO> listarConsultasDoDia(Long medicoId) throws Exception {
+        final String PATH_ABERTOS = "listarConsultasDoDia?medicoId=";
+        Log.i("URL_WS", URL_WS + PATH + PATH_ABERTOS + medicoId);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABERTOS + medicoId);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<ConsultaDTO> lst = new ArrayList<ConsultaDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try{
+                array = parser.parse(resposta[1]).getAsJsonArray();
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), ConsultaDTO.class));
+                }
+
+            }catch(ClassCastException c){
+                c.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
     public List<ConsultaDTO> consultasAbertas(Long medicoId) throws Exception {
         final String PATH_ABERTOS = "consultasAbertas?medicoId=";
         Log.i("URL_WS", URL_WS + PATH_ABERTOS + medicoId);
