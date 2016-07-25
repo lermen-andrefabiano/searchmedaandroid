@@ -3,11 +3,13 @@ package searchmedapp.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class MedicoHorarioAdapter extends ArrayAdapter<MedicoHorarioDTO> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout view;
+        final LinearLayout view;
         //Get the current alert object
         MedicoHorarioDTO obj = getItem(position);
 
@@ -43,6 +45,15 @@ public class MedicoHorarioAdapter extends ArrayAdapter<MedicoHorarioDTO> {
         } else {
             view = (LinearLayout) convertView;
         }
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Toast.makeText(getContext(), R.string.toast_consulta_aberto, Toast.LENGTH_SHORT).show();
+                view.setBackgroundColor(getContext().getResources().getColor(R.color.background_material_dark));
+                return false;
+            }
+        });
 
         //Get the text boxes from the listitem.xml file
         TextView texto1 = (TextView) view.findViewById(R.id.texto1);

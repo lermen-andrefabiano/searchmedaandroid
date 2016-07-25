@@ -1,12 +1,18 @@
 package searchmedapp;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -20,10 +26,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import searchmedapp.adapter.ConvenioAdapter;
 import searchmedapp.adapter.EspecialidadeAdapter;
+import searchmedapp.service.NotificacaoService;
 import searchmedapp.util.GPSTracker;
+import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.dto.EspecialidadeDTO;
+import searchmedapp.webservices.rest.ConsultaREST;
 import searchmedapp.webservices.rest.EspecialidadeREST;
 
 

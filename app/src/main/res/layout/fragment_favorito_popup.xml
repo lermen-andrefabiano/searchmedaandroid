@@ -75,26 +75,31 @@
     </LinearLayout>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTitle"
+        android:textSize="16dp"
+        android:text="Especialidades"
+        android:layout_margin="5dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Especialidades"
-        android:id="@+id/lbEspecialidade"
-        android:textSize="16dp"
-        android:background="#33b5e5"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:padding="15dp" />
+        android:layout_margin="4dp"
+        android:padding="10dp"
+        android:background="@drawable/style_border_pesquisa">
 
-    <ListView
-        android:id="@+id/listFavoritoEspecialidade"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:background="#33b5e5"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:textColor="@android:color/white" />
+        <ListView
+            android:id="@+id/listFavoritoEspecialidade"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="#33b5e5"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"

@@ -47,7 +47,7 @@
     <string name="label_lembrete_senha">Lembrete de Senha</string>
     <string name="label_lembrete_senha_info">Caso tenha esquecido sua senha, digite o e-mail que você utilizou para se cadastrar no Home Help no espeço abaixo.</string>
     <string name="label_criar_nova_senha">Criar nova senha</string>
-    <string name="label_especialidades">Especialidades</string>
+    <string name="label_especialidades">Especialidade</string>
     <string name="label_convenio">Convênios</string>
     <string name="label_horario">Horários</string>
     <string name="label_gps">Usar minha Localização</string>

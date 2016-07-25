@@ -1,9 +1,9 @@
 package searchmedapp;
 
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,8 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import java.util.Calendar;
 
+import searchmedapp.service.NotificacaoStartServiceReceiver;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     private SharedPreferences pref;
+
+    // restart service every 30 seconds
+    private static final long REPEAT_TIME = 2000 * 30;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -43,7 +49,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //createNotification();
+        pref = getApplicationContext().getSharedPreferences("SearchMedPref", MODE_PRIVATE);
+        String tipo = pref.getString("key_user_tipo", null);
 
         if(isLogado()){
             this.openNavigationDrawer();
@@ -51,29 +58,24 @@ public class MainActivity extends AppCompatActivity
             Intent r = new Intent(this, BoasVindasActivity.class);
             startActivity(r);
         }
+
+        if (tipo.equals("C")) {
+            alarme();
+        }
     }
 
-    public void createNotification() {
-        // Prepare intent which is triggered if the
-        // notification is selected
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+    public void alarme() {
+        AlarmManager service = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(getApplicationContext(), NotificacaoStartServiceReceiver.class);
+        PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+        Calendar cal = Calendar.getInstance();
+        // start 30 seconds after boot completed
+        cal.add(Calendar.SECOND, 30);
+        // fetch every 30 seconds
+        // InexactRepeating allows Android to optimize the energy consumption
+        service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
 
-        // Build notification
-        // Actions are just fake
-        Notification noti = new Notification.Builder(this)
-                .setContentTitle("New mail from " + "test@gmail.com")
-                .setContentText("Subject").setSmallIcon(R.drawable.ic_import_contacts_black_18dp)
-                .setContentIntent(pIntent)
-                .addAction(R.drawable.ic_import_contacts_black_18dp, "Call", pIntent)
-                .addAction(R.drawable.ic_import_contacts_black_18dp, "More", pIntent)
-                .addAction(R.drawable.ic_import_contacts_black_18dp, "And more", pIntent).build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // hide the notification after its selected
-        noti.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        notificationManager.notify(0, noti);
-
+        //service.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
     }
 
     private boolean isLogado(){
