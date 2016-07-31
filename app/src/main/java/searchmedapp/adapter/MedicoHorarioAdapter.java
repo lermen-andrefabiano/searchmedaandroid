@@ -46,15 +46,6 @@ public class MedicoHorarioAdapter extends ArrayAdapter<MedicoHorarioDTO> {
             view = (LinearLayout) convertView;
         }
 
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Toast.makeText(getContext(), R.string.toast_consulta_aberto, Toast.LENGTH_SHORT).show();
-                view.setBackgroundColor(getContext().getResources().getColor(R.color.background_material_dark));
-                return false;
-            }
-        });
-
         //Get the text boxes from the listitem.xml file
         TextView texto1 = (TextView) view.findViewById(R.id.texto1);
         TextView texto2 = (TextView) view.findViewById(R.id.texto2);

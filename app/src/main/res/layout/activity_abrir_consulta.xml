@@ -83,7 +83,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="270dp"
+        android:layout_height="250dp"
         android:layout_marginTop="5dp">
 
         <LinearLayout
@@ -120,6 +120,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbHorarioSel"
+            android:textSize="16dp"
+            android:textColor="@color/colorTitle"
+            android:gravity="center"
+            android:padding="15dp" />
 
         <Button
             android:layout_width="fill_parent"

@@ -47,6 +47,8 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
 
     private Button btnFavorito;
 
+    private TextView lbHorarioSel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +137,8 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
         LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.activity_abrir_consulta, null);
 
+        lbHorarioSel = (TextView) view.findViewById(R.id.lbHorarioSel);
+
         ListView lv = (ListView ) view.findViewById(R.id.listHorario);
         final MedicoHorarioAdapter adapter = new MedicoHorarioAdapter(this, R.layout.activity_adpater_horario_item, medicoSel.getHorarios());
         lv.setAdapter(adapter);
@@ -142,6 +146,7 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 medicoHorarioSel = (MedicoHorarioDTO) parent.getItemAtPosition(position);
+                lbHorarioSel.setText("Horário escolhido: " + medicoHorarioSel.getDia() + " " + medicoHorarioSel.getInicio() + " - " + medicoHorarioSel.getFim());
             }
         });
 

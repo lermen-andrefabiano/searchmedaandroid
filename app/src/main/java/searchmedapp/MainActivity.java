@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(r);
         }
 
-        if (tipo.equals("C")) {
+        if (tipo != null && tipo.equals("C")) {
             alarme();
         }
     }
