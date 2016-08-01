@@ -21,6 +21,23 @@ public class ConsultaREST extends AbstractREST{
 
     private static final String PATH = "consulta/";
 
+    public boolean fechar(Long consultaId) throws Exception {
+        final String PATH_ABRIR = "fechar?consultaId=" + consultaId;
+
+        Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
+
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABRIR);
+
+        if (resposta[0].equals("400")) {
+            return false;
+        } else if (resposta[0].equals("200")) {
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+            return Boolean.valueOf(resposta[1]);
+        }
+
+        return false;
+    }
+
     public boolean abrir(Long usuarioId, Long medicoId, Long especialidadeId, Long horarioId) throws Exception {
         final String PATH_ABRIR = "abrir?usuarioId="+usuarioId+"&medicoId="+medicoId+"&especialidadeId="+especialidadeId+"&horarioId="+horarioId;
 

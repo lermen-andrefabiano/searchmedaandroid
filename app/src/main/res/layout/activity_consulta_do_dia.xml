@@ -55,4 +55,69 @@
 
     </LinearLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:columnWidth="320dp"
+        android:orientation="vertical"
+        android:rowCount="4"
+        android:stretchMode="columnWidth">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Exames Disponíveis"
+            android:textSize="16dp"
+            android:textColor="@color/colorTitle"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center|left" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_especialidade"
+            android:id="@+id/dragExameScroll">
+
+            <LinearLayout
+                android:id="@+id/dragExame"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:orientation="vertical"
+                android:background="@drawable/shape_especialidade"></LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Exames Cadatrados"
+            android:textSize="16dp"
+            android:textColor="@color/colorTitle"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center|left" />
+
+        <LinearLayout
+            android:id="@+id/dropExame"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="@drawable/shape_especialidade">
+
+        </LinearLayout>
+
+    </GridLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Concluir Consulta"
+        android:id="@+id/btnConcluirConsulta"
+        android:layout_gravity="center_horizontal"
+        style="@style/ButtonSearhMedTheme"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>

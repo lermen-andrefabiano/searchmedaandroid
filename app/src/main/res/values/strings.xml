@@ -93,6 +93,8 @@
     <string name="title_activity_meus_dados_horarios">Horarios</string>
     <string name="title_activity_pesquisa">Médicos Encontrados</string>
     <string name="toast_favorito_adicionado">Médico favorito adicionado sucesso!</string>
+    <string name="toast_add_exame">Exame adicionado com sucesso!</string>
+    <string name="toast_remove_exame">Exame removido com sucesso!</string>
     <string name="toast_add_especialidade">Especialidade adicionada com sucesso!</string>
     <string name="toast_remove_especialidade">Especialidade removida com sucesso!</string>
     <string name="toast_add_convenio">Convênio adicionada com sucesso!</string>

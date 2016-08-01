@@ -23,8 +23,10 @@
             <ImageView android:id="@+id/pesquisaImage"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_face_black_24dp"/>
+                android:src="@drawable/ic_face_black_24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -33,7 +35,7 @@
                 android:id="@+id/btnFavorito"
                 android:layout_gravity="center_horizontal"
                 style="@style/ButtonSearhMedTheme"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="3dp"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>
@@ -58,14 +60,6 @@
                 android:textColor="@color/colorTitle"
                 android:textSize="16dp"
                 android:id="@+id/textMed2"
-                android:paddingLeft="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTitle"
-                android:textSize="16dp"
-                android:id="@+id/textMed3"
                 android:paddingLeft="15dp" />
 
             <TextView
@@ -127,8 +121,7 @@
             android:id="@+id/lbHorarioSel"
             android:textSize="16dp"
             android:textColor="@color/colorTitle"
-            android:gravity="center"
-            android:padding="15dp" />
+            android:gravity="center" />
 
         <Button
             android:layout_width="fill_parent"

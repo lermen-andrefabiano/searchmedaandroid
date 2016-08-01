@@ -146,18 +146,16 @@ public class PesquisaConsultaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 medicoHorarioSel = (MedicoHorarioDTO) parent.getItemAtPosition(position);
-                lbHorarioSel.setText("Horário escolhido: " + medicoHorarioSel.getDia() + " " + medicoHorarioSel.getInicio() + " - " + medicoHorarioSel.getFim());
+                lbHorarioSel.setText("Horário: " + medicoHorarioSel.getDia() + " " + medicoHorarioSel.getInicio() + " - " + medicoHorarioSel.getFim());
             }
         });
 
         TextView textMed1 = (TextView) view.findViewById(R.id.textMed1);
         TextView textMed2 = (TextView) view.findViewById(R.id.textMed2);
-        TextView textMed3 = (TextView) view.findViewById(R.id.textMed3);
         TextView textMed4 = (TextView) view.findViewById(R.id.textMed4);
 
         textMed1.setText(medicoSel.getMedicoNome());
         textMed2.setText("CRM: " + medicoSel.getCrm());
-        textMed3.setText("Endereço: " + medicoSel.getMedicoEndereco());
         textMed4.setText(especialidade);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
