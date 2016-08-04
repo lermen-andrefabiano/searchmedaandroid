@@ -135,6 +135,7 @@ public class NavigationDrawerFragment extends Fragment {
             dataList.add(new DrawerItem(getString(R.string.action_consultas_passadas), R.drawable.ic_import_contacts_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_recomendacao), R.drawable.ic_add_alert_black_18dp));
             dataList.add(new DrawerItem(getString(R.string.action_medicos_favoritos), R.drawable.ic_star_rate_black_18dp));
+            dataList.add(new DrawerItem(getString(R.string.action_medicos_exames), R.drawable.ic_event_black_24dp));
             dataList.add(new DrawerItem(getString(R.string.action_ajustes), R.drawable.ic_brightness_7_black_18dp));
 
             consultasAbertasPaciente(view);

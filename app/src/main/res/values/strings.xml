@@ -11,6 +11,7 @@
     <string name="action_consultas_agenda">Consultas na Agenda</string>
     <string name="action_consultas_agendadas">Consultas Do Dia</string>
     <string name="action_medicos_favoritos">Médicos Favoritos</string>
+    <string name="action_medicos_exames">Exames</string>
     <string name="action_consultas_passadas">Consultas Passadas</string>
     <string name="action_ajustes">Ajustes</string>
 

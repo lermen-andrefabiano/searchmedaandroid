@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import searchmedapp.webservices.WebServiceClient;
+import searchmedapp.webservices.dto.ConsultaExameDTO;
+import searchmedapp.webservices.dto.ExameConsultaDTO;
 import searchmedapp.webservices.dto.ExameDTO;
 import searchmedapp.webservices.dto.InfoSalvarHorarioDTO;
 import searchmedapp.webservices.dto.MedicoConvenioDTO;
@@ -23,8 +25,8 @@ public class ExameREST extends AbstractREST {
 
     private static final String PATH = "exame/";
 
-    public boolean incluir(Long medicoId, Long exameId) throws Exception {
-        final String PATH_ABRIR = "incluir?medicoId=" + medicoId + "&exameId=" + exameId;
+    public boolean incluir(Long consultaId, Long exameId) throws Exception {
+        final String PATH_ABRIR = "incluir?consultaId=" + consultaId + "&exameId=" + exameId;
 
         Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
 
@@ -40,8 +42,8 @@ public class ExameREST extends AbstractREST {
         return false;
     }
 
-    public boolean excluir(Long medicoId, Long exameId) throws Exception {
-        final String PATH_ABRIR = "excluir?medicoId=" + medicoId + "&exameId=" + exameId;
+    public boolean excluir(Long consultaId, Long exameId) throws Exception {
+        final String PATH_ABRIR = "excluir?consultaId=" + consultaId + "&exameId=" + exameId;
 
         Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
 
@@ -73,6 +75,34 @@ public class ExameREST extends AbstractREST {
 
                 for (int i = 0; i < array.size(); i++) {
                     lst.add(gson.fromJson(array.get(i), ExameDTO.class));
+                }
+            } catch (ClassCastException c) {
+                c.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
+    public List<ConsultaExameDTO> getExamesConsulta(Long consultaId) throws Exception {
+        String PATH_ESP = "getExamesConsulta?consultaId=" + consultaId;
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<ConsultaExameDTO> lst = new ArrayList<ConsultaExameDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try {
+                array = parser.parse(resposta[1]).getAsJsonArray();
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), ConsultaExameDTO.class));
                 }
             } catch (ClassCastException c) {
                 c.printStackTrace();

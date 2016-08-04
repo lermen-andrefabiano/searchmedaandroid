@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity
                     fragment = FavoritoFragment.newInstance(position + 1);
                     break;
                 case 4:
+                    fragment = ConsultaExameFragment.newInstance(position + 1);
+                    break;
+                case 5:
                     //fragment = PerfilActivity.newInstance(position + 1);
                     Intent r = new Intent(getApplicationContext(), PerfilActivity.class);
                     startActivity(r);
@@ -172,6 +175,9 @@ public class MainActivity extends AppCompatActivity
                     mTitle = getString(R.string.action_medicos_favoritos);
                     break;
                 case 5:
+                    mTitle = getString(R.string.action_medicos_exames);
+                    break;
+                case 6:
                     mTitle = getString(R.string.action_perfil);
                     break;
             }

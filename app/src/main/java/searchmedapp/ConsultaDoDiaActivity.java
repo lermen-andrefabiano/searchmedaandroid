@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.dto.ConsultaExameDTO;
+import searchmedapp.webservices.dto.ExameConsultaDTO;
 import searchmedapp.webservices.dto.ExameDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
 import searchmedapp.webservices.rest.ExameREST;
@@ -70,15 +72,12 @@ public class ConsultaDoDiaActivity extends AppCompatActivity {
 
         TextView textMapData = (TextView) findViewById(R.id.textMapData);
         TextView textMapMedico = (TextView) findViewById(R.id.textMapMedico);
-        TextView textMapEspecialidade = (TextView) findViewById(R.id.textMapEspecialidade);
-        TextView textMapStatus = (TextView) findViewById(R.id.textMapStatus);
 
         textMapData.setText(format.format(consultaSel.getData()));
-        textMapMedico.setText(consultaSel.getMedico().getMedicoNome());
-        textMapEspecialidade.setText(consultaSel.getEspecialidade().getDescricao());
-        textMapStatus.setText(getStatus(consultaSel.getStatus()));
+        textMapMedico.setText(consultaSel.getUsuario().getNome());
 
         getExames();
+        getExamesConsulta();
 
         findViewById(R.id.dragExame).setOnDragListener(new ExameDragListener());
         findViewById(R.id.dropExame).setOnDragListener(new ExameDragListener());
@@ -124,7 +123,7 @@ public class ConsultaDoDiaActivity extends AppCompatActivity {
         }
 
         if (exames != null) {
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dropEspecialidade);
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dragExame);
 
             for (ExameDTO e : exames) {
                 TextView t = new TextView(this);
@@ -134,6 +133,40 @@ public class ConsultaDoDiaActivity extends AppCompatActivity {
 
                 t.setText(e.getDescricao());
                 t.setId(e.getId().intValue());
+                t.setLayoutParams(params);
+                t.setTextSize(16);
+                t.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                t.setOnTouchListener(new ExameTouchListener());
+
+                linearLayout.addView(t);
+            }
+        }
+    }
+
+    public void getExamesConsulta() {
+        Log.i(TAG, "getExamesConsulta");
+        ExameREST exameREST = new ExameREST();
+        List<ConsultaExameDTO> exames = null;
+        try {
+            if (exames == null) {
+                exames = exameREST.getExamesConsulta(consultaSel.getId());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (exames != null) {
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dropExame);
+
+            for (ConsultaExameDTO e : exames) {
+                TextView t = new TextView(this);
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(10, 4, 4, 4);
+
+                t.setText(e.getExame().getDescricao());
+                t.setId(e.getExame().getId().intValue());
                 t.setLayoutParams(params);
                 t.setTextSize(16);
                 t.setTextColor(getResources().getColor(R.color.colorWhite));

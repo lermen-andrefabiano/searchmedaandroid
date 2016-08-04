@@ -99,8 +99,8 @@ public class ConsultaFragment extends Fragment {
             final String localy =  gps.getLocality();
             lbLocalizacao.setText(localy);
 
-            Toast.makeText(getActivity().getApplicationContext(), localy, Toast.LENGTH_LONG).show();
-            Toast.makeText(getActivity().getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity().getApplicationContext(), localy, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity().getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
         }else{
             new Thread() {
                 public void run() {
