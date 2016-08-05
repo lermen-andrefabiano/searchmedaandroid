@@ -11,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 
 import java.util.List;
 
+import searchmedapp.adapter.ConsultaExameAdapter;
 import searchmedapp.adapter.ConsultaPassadaAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
+import searchmedapp.webservices.dto.ConsultaExameDTO;
 import searchmedapp.webservices.rest.ConsultaREST;
+import searchmedapp.webservices.rest.ExameREST;
 
 public class ConsultaExameFragment extends Fragment {
 
@@ -27,7 +31,7 @@ public class ConsultaExameFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private List<ConsultaDTO> consultas;
+    private List<ConsultaExameDTO> exames;
 
     private ConsultaDTO consultaSel;
 
@@ -55,31 +59,29 @@ public class ConsultaExameFragment extends Fragment {
 
         carregamento();
 
-        listar(rootView);
+        getExamesUsuario(rootView);
 
         return rootView;
     }
 
-    public void listar(View rootView) {
+    public void getExamesUsuario(View rootView) {
         SharedPreferences pref = getActivity().getSharedPreferences("SearchMedPref", Context.MODE_PRIVATE);
         String user = pref.getString("key_user_id", "");
 
         try {
-            if (consultas == null) {
-                ConsultaREST rest = new ConsultaREST();
-                consultas = rest.consultasAntigas(Long.valueOf(user));
+            if (exames == null) {
+                ExameREST rest = new ExameREST();
+                exames = rest.getExamesUsuario(Long.valueOf(user));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (consultas != null) {
-            ExpandableListView lstConusltasPassadas = (ExpandableListView) rootView.findViewById(R.id.lstConusltasPassadas);
+        if (exames != null) {
+            ConsultaExameAdapter listAdapter = new ConsultaExameAdapter(getActivity(), R.layout.fragment_consulta_passada_exame_item, exames);
 
-            ConsultaPassadaAdapter listAdapter = new ConsultaPassadaAdapter(getActivity(), consultas);
-
-            // setting list adapter
-            lstConusltasPassadas.setAdapter(listAdapter);
+            ListView lstConusltasExame = (ListView) rootView.findViewById(R.id.lstConusltasExame);
+            lstConusltasExame.setAdapter(listAdapter);
         }
     }
 

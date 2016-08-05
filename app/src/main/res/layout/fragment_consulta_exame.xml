@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConsultaPassadasFragment">
+    tools:context=".ConsultaExameFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Suas consultas realizadas"
+            android:text="Seus exames a serem realizados"
             android:id="@+id/textLabel_prioridade"
             android:textSize="20dp"
             android:textColor="@color/colorTitle"
@@ -25,10 +25,11 @@
             android:layout_marginBottom="40dp"
             android:gravity="center|left" />
 
-        <ExpandableListView
-            android:id="@+id/lstConusltasPassadas"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstConusltasExame"
+            android:background="@color/colorTitle" />
 
     </LinearLayout>
 

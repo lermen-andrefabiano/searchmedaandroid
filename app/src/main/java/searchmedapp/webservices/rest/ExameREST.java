@@ -115,4 +115,32 @@ public class ExameREST extends AbstractREST {
         }
     }
 
+    public List<ConsultaExameDTO> getExamesUsuario(Long usuarioId) throws Exception {
+        String PATH_ESP = "getExamesUsuario?usuarioId=" + usuarioId;
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<ConsultaExameDTO> lst = new ArrayList<ConsultaExameDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try {
+                array = parser.parse(resposta[1]).getAsJsonArray();
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), ConsultaExameDTO.class));
+                }
+            } catch (ClassCastException c) {
+                c.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
 }
