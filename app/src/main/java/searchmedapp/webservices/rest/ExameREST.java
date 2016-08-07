@@ -14,6 +14,7 @@ import searchmedapp.webservices.dto.ConsultaExameDTO;
 import searchmedapp.webservices.dto.ExameConsultaDTO;
 import searchmedapp.webservices.dto.ExameDTO;
 import searchmedapp.webservices.dto.InfoSalvarHorarioDTO;
+import searchmedapp.webservices.dto.LaboratorioDTO;
 import searchmedapp.webservices.dto.MedicoConvenioDTO;
 import searchmedapp.webservices.dto.MedicoEspecialidadeDTO;
 import searchmedapp.webservices.dto.MedicoHorarioDTO;
@@ -142,5 +143,34 @@ public class ExameREST extends AbstractREST {
             throw new Exception(resposta[1]);
         }
     }
+
+    public List<LaboratorioDTO> getLaboratorio(Long exameId) throws Exception {
+        String PATH_ESP = "getLaboratorio?exameId=" + exameId;
+        Log.i("URL_WS", URL_WS + PATH + PATH_ESP);
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ESP);
+
+        if (resposta[0].equals("200")) {
+            Gson gson = new Gson();
+            ArrayList<LaboratorioDTO> lst = new ArrayList<LaboratorioDTO>();
+            JsonParser parser = new JsonParser();
+            JsonArray array = null;
+
+            try {
+                array = parser.parse(resposta[1]).getAsJsonArray();
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), LaboratorioDTO.class));
+                }
+            } catch (ClassCastException c) {
+                c.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return lst;
+        } else {
+            throw new Exception(resposta[1]);
+        }
+    }
+
 
 }

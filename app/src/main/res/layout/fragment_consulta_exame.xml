@@ -25,11 +25,10 @@
             android:layout_marginBottom="40dp"
             android:gravity="center|left" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ExpandableListView
             android:id="@+id/lstConusltasExame"
-            android:background="@color/colorTitle" />
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
 
     </LinearLayout>
 

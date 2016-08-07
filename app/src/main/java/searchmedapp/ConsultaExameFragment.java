@@ -16,6 +16,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import searchmedapp.adapter.ConsultaExameAdapter;
+import searchmedapp.adapter.ConsultaExameExpandableAdapter;
 import searchmedapp.adapter.ConsultaPassadaAdapter;
 import searchmedapp.webservices.dto.ConsultaDTO;
 import searchmedapp.webservices.dto.ConsultaExameDTO;
@@ -78,10 +79,10 @@ public class ConsultaExameFragment extends Fragment {
         }
 
         if (exames != null) {
-            ConsultaExameAdapter listAdapter = new ConsultaExameAdapter(getActivity(), R.layout.fragment_consulta_passada_exame_item, exames);
+            ExpandableListView lstConusltasAberta = (ExpandableListView) rootView.findViewById(R.id.lstConusltasExame);
 
-            ListView lstConusltasExame = (ListView) rootView.findViewById(R.id.lstConusltasExame);
-            lstConusltasExame.setAdapter(listAdapter);
+            ConsultaExameExpandableAdapter listAdapter = new ConsultaExameExpandableAdapter(getActivity(), exames);
+            lstConusltasAberta.setAdapter(listAdapter);
         }
     }
 
