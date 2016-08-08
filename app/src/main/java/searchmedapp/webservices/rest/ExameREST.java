@@ -26,6 +26,23 @@ public class ExameREST extends AbstractREST {
 
     private static final String PATH = "exame/";
 
+    public boolean agenda(Long agenda, Long laboratorioId, Long consultarExameId) throws Exception {
+        final String PATH_ABRIR = "agenda?agenda=" + agenda + "&laboratorioId=" + laboratorioId + "&consultarExameId=" + consultarExameId;
+
+        Log.i("URL_WS", URL_WS + PATH + PATH_ABRIR);
+
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_ABRIR);
+
+        if (resposta[0].equals("400")) {
+            return false;
+        } else if (resposta[0].equals("200")) {
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+            return Boolean.valueOf(resposta[1]);
+        }
+
+        return false;
+    }
+
     public boolean incluir(Long consultaId, Long exameId) throws Exception {
         final String PATH_ABRIR = "incluir?consultaId=" + consultaId + "&exameId=" + exameId;
 

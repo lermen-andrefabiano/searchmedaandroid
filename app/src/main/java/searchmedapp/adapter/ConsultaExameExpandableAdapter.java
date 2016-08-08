@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
     private HashMap<Integer, List<LaboratorioDTO>> _listDataChild = new HashMap<Integer, List<LaboratorioDTO>>();
 
     private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+    private LaboratorioDTO laboratorioSel;
 
     public ConsultaExameExpandableAdapter(Context context, List<ConsultaExameDTO> exames) {
         this._context = context;
@@ -94,18 +97,19 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
         ListView listExameLab = (ListView) convertView.findViewById(R.id.listExameLab);
         LaboratorioAdapter adapter = new LaboratorioAdapter(this._context, R.layout.activity_adpater_item, labs);
         listExameLab.setAdapter(adapter);
-
+        final int finalgroupPosition = groupPosition;
         listExameLab.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                abrirPopUpLab();
+                laboratorioSel = (LaboratorioDTO) parent.getItemAtPosition(position);
+                abrirPopUpLab(finalgroupPosition);
             }
         });
 
         return convertView;
     }
 
-    private void abrirPopUpLab() {
+    private void abrirPopUpLab(final int groupPosition) {
         LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popUpView = infalInflater.inflate(R.layout.fragment_consulta_exame_poppup, null);
 
@@ -114,13 +118,28 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        DatePicker dtConsultaExame = (DatePicker) popUpView.findViewById(R.id.dtConsultaExame);
+        final DatePicker dtConsultaExame = (DatePicker) popUpView.findViewById(R.id.dtConsultaExame);
         Button btnConsultaExame = (Button) popUpView.findViewById(R.id.btnConsultaExame);
         Button btnCancelarExame = (Button) popUpView.findViewById(R.id.btnCancelarExame);
 
         btnConsultaExame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ConsultaExameDTO consultaExame = (ConsultaExameDTO) getGroup(groupPosition);
+
+                Log.i(TAG, consultaExame.getExame().getDescricao() + " " + laboratorioSel.getNome());
+
+                Calendar hoje = Calendar.getInstance();
+                hoje.set(Calendar.DAY_OF_MONTH, dtConsultaExame.getDayOfMonth());
+                hoje.set(Calendar.MONTH, dtConsultaExame.getMonth());
+                hoje.set(Calendar.YEAR, dtConsultaExame.getYear());
+
+                try {
+                    ExameREST rest = new ExameREST();
+                    boolean rs = rest.agenda(hoje.getTime().getTime(), laboratorioSel.getId(), consultaExame.getId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 alertDialog.dismiss();
             }
         });
@@ -134,7 +153,6 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
 
         alertDialog.show();
     }
-
 
     @Override
     public int getChildrenCount(int groupPosition) {
