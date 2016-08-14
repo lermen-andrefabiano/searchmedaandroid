@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -18,6 +19,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import searchmedapp.util.GPSTracker;
 import searchmedapp.webservices.dto.UsuarioDTO;
@@ -184,12 +188,18 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
             tipo = "M";
         }
 
+        String senha = editSenha.getText().toString();
+
+        //Log.i(TAG, "senha: "+senha);
+        senha = md5(senha);
+        //Log.i(TAG, "senha md5: "+senha);
+
         try {
             UsuarioREST rest = new UsuarioREST();
             retorno = rest.criar(userId,
                     editNome.getText().toString(),
                     editEmail.getText().toString(),
-                    editSenha.getText().toString(),
+                    senha,
                     editEndereco.getText().toString(),
                     tipo,
                     crm,
@@ -199,6 +209,26 @@ public class PrimeiroAcessoActivity extends AppCompatActivity{
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private static String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public void abreMain(UsuarioDTO retorno){

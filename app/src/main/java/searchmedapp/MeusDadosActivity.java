@@ -18,6 +18,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
 
@@ -152,6 +155,8 @@ public class MeusDadosActivity extends AppCompatActivity{
 
         String tipo = "C";
         String crm = editCRM.getText().length()>0 ? editCRM.getText().toString() : null;
+        String senha = editSenha.getText().toString();
+        senha = md5(senha);
 
         if(chkPrestaServico.isChecked() == true){
             tipo = "M";
@@ -161,9 +166,9 @@ public class MeusDadosActivity extends AppCompatActivity{
             UsuarioREST rest = new UsuarioREST();
             retorno = rest.criar(userId,
                     editNome.getText().toString(),
-                    editEmail.getText().toString(),                   
+                    editEmail.getText().toString(),
+                    senha,
                     editEndereco.getText().toString(),
-                    editSenha.getText().toString(),
                     tipo,
                     crm,
                     Double.valueOf(keyLatitude),
@@ -172,6 +177,25 @@ public class MeusDadosActivity extends AppCompatActivity{
         }
 
         abreMain(retorno);
+    }
+
+    private static String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public void abreMain(UsuarioDTO retorno){

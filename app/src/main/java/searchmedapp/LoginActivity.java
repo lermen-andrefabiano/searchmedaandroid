@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import searchmedapp.webservices.dto.UsuarioDTO;
 import searchmedapp.webservices.rest.UsuarioREST;
 
@@ -79,17 +82,39 @@ public class LoginActivity extends AppCompatActivity {
         }else if (editSenha.getText().length() == 0){
             Toast.makeText(getApplicationContext(), R.string.toast_informe_senha, Toast.LENGTH_LONG).show();
         }else{
+            String senha = editSenha.getText().toString();
+            senha = md5(senha);
+
             UsuarioDTO retorno = null;
             carregamento();
             try {
                 UsuarioREST rest = new UsuarioREST();
-                retorno = rest.login(editLogin.getText().toString(), editSenha.getText().toString());
+                retorno = rest.login(editLogin.getText().toString(), senha);
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), R.string.toast_erro_geral, Toast.LENGTH_LONG).show();
             }
 
             abreMain(retorno);
         }
+    }
+
+    private static String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public void abreMain(UsuarioDTO retorno){
