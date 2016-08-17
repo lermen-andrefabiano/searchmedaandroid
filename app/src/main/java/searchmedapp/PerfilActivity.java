@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -54,12 +55,11 @@ public class PerfilActivity extends AppCompatActivity {
         ListView lstMeusDados = (ListView) findViewById(R.id.lstMeusDados);
         String tipo = pref.getString("key_user_tipo", null);
         String[] menuArray;
-        ViewGroup.LayoutParams params = lstMeusDados.getLayoutParams();
+        //ViewGroup.LayoutParams params = lstMeusDados.getLayoutParams();
 
         if(tipo==null || tipo.equals("C")){
             menuArray =  new String[]{getString(R.string.label_dados_pessoais)};
-            params.height = 40;
-            lstMeusDados.setLayoutParams(params);
+            //params.height = 40;
         }else{
             menuArray = new String[]{
                     getString(R.string.label_dados_pessoais),
@@ -67,9 +67,10 @@ public class PerfilActivity extends AppCompatActivity {
                     getString(R.string.label_convenio),
                     getString(R.string.label_horario),
             };
-            params.height = 160;
-            lstMeusDados.setLayoutParams(params);
+            //params.height = 160;
         }
+
+        // lstMeusDados.setLayoutParams(params);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_adpater_item,
@@ -158,4 +159,21 @@ public class PerfilActivity extends AppCompatActivity {
         startActivity(r);
     }
 
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ListView lstMeusDados = (ListView) findViewById(R.id.lstMeusDados);
+        String tipo = pref.getString("key_user_tipo", null);
+        ViewGroup.LayoutParams params = lstMeusDados.getLayoutParams();
+
+        if (tipo == null || tipo.equals("C")) {
+            params.height = 160;
+            Log.i(TAG, " params.height = 40");
+        } else {
+            params.height = 480;
+            Log.i(TAG, " params.height = 160");
+        }
+
+        lstMeusDados.setLayoutParams(params);
+    }
 }

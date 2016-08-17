@@ -69,7 +69,11 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this._listDataChild.get(groupPosition);
+        try {
+            return this._listDataChild.get(groupPosition).get(childPosititon);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -79,7 +83,7 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final List<LaboratorioDTO> labs = (List<LaboratorioDTO>) getChild(groupPosition, childPosition);
+        final LaboratorioDTO childText = (LaboratorioDTO) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -87,24 +91,22 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         TextView lbExameLaboratorio = (TextView) convertView.findViewById(R.id.lbExameLaboratorio);
-        lbExameLaboratorio.setVisibility(View.VISIBLE);
-        if (labs.isEmpty()) {
-            lbExameLaboratorio.setVisibility(View.VISIBLE);
-        } else {
-            lbExameLaboratorio.setVisibility(View.GONE);
-        }
 
-        ListView listExameLab = (ListView) convertView.findViewById(R.id.listExameLab);
-        LaboratorioAdapter adapter = new LaboratorioAdapter(this._context, R.layout.activity_adpater_item, labs);
-        listExameLab.setAdapter(adapter);
-        final int finalgroupPosition = groupPosition;
-        listExameLab.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                laboratorioSel = (LaboratorioDTO) parent.getItemAtPosition(position);
-                abrirPopUpLab(finalgroupPosition);
-            }
-        });
+        if (childText != null) {
+            lbExameLaboratorio.setText(childText.getNome());
+
+            final int finalgroupPosition = groupPosition;
+            lbExameLaboratorio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    laboratorioSel = childText;
+                    Log.i(TAG, laboratorioSel.getNome());
+                    abrirPopUpLab(finalgroupPosition);
+                }
+            });
+        } else {
+            lbExameLaboratorio.setText("Sem laboratórios encontrados");
+        }
 
         return convertView;
     }
@@ -127,7 +129,7 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 ConsultaExameDTO consultaExame = (ConsultaExameDTO) getGroup(groupPosition);
 
-                Log.i(TAG, consultaExame.getExame().getDescricao() + " " + laboratorioSel.getNome());
+                //Log.i(TAG, consultaExame.getExame().getDescricao() + " " + laboratorioSel.getNome());
 
                 Calendar hoje = Calendar.getInstance();
                 hoje.set(Calendar.DAY_OF_MONTH, dtConsultaExame.getDayOfMonth());
@@ -156,7 +158,8 @@ public class ConsultaExameExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
+        int size = this._listDataChild.get(groupPosition).size();
+        return size > 0 ? size : 1;
     }
 
     @Override

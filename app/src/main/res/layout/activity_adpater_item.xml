@@ -9,9 +9,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textoAdp"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:layout_margin="15dp" />
+        android:layout_margin="10dp" />
 
 </LinearLayout>
