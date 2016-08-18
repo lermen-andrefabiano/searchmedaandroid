@@ -2,6 +2,7 @@ package searchmedapp.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,10 @@ import searchmedapp.webservices.dto.ConsultaDTO;
  */
 public class ConsultaPassadaAdapter extends BaseExpandableListAdapter {
 
+    private static final String TAG = "ConsultaPassadasFragment";
+
     private Context _context;
+
     private List<ConsultaDTO> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<Integer, ConsultaDTO> _listDataChild = new HashMap<Integer, ConsultaDTO>();
@@ -66,13 +70,22 @@ public class ConsultaPassadaAdapter extends BaseExpandableListAdapter {
         lblCPEspecialidade.setText(childText.getEspecialidade().getDescricao());
         lblCPEndereco.setText(childText.getUsuario().getNome());
 
-        if(childText.getExames().size()==0){
+        int sizeExames = childText.getExames().size();
+
+        if (sizeExames == 0) {
             lblCPExamesRealizados.setVisibility(View.GONE);
         }else{
             lblCPExamesRealizados.setVisibility(View.VISIBLE);
         }
 
+        Log.i(TAG, "tamanho exames: " + sizeExames);
+
         ListView lblCPExames = (ListView ) convertView.findViewById(R.id.lblCPExames);
+
+        ViewGroup.LayoutParams params = lblCPExames.getLayoutParams();
+        params.height = sizeExames * 25;
+        lblCPExames.setLayoutParams(params);
+
         final ConsultaExameAdapter adapterC = new ConsultaExameAdapter(this._context, R.layout.fragment_consulta_passada_exame_item, childText.getExames());
         lblCPExames.setAdapter(adapterC);
 
