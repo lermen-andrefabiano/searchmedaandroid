@@ -55,6 +55,23 @@ public class UsuarioREST extends AbstractREST{
         return info;
     }
 
+    public boolean trocarSenha(Long usuarioId, String senha, String novaSenha) throws Exception {
+        final String PATH_LOGIN = "trocarSenha?usuarioId=" + usuarioId + "&senha=" + senha + "&novaSenha=" + novaSenha;
+
+        Log.i("URL_WS", URL_WS + PATH + PATH_LOGIN);
+
+        String[] resposta = new WebServiceClient().get(URL_WS + PATH + PATH_LOGIN);
+
+        if (resposta[0].equals("400")) {
+            return false;
+        } else if (resposta[0].equals("200")) {
+            Log.i("resposta[0]", resposta[0] + " valor " + resposta[1]);
+            return Boolean.valueOf(resposta[1]);
+        }
+
+        return false;
+    }
+
     public UsuarioDTO criar(Long userId, String nome, String email, String senha,
                             String endereco, String tipo, String crm,
                             Double latitude, Double longitude) throws Exception {

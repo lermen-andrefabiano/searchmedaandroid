@@ -110,8 +110,7 @@ public class PerfilActivity extends AppCompatActivity {
                 R.layout.activity_adpater_item,
                 R.id.textoAdp,
                 new String[]{
-                        getString(R.string.label_redefinir_senha),
-                        getString(R.string.label_esqueci_senha),
+                        getString(R.string.label_redefinir_senha)
                 });
 
         lstMais.setAdapter(adapter);
@@ -123,10 +122,6 @@ public class PerfilActivity extends AppCompatActivity {
                         Intent r = new Intent(getApplicationContext(), RedefinirSenhaActivity.class);
                         startActivity(r);
                         break;
-                    case 1 :
-                        Intent l = new Intent(getApplicationContext(), LembreteSenhaActivity.class);
-                        startActivity(l);
-                    break;
                 }
             }
         });
