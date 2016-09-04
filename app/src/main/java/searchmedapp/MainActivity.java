@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences pref;
 
     // restart service every 60 seconds
-    //private static final long REPEAT_TIME = 2000 * 30;
+    private static final long REPEAT_TIME = 2000 * 30;
 
     // restart service every 1 hora
-    private static final long REPEAT_TIME = 3600000;
+    //private static final long REPEAT_TIME = 3600000;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

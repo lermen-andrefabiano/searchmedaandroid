@@ -77,7 +77,7 @@ public class ConsultaAbertaAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 try {
                     ConsultaREST rest = new ConsultaREST();
-                    rest.agendar(_medicoId);
+                    rest.agendar(childText.getId());
                     Toast.makeText(_context, R.string.toast_agendamento_realizado, Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     e.printStackTrace();
